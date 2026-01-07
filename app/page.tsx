@@ -66,7 +66,7 @@ export default function LavenderShop() {
         ))}
         {cart.length > 0 && (
           <>
-            <p className="font-semibold mt-4">Total: ${total.toFixed(2)}</p>
+            <p className="font-semibold mt-4">Total: {total.toFixed(2)}</p>
             <button
               onClick={checkout}
               className="mt-4 bg-purple-700 text-white px-4 py-2 rounded"
