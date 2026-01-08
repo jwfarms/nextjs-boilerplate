@@ -3,8 +3,6 @@ import { NextResponse } from "next/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-});
-
 export async function POST(req: Request) {
   try {
     const { items } = await req.json();
@@ -29,8 +27,10 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Stripe error" }, { status: 500 });
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: err.message },
+      { status: 500 }
+    );
   }
 }
