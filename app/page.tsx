@@ -118,15 +118,23 @@ export default function LavenderShop() {
             </div>
           ))}
           {cart.length > 0 && (
-            <div className="mt-6">
-              <p className="font-semibold mb-4">Total: ${total.toFixed(2)} USD</p>
-              <button onClick={checkout} className="w-full bg-purple-700 hover:bg-purple-800 text-white rounded-xl py-3">
-                Proceed to Checkout (Stripe)
-              </button>
-              <p className="text-xs text-gray-500 text-center mt-2">Secure checkout • Email confirmation sent</p>
-            </div>
-          )}
-        </div>
+  <div className="mt-6">
+    <p className="font-semibold mb-4">
+      Total: ${total.toFixed(2)} USD
+    </p>
+
+    <button
+      onClick={checkout}
+      className="w-full bg-purple-700 hover:bg-purple-800 text-white rounded-xl py-3"
+    >
+      Proceed to Checkout (Stripe)
+    </button>
+
+    <p className="text-xs text-gray-500 text-center mt-2">
+      Secure checkout • Email confirmation sent
+    </p>
+  </div>
+)}
       </section>
 
       {/* Contact */}
