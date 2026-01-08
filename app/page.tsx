@@ -46,7 +46,6 @@ export default function LavenderShop() {
 };
 <button onClick={checkout}>
   Proceed to Checkout (Stripe)
-</button>
 
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
