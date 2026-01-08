@@ -3,17 +3,17 @@ import { useState } from "react";
 export default function LavenderShop() {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    setCart((prev) => {
-      const existing = prev.find((p) => p.id === product.id);
-      if (existing) {
-        return prev.map((p) =>
-          p.id === product.id ? { ...p, qty: p.qty + 1 } : p
-        );
-      }
-      return [...prev, { ...product, qty: 1 }];
-    });
-  };
+ const addToCart = (product: Omit<CartItem, "qty">) => {
+  setCart((prev: CartItem[]) => {
+    const existing = prev.find((p) => p.id === product.id);
+    if (existing) {
+      return prev.map((p) =>
+        p.id === product.id ? { ...p, qty: p.qty + 1 } : p
+      );
+    }
+    return [...prev, { ...product, qty: 1 }];
+  });
+};
 
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
