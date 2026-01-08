@@ -37,6 +37,27 @@ export default function LavenderShop() {
     const data = await res.json();
     window.location.href = data.url;
   };
+const handleCheckout = async () => {
+  const res = await fetch("/api/checkout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      items: [
+        {
+          name: "Lavender Product",
+          price: 9.99,
+          qty: 1,
+        },
+      ],
+    }),
+  };
+
+  const data = await res.json();
+
+  if (data.url) {
+    window.location.href = data.url;
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
