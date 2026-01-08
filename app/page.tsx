@@ -129,7 +129,8 @@ export default function LavenderShop() {
           <form action="https://formspree.io/f/xbjnzqwl" method="POST" data-formspree-success="Thanks! We’ll be in touch soon." className="bg-white rounded-2xl shadow-md p-8 space-y-4 text-left">
             <input type="text" name="name" required placeholder="Your Name" className="w-full px-4 py-2 border rounded-xl" />
             <input type="email" name="email" required placeholder="Your Email" className="w-full px-4 py-2 border rounded-xl" />
-            <textarea name="message" rows="4" required placeholder="Your Message" className="w-full px-4 py-2 border rounded-xl"></textarea>
+           <textarea name="message" rows={4} required placeholder="Your Message" className="w-full px-4 py-2 border rounded-xl"></textarea>
+
             <button type="submit" className="w-full bg-purple-700 hover:bg-purple-800 text-white rounded-xl py-3">Send Message</button>
           </form>
 
