@@ -69,6 +69,12 @@ const checkout = async () => {
   }
 };
 
+<button
+  onClick={checkout}
+  className="w-full bg-purple-700 hover:bg-purple-800 text-white rounded-xl py-3"
+>
+  Proceed to Checkout (Stripe)
+</button>
 
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
