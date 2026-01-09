@@ -44,8 +44,31 @@ export default function LavenderShop() {
     window.location.href = data.url;
   }
 };
-<button onClick={checkout}>
-  Proceed to Checkout (Stripe)
+const checkout = async () => {
+  try {
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cart,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!data.url) {
+      throw new Error("Stripe session URL missing");
+    }
+
+    window.location.href = data.url;
+  } catch (err) {
+    console.error("Checkout error:", err);
+    alert("Checkout failed. Please try again.");
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
