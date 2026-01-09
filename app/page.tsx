@@ -28,16 +28,6 @@ export default function LavenderShop() {
 
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-  const checkout = async () => {
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: cart }),
-    });
-    const data = await res.json();
-    window.location.href = data.url;
-  };
-
   const data = await res.json();
 
   if (data.url) {
