@@ -133,6 +133,46 @@ export default function Home() {
     <p className="text-gray-600 mb-8">
       Updates from the fields, harvest notes, and life at JW FARMS.
     </p>
+{/* About */}
+<section id="about" className="py-16 px-6 bg-white">
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-3xl font-semibold text-purple-800 mb-6">
+      About JW FARMS
+    </h2>
+
+    <p className="text-gray-700 mb-4">
+      JW FARMS is a small, family-owned lavender farm dedicated to growing
+      healthy plants and high-quality lavender products with care and
+      intention. Everything we offer is grown seasonally, hand-harvested,
+      and handled in small batches to ensure freshness and quality.
+    </p>
+
+    <p className="text-gray-700 mb-4">
+      Our lavender buds are ideal for sachets, crafts, baking, teas, and
+      home use, while our seasonal plants and plugs are grown for gardeners
+      and growers who value strong starts and dependable varieties.
+      Availability changes throughout the year based on growing conditions
+      and harvest timing.
+    </p>
+
+    <p className="text-gray-700">
+      We keep things simple and personal — all orders and questions are
+      handled directly by email. If you’re interested in product
+      availability, bulk orders, or seasonal updates, we’re always happy
+      to hear from you.
+    </p>
+
+    <p className="mt-6 font-semibold text-purple-700">
+      📧 Email us anytime:{" "}
+      <a
+        href="mailto:jwfarms77@gmail.com"
+        className="underline hover:text-purple-900"
+      >
+        jwfarms77@gmail.com
+      </a>
+    </p>
+  </div>
+</section>
 
     {/* Blog Preview */}
     <div className="rounded-2xl shadow-md overflow-hidden mb-8">
