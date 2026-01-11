@@ -1,15 +1,6 @@
 
 "use client";
 
-import { useState } from "react";
-
-type CartItem = {
-  id: number;
-  name: string;
-  price: number;
-  qty: number;
-};
-
 export default function LavenderShop() {
 
 <a
@@ -18,19 +9,6 @@ export default function LavenderShop() {
 >
   Click here to email us
 </a>
-
-    const data = await res.json();
-
-    if (!data.url) {
-      throw new Error("Stripe session URL missing");
-    }
-
-    window.location.href = data.url;
-  } catch (err) {
-    console.error("Checkout error:", err);
-    alert("Checkout failed. Please try again.");
-  }
-};
 
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
@@ -66,12 +44,6 @@ export default function LavenderShop() {
             <h3 className="text-xl font-semibold mb-2">Lavender Buds</h3>
             <p className="text-sm text-gray-600 mb-2">Perfect for sachets, baking, teas, candles, and crafts</p>
             <p className="text-purple-700 font-semibold mb-4">$9.99 / 2 oz</p>
-            <button
-              onClick={() => addToCart({ id: 1, name: "Lavender Buds", price: 9.99 })}
-              className="w-full bg-purple-700 hover:bg-purple-800 text-white rounded-xl py-2"
-            >
-              Add to Cart
-            </button>
           </div>
 
           {/* Lavender Stalks */}
@@ -86,10 +58,7 @@ export default function LavenderShop() {
   <p className="text-sm text-gray-500">Available during harvest season</p>
 </div>
         </div>
-      </section>
 
-      {/* Cart */}
-      <section id="cart" className="bg-white py-12 px-6">
         <div className="max-w-3xl mx-auto mb-6 text-sm text-gray-600">
           ✔ Secure Stripe checkout &nbsp; • &nbsp; ✔ No subscriptions &nbsp; • &nbsp; ✔ Email receipt
         </div>
@@ -107,13 +76,6 @@ export default function LavenderShop() {
     <p className="font-semibold mb-4">
       Total: ${total.toFixed(2)} USD
     </p>
-
-    <button
-      onClick={checkout}
-      className="w-full bg-purple-700 hover:bg-purple-800 text-white rounded-xl py-3"
-    >
-      Proceed to Checkout (Stripe)
-    </button>
 
     <p className="text-xs text-gray-500 text-center mt-2">
       Secure checkout • Email confirmation sent
