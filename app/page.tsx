@@ -28,6 +28,12 @@ export default function LavenderShop() {
 
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
+<a
+  href="mailto:youremail@example.com"
+  style={{ color: "#6b4e71", textDecoration: "underline" }}
+>
+  Click here to email us
+</a>
 
 const checkout = async () => {
   try {
