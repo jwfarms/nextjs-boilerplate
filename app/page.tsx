@@ -101,6 +101,25 @@ export default function Home() {
     </p>
   </div>
 
+          <div className="rounded-2xl shadow-md bg-white opacity-60 p-6 text-center">
+  <h3 className="text-xl font-semibold mb-2">
+    Lavender Tray – 72 Plugs
+  </h3>
+
+  <p className="text-sm text-gray-500 mb-3">
+    Seasonal availability
+  </p>
+
+  <p className="text-purple-700 font-semibold mb-4">
+    $130.00
+  </p>
+
+  <p className="text-xs text-gray-500">
+    Email us for availability
+  </p>
+</div>
+
+
 </div>
 
       </section>
