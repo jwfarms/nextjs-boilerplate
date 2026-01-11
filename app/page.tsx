@@ -116,6 +116,60 @@ export default function Home() {
           </p>
         </div>
       </section>
+      {/* FAQ */}
+<section id="faq" className="py-16 px-6 bg-[#f6f2fb]">
+  <div className="max-w-4xl mx-auto">
+    <h2 className="text-3xl font-semibold text-center mb-10 text-purple-800">
+      Frequently Asked Questions
+    </h2>
+
+    <div className="space-y-6">
+
+      <div className="bg-white rounded-2xl shadow-md p-6">
+        <h3 className="font-semibold text-lg mb-2">
+          How do I place an order?
+        </h3>
+        <p className="text-gray-600">
+          All orders are placed by email. Simply click any “Email to Order”
+          button or email us directly at jwfarms77@gmail.com.
+        </p>
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-md p-6">
+        <h3 className="font-semibold text-lg mb-2">
+          Do you ship lavender?
+        </h3>
+        <p className="text-gray-600">
+          Shipping availability depends on the product and season. Please email
+          us with your location and desired product for details.
+        </p>
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-md p-6">
+        <h3 className="font-semibold text-lg mb-2">
+          When are plants and plugs available?
+        </h3>
+        <p className="text-gray-600">
+          Plants, bundles, and plug trays are seasonal and typically available
+          during the growing and harvest seasons. Availability varies year to
+          year.
+        </p>
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-md p-6">
+        <h3 className="font-semibold text-lg mb-2">
+          Do you offer bulk or wholesale pricing?
+        </h3>
+        <p className="text-gray-600">
+          Yes. Please email us with your quantity needs and intended use, and
+          we’ll be happy to discuss options.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Photo Gallery */}
       <section id="gallery" className="py-16 px-6 bg-white">
