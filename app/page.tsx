@@ -172,51 +172,89 @@ export default function Home() {
       </a>
     </p>
   </div>
-</section>
 {/* Photo Gallery */}
-<section id="gallery" className="py-16 px-6 bg-[#f6f2fb]">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-3xl font-semibold text-purple-800 mb-4">
-      Lavender Gallery
-    </h2>
-    <p className="text-gray-600 mb-10">
-      A glimpse into our fields, harvest, and seasonal lavender at JW FARMS
-    </p>
+<section className="py-16 px-6 bg-white">
+  <h2 className="text-3xl font-semibold text-center mb-10">
+    Life at JW FARMS
+  </h2>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+    {/* Lavender Field */}
+    <div className="rounded-2xl overflow-hidden shadow-md">
       <img
-        src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
-        alt="Lavender field"
-        className="rounded-2xl shadow-md object-cover h-64 w-full"
+        src="/gallery/field.jpg"
+        alt="Lavender field in bloom"
+        className="w-full h-64 object-cover"
       />
-      <img
-        src="https://images.unsplash.com/photo-1524594154908-edd28a72c38b"
-        alt="Fresh lavender bundles"
-        className="rounded-2xl shadow-md object-cover h-64 w-full"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1445510491599-c391e8046a68"
-        alt="Lavender flowers"
-        className="rounded-2xl shadow-md object-cover h-64 w-full"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1590086782957-93c06ef21604"
-        alt="Lavender buds close up"
-        className="rounded-2xl shadow-md object-cover h-64 w-full"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1599687268791-2a21f49b48c0"
-        alt="Lavender plants"
-        className="rounded-2xl shadow-md object-cover h-64 w-full"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1596397249128-7c4f33c6f93c"
-        alt="Lavender harvest"
-        className="rounded-2xl shadow-md object-cover h-64 w-full"
-      />
+      <p className="p-3 text-sm text-center text-gray-600">
+        Lavender fields in peak bloom
+      </p>
     </div>
+
+    {/* Close-up */}
+    <div className="rounded-2xl overflow-hidden shadow-md">
+      <img
+        src="/gallery/closeup.jpg"
+        alt="Lavender close-up"
+        className="w-full h-64 object-cover"
+      />
+      <p className="p-3 text-sm text-center text-gray-600">
+        Close-up of lavender flowers
+      </p>
+    </div>
+
+    {/* Bundles */}
+    <div className="rounded-2xl overflow-hidden shadow-md">
+      <img
+        src="/gallery/bundles.jpg"
+        alt="Fresh lavender bundles"
+        className="w-full h-64 object-cover"
+      />
+      <p className="p-3 text-sm text-center text-gray-600">
+        Freshly harvested lavender bundles
+      </p>
+    </div>
+
+    {/* Plant */}
+    <div className="rounded-2xl overflow-hidden shadow-md">
+      <img
+        src="/gallery/plant.jpg"
+        alt="Lavender plant"
+        className="w-full h-64 object-cover"
+      />
+      <p className="p-3 text-sm text-center text-gray-600">
+        Healthy lavender plants
+      </p>
+    </div>
+
+    {/* Plugs */}
+    <div className="rounded-2xl overflow-hidden shadow-md">
+      <img
+        src="/gallery/plugs.jpg"
+        alt="Lavender plug tray"
+        className="w-full h-64 object-cover"
+      />
+      <p className="p-3 text-sm text-center text-gray-600">
+        Tray of lavender plugs (seasonal)
+      </p>
+    </div>
+
+    {/* Harvest */}
+    <div className="rounded-2xl overflow-hidden shadow-md">
+      <img
+        src="/gallery/harvest.jpg"
+        alt="Lavender harvest"
+        className="w-full h-64 object-cover"
+      />
+      <p className="p-3 text-sm text-center text-gray-600">
+        Harvest time at JW FARMS
+      </p>
+    </div>
+
   </div>
 </section>
+
 
     {/* Blog Preview */}
     <div className="rounded-2xl shadow-md overflow-hidden mb-8">
