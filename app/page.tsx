@@ -12,40 +12,12 @@ type CartItem = {
 
 export default function LavenderShop() {
 
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  const addToCart = (product: Omit<CartItem, "qty">) => {
-    setCart((prev: CartItem[]) => {
-      const existing = prev.find((p) => p.id === product.id);
-      if (existing) {
-        return prev.map((p) =>
-          p.id === product.id ? { ...p, qty: p.qty + 1 } : p
-        );
-      }
-      return [...prev, { ...product, qty: 1 }];
-    });
-  };
-
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
 <a
   href="mailto:youremail@example.com"
   style={{ color: "#6b4e71", textDecoration: "underline" }}
 >
   Click here to email us
 </a>
-
-const checkout = async () => {
-  try {
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: 
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        items: cart,
-      }),
-    });
 
     const data = await res.json();
 
@@ -59,13 +31,6 @@ const checkout = async () => {
     alert("Checkout failed. Please try again.");
   }
 };
-
-<button
-  onClick={checkout}
-  className="w-full bg-purple-700 hover:bg-purple-800 text-white rounded-xl py-3"
->
-  Proceed to Checkout (Stripe)
-</button>
 
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
