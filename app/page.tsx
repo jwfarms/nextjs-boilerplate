@@ -1,3 +1,4 @@
+"use client";
 
 export default function Home() {
   return (
@@ -7,31 +8,33 @@ export default function Home() {
       <header className="sticky top-0 bg-white shadow-sm z-50 px-6 py-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-purple-800">JW FARMS</h1>
         <nav className="flex gap-4 text-sm font-semibold">
-          <a href="#shop" className="hover:text-purple-700">Products</a>
+          <a href="#products" className="hover:text-purple-700">Products</a>
           <a href="#contact" className="hover:text-purple-700">Contact</a>
           <a
-  href="https://jwfarms.blogspot.com/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hover:text
-
+            href="https://jwfarms.blogspot.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-purple-700"
+          >
+            Blog
+          </a>
         </nav>
       </header>
 
       {/* Hero */}
-     <section
-  className="py-24 px-6 text-center bg-cover bg-center"
-  style={{
-    backgroundImage: `url(https://images.unsplash.com/photo-1445510491599-c391e8046a68?auto=format&fit=crop&w=2400&q=80)`
-  }}
-
+      <section
+        className="py-24 px-6 text-center bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1445510491599-c391e8046a68?auto=format&fit=crop&w=2400&q=80')",
+        }}
       >
         <h2 className="text-4xl md:text-5xl font-bold text-purple-800 mb-4">
           Pure Lavender, Naturally Grown
         </h2>
         <p className="max-w-xl mx-auto text-lg mb-4">
-          Hand-harvested lavender grown with care at JW FARMS. Sustainably grown,
-          carefully dried, and available by email order.
+          Hand-harvested lavender grown with care at JW FARMS.
+          Sustainably grown and available by email order.
         </p>
         <p className="text-sm text-gray-600">
           🌿 Family-owned • 🇺🇸 Grown in the USA • 📧 Email-only ordering
@@ -39,7 +42,7 @@ export default function Home() {
       </section>
 
       {/* Products */}
-      <section id="shop" className="py-16 px-6 max-w-5xl mx-auto">
+      <section id="products" className="py-16 px-6 max-w-5xl mx-auto">
         <h2 className="text-3xl font-semibold text-center mb-10">Our Products</h2>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -96,6 +99,7 @@ export default function Home() {
         <p className="text-sm mb-2">Small-batch lavender grown with care</p>
         <p className="text-sm">© 2026 JW FARMS</p>
       </footer>
+
     </div>
   );
 }
