@@ -173,6 +173,50 @@ export default function Home() {
     </p>
   </div>
 </section>
+{/* Photo Gallery */}
+<section id="gallery" className="py-16 px-6 bg-[#f6f2fb]">
+  <div className="max-w-6xl mx-auto text-center">
+    <h2 className="text-3xl font-semibold text-purple-800 mb-4">
+      Lavender Gallery
+    </h2>
+    <p className="text-gray-600 mb-10">
+      A glimpse into our fields, harvest, and seasonal lavender at JW FARMS
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <img
+        src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
+        alt="Lavender field"
+        className="rounded-2xl shadow-md object-cover h-64 w-full"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1524594154908-edd28a72c38b"
+        alt="Fresh lavender bundles"
+        className="rounded-2xl shadow-md object-cover h-64 w-full"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1445510491599-c391e8046a68"
+        alt="Lavender flowers"
+        className="rounded-2xl shadow-md object-cover h-64 w-full"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1590086782957-93c06ef21604"
+        alt="Lavender buds close up"
+        className="rounded-2xl shadow-md object-cover h-64 w-full"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1599687268791-2a21f49b48c0"
+        alt="Lavender plants"
+        className="rounded-2xl shadow-md object-cover h-64 w-full"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1596397249128-7c4f33c6f93c"
+        alt="Lavender harvest"
+        className="rounded-2xl shadow-md object-cover h-64 w-full"
+      />
+    </div>
+  </div>
+</section>
 
     {/* Blog Preview */}
     <div className="rounded-2xl shadow-md overflow-hidden mb-8">
