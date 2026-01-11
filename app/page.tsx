@@ -123,6 +123,36 @@ export default function Home() {
 </div>
 
       </section>
+{/* Blog */}
+<section id="blog" className="py-20 px-6 bg-white">
+  <div className="max-w-5xl mx-auto text-center">
+    <h2 className="text-3xl font-semibold mb-4">
+      From Our Farm
+    </h2>
+
+    <p className="text-gray-600 mb-8">
+      Updates from the fields, harvest notes, and life at JW FARMS.
+    </p>
+
+    {/* Blog Preview */}
+    <div className="rounded-2xl shadow-md overflow-hidden mb-8">
+      <iframe
+        src="https://jwfarms.blogspot.com/"
+        className="w-full h-[500px]"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <a
+      href="https://jwfarms.blogspot.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-8 py-3 font-semibold"
+    >
+      Visit the Blog
+    </a>
+  </div>
+</section>
 
       {/* Contact */}
       <section id="contact" className="py-16 px-6 bg-[#f6f2fb] text-center">
