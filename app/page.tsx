@@ -47,35 +47,62 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-8">
 
-          <div className="rounded-2xl shadow-md bg-white p-6 text-center">
-            <h3 className="text-xl font-semibold mb-2">Lavender Buds</h3>
-            <p className="text-sm text-gray-600 mb-3">
-              Ideal for sachets, baking, teas, candles, and crafts
-            </p>
-            <p className="text-purple-700 font-semibold mb-4">$9.99 / 2 oz</p>
-            <a
-              href="mailto:jwfarms77@gmail.com?subject=Lavender%20Order"
-              className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-6 py-2"
-            >
-              Email to Order
-            </a>
-          </div>
+  {/* Product 1 */}
+  <div className="rounded-2xl shadow-md bg-white p-6 text-center">
+    <h3 className="text-xl font-semibold mb-2">Lavender Buds</h3>
+    <p className="text-sm text-gray-600 mb-2">
+      Culinary-grade dried lavender buds
+    </p>
+    <p className="text-sm text-gray-600 mb-2">
+      Quantity: 2 oz bag
+    </p>
+    <p className="text-purple-700 font-semibold mb-4">
+      $9.99
+    </p>
+    <a
+      href="mailto:jwfarms77@gmail.com?subject=Lavender%20Buds%20Order"
+      className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-6 py-2"
+    >
+      Email to Order
+    </a>
+  </div>
 
-          <div className="rounded-2xl shadow-md bg-white opacity-60 p-6 text-center">
-            <h3 className="text-xl font-semibold mb-1">Fresh Lavender Bundles</h3>
-            <p className="text-sm text-gray-500">
-              Available during harvest season
-            </p>
-          </div>
+  {/* Product 2 */}
+  <div className="rounded-2xl shadow-md bg-white p-6 text-center">
+    <h3 className="text-xl font-semibold mb-2">Fresh Lavender Bundles</h3>
+    <p className="text-sm text-gray-600 mb-2">
+      Fresh-cut lavender, tied bundles
+    </p>
+    <p className="text-sm text-gray-600 mb-2">
+      Quantity: 10–15 stems per bundle
+    </p>
+    <p className="text-purple-700 font-semibold mb-4">
+      $12.00 per bundle
+    </p>
+    <p className="text-sm text-gray-500">
+      Available during harvest season
+    </p>
+  </div>
 
-          <div className="rounded-2xl shadow-md bg-white opacity-60 p-6 text-center">
-            <h3 className="text-xl font-semibold mb-1">Lavender Plants</h3>
-            <p className="text-sm text-gray-500">
-              Seasonal availability
-            </p>
-          </div>
+  {/* Product 3 */}
+  <div className="rounded-2xl shadow-md bg-white p-6 text-center">
+    <h3 className="text-xl font-semibold mb-2">Lavender Plants</h3>
+    <p className="text-sm text-gray-600 mb-2">
+      Healthy starter lavender plants
+    </p>
+    <p className="text-sm text-gray-600 mb-2">
+      Quantity: 1 plant (quart-size pot)
+    </p>
+    <p className="text-purple-700 font-semibold mb-4">
+      $15.00 each
+    </p>
+    <p className="text-sm text-gray-500">
+      Seasonal availability
+    </p>
+  </div>
 
-        </div>
+</div>
+
       </section>
 
       {/* Contact */}
