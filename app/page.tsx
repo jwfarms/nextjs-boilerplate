@@ -126,12 +126,12 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
 
           {[
-            { src: "/gallery/lavender.jpg", label: "Lavender in bloom" },
-            { src: "/gallery/stalks.jpg", label: "Lavender stalks" },
-            { src: "/gallery/plugs.jpg", label: "Lavender plug trays" },
-            { src: "/gallery/plant.jpg", label: "Healthy lavender plants" },
-            { src: "/gallery/harvest.jpg", label: "Harvest time" },
-            { src: "/gallery/field.jpg", label: "Fields in summer" },
+            { src: "/gallery/lavender.png", label: "Lavender in bloom" },
+            { src: "/gallery/stalks.png", label: "Lavender stalks" },
+            { src: "/gallery/plugs.png", label: "Lavender plug trays" },
+            { src: "/gallery/plant.png", label: "Healthy lavender plants" },
+            { src: "/gallery/harvest.png", label: "Harvest time" },
+            { src: "/gallery/field.png", label: "Fields in summer" },
           ].map((img, i) => (
             <div key={i} className="rounded-2xl overflow-hidden shadow-md">
               <img
