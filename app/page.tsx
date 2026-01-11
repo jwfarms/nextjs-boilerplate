@@ -133,11 +133,16 @@ export default function Home() {
             { src: "/gallery/harvest.png", label: "Harvest time" },
             { src: "/gallery/field.png", label: "Fields in summer" },
           ].map((img, i) => (
-            <div key={i} className="rounded-2xl overflow-hidden shadow-md">
+           <div
+  key={i}
+  className="rounded-2xl overflow-hidden shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+>
+
               <img
                 src={img.src}
                 alt={img.label}
-                className="w-full h-64 object-cover"
+                className="w-full h-64 object-cover transition-transform duration-300"
+
               />
               <p className="p-3 text-sm text-center text-gray-600">
                 {img.label}
