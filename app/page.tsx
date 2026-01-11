@@ -9,6 +9,12 @@ export default function Home() {
         <nav className="flex gap-4 text-sm font-semibold">
           <a href="#shop" className="hover:text-purple-700">Products</a>
           <a href="#contact" className="hover:text-purple-700">Contact</a>
+          <a
+  href="https://jwfarms.blogspot.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hover:text
+
         </nav>
       </header>
 
