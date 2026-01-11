@@ -24,7 +24,7 @@ export default function Home() {
   style={{
     backgroundImage: `url(https://images.unsplash.com/photo-1445510491599-c391e8046a68?auto=format&fit=crop&w=2400&q=80)`
   }}
-<
+
       >
         <h2 className="text-4xl md:text-5xl font-bold text-purple-800 mb-4">
           Pure Lavender, Naturally Grown
