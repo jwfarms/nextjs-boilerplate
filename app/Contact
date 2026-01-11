@@ -1,1 +1,19 @@
 
+<section id="contact" className="py-16 px-6 bg-[#f6f2fb]">
+  <div className="max-w-2xl mx-auto text-center">
+    <h2 className="text-3xl font-semibold mb-4">Contact JW FARMS</h2>
+
+    <p className="text-gray-600 mb-6">
+      For availability, pricing, or questions, please email us directly.
+    </p>
+
+    <p className="text-lg font-semibold">
+      📧 <a
+        href="mailto:jwfarms77@gmail.com"
+        className="underline text-purple-700"
+      >
+        jwfarms77@gmail.com
+      </a>
+    </p>
+  </div>
+</section>
