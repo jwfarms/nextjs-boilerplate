@@ -9,6 +9,7 @@ export default function Home() {
           JW FARMS
         </h1>
         <nav className="flex gap-4 text-sm font-semibold">
+          <a href="/lavender" className="hover:text-purple-700">Lavender</a>
           <a href="#products" className="hover:text-purple-700">
             Products
           </a>
