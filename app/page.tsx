@@ -3,16 +3,27 @@
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
-
       {/* Header */}
-      <header className="sticky top-0 bg-white shadow-sm z-50 px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-purple-800">JW FARMS</h1>
+      <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-purple-800 tracking-wide">
+          JW FARMS
+        </h1>
         <nav className="flex gap-4 text-sm font-semibold">
-          <a href="#products" className="hover:text-purple-700">Products</a>
-          <a href="#about" className="hover:text-purple-700">About</a>
-          <a href="#faq" className="hover:text-purple-700">FAQ</a>
-          <a href="#gallery" className="hover:text-purple-700">Gallery</a>
-          <a href="#contact" className="hover:text-purple-700">Contact</a>
+          <a href="#products" className="hover:text-purple-700">
+            Products
+          </a>
+          <a href="#about" className="hover:text-purple-700">
+            About
+          </a>
+          <a href="#faq" className="hover:text-purple-700">
+            FAQ
+          </a>
+          <a href="#gallery" className="hover:text-purple-700">
+            Gallery
+          </a>
+          <a href="#contact" className="hover:text-purple-700">
+            Contact
+          </a>
           <a
             href="https://jwfarms.blogspot.com/"
             target="_blank"
@@ -26,22 +37,48 @@ export default function Home() {
 
       {/* Hero */}
       <section
-        className="py-28 px-6 text-center bg-cover bg-center"
+        className="relative py-28 px-6 text-center bg-cover bg-center overflow-hidden"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1445510491599-c391e8046a68?auto=format&fit=crop&w=2400&q=80')",
         }}
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-purple-800 mb-4">
-          Pure Lavender, Naturally Grown
-        </h2>
-        <p className="max-w-xl mx-auto text-lg mb-4">
-          Hand-harvested lavender grown with care at JW FARMS.
-          Sustainably grown and available by email order.
-        </p>
-        <p className="text-sm text-gray-600">
-          🌿 Family-owned • 🇺🇸 Grown in the USA • 📧 Email-only ordering
-        </p>
+        {/* Light overlay for readability */}
+        <div className="absolute inset-0 bg-white/60" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 mb-4 drop-shadow-sm">
+            Pure Lavender, Naturally Grown
+          </h2>
+
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
+            Hand-harvested lavender grown with care at JW FARMS.
+            <br />
+            Sustainably grown and available by email order.
+          </p>
+
+          <p className="text-sm md:text-base text-gray-700">
+            🌿 Family-owned <span className="mx-2">•</span> 🇺🇸 Grown in the USA{" "}
+            <span className="mx-2">•</span> 📧 Email-only ordering
+          </p>
+
+          {/* Optional CTA buttons for better flow */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="#products"
+              className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-7 py-3 font-semibold transition-all duration-200 hover:scale-[1.02]"
+            >
+              View Products
+            </a>
+            <a
+              href="#contact"
+              className="inline-block bg-white/80 hover:bg-white text-purple-800 rounded-xl px-7 py-3 font-semibold border border-purple-200 transition-all duration-200 hover:scale-[1.02]"
+            >
+              Email to Order
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Products */}
@@ -54,7 +91,6 @@ export default function Home() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-
           {[
             {
               title: "Lavender Buds",
@@ -96,12 +132,15 @@ export default function Home() {
           ))}
 
           <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 transition hover:shadow-xl hover:-translate-y-1">
-            <h3 className="text-xl font-semibold mb-2">Lavender Tray – 72 Plugs</h3>
+            <h3 className="text-xl font-semibold mb-2">
+              Lavender Tray – 72 Plugs
+            </h3>
             <p className="text-sm text-gray-600 mb-2">Commercial plug tray</p>
             <p className="text-purple-700 font-semibold mb-4">$130.00</p>
-            <p className="text-sm text-gray-500">Seasonal • Email for availability</p>
+            <p className="text-sm text-gray-500">
+              Seasonal • Email for availability
+            </p>
           </div>
-
         </div>
       </section>
 
@@ -218,11 +257,12 @@ export default function Home() {
           From Our Farm
         </h2>
 
-        <div className="max-w-5xl mx-auto rounded-2xl shadow-md overflow-hidden mb-8">
+        <div className="max-w-5xl mx-auto rounded-2xl shadow-md overflow-hidden mb-8 bg-white">
           <iframe
             src="https://jwfarms.blogspot.com/"
             className="w-full h-[500px]"
             loading="lazy"
+            title="JW Farms Blog"
           ></iframe>
         </div>
 
@@ -262,7 +302,6 @@ export default function Home() {
         <p className="text-sm mb-2">Small-batch lavender grown with care</p>
         <p className="text-sm">© 2026 JW FARMS</p>
       </footer>
-
     </div>
   );
 }
