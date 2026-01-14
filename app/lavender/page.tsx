@@ -86,6 +86,46 @@ export default function LavenderPage() {
           Lavender rewards patience. Whether grown, used, or enjoyed simply for
           its presence, it fits best into life when approached without urgency.
         </p>
+        <div className="mt-10 p-6 bg-white rounded-2xl shadow-sm">
+  <h3 className="text-xl font-semibold text-purple-800 mb-4">
+    Explore Lavender at JW Farms
+  </h3>
+
+  <ul className="space-y-3 text-gray-700">
+    <li>
+      🌿{" "}
+      <a
+        href="/#products"
+        className="text-purple-700 underline hover:text-purple-900"
+      >
+        View our current lavender products
+      </a>
+    </li>
+
+    <li>
+      📄{" "}
+      <a
+        href="/downloadable-guides"
+        className="text-purple-700 underline hover:text-purple-900"
+      >
+        Download printable lavender guides
+      </a>
+    </li>
+
+    <li>
+      ✍️{" "}
+      <a
+        href="https://jwfarms.blogspot.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-purple-700 underline hover:text-purple-900"
+      >
+        Read practical lavender tips and how-to articles
+      </a>
+    </li>
+  </ul>
+</div>
+
       </section>
     </main>
   );
