@@ -45,6 +45,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "JW Farms",
+      "description":
+        "JW Farms is a small, family-owned lavender farm offering seasonal lavender plants, fresh bundles, dried buds, and wholesale availability. Serving the local community and surrounding areas.",
+      "url": "https://jwfarms7.com",
+      "email": "jwfarms77@gmail.com",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "United States"
+      },
+      "sameAs": [
+        "https://jwfarms.blogspot.com/"
+      ]
+    }),
+  }}
+/>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
