@@ -2,6 +2,91 @@
 
 export default function Home() {
   return (
+    // Put this inside your Home component (before the return), or above it as a const.
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "JW Farms Lavender Products",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "Lavender Buds (2 oz)",
+        "description": "Culinary-grade dried lavender buds • 2 oz bag.",
+        "brand": { "@type": "Brand", "name": "JW Farms" },
+        "image": ["https://jwfarms7.com/products/lavender-buds.png"],
+        "url": "https://jwfarms7.com/#products",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "9.99",
+          "availability": "https://schema.org/InStock",
+          "url": "https://jwfarms7.com/#products"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "Fresh Lavender Bundles",
+        "description": "Fresh lavender bundles • 10–15 stems per bundle (harvest season only).",
+        "brand": { "@type": "Brand", "name": "JW Farms" },
+        "image": ["https://jwfarms7.com/products/lavender-bundles2.png"],
+        "url": "https://jwfarms7.com/#products",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "12.00",
+          "availability": "https://schema.org/LimitedAvailability",
+          "url": "https://jwfarms7.com/#products"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "Lavender Plants (quart-size)",
+        "description": "Lavender plants in a quart-size pot (seasonal availability).",
+        "brand": { "@type": "Brand", "name": "JW Farms" },
+        "image": ["https://jwfarms7.com/products/lavender-plants.png"],
+        "url": "https://jwfarms7.com/#products",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "15.00",
+          "availability": "https://schema.org/LimitedAvailability",
+          "url": "https://jwfarms7.com/#products"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Product",
+        "name": "Lavender Tray – 72 Plugs",
+        "description": "Commercial plug tray • 72 lavender plugs (seasonal availability).",
+        "brand": { "@type": "Brand", "name": "JW Farms" },
+        "image": ["https://jwfarms7.com/products/lavender-plugs.png"],
+        "url": "https://jwfarms7.com/#products",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "130.00",
+          "availability": "https://schema.org/LimitedAvailability",
+          "url": "https://jwfarms7.com/#products"
+        }
+      }
+    }
+  ]
+};
+
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
       {/* Header */}
       <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
@@ -71,6 +156,10 @@ export default function Home() {
 
           {/* Optional CTA buttons for better flow */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+/>
             <a
               href="#products"
               className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-7 py-3 font-semibold transition-all duration-200 hover:scale-[1.02]"
