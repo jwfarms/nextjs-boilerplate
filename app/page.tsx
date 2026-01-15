@@ -17,12 +17,7 @@ export default function Home() {
         "JW Farms is a small, family-owned lavender farm in Cottontown (North Nashville), Tennessee. We grow and harvest lavender with care and offer buds, bundles, plants, and plug trays. Serving local customers and shipping nationwide by email order.",
       email: "jwfarms77@gmail.com",
       sameAs: ["https://jwfarms.blogspot.com/"],
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Cottontown",
-        addressRegion: "TN",
-        addressCountry: "US",
-      },
+    
       areaServed: [
         { "@type": "Place", name: "Cottontown, TN" },
         { "@type": "Place", name: "North Nashville, TN" },
