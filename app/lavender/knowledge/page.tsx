@@ -42,6 +42,13 @@ export default function LavenderKnowledgeHubPage() {
           >
             How We Grow Lavender at JW Farms
           </a>
+          <a
+  href="/lavender/knowledge/beginner-mistakes"
+  className="mt-3 inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-[#6b4fa3] font-semibold border border-[#6b4fa3]/20 hover:bg-[#f6f2fb]"
+>
+  Beginner Mistakes We See Most Often
+</a>
+
         </section>
 
         {/* Coming soon list */}
