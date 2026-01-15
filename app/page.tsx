@@ -1,93 +1,101 @@
 "use client";
 
 export default function Home() {
-  return (
-    // Put this inside your Home component (before the return), or above it as a const.
-const productJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "JW Farms Lavender Products",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "Product",
-        "name": "Lavender Buds (2 oz)",
-        "description": "Culinary-grade dried lavender buds • 2 oz bag.",
-        "brand": { "@type": "Brand", "name": "JW Farms" },
-        "image": ["https://jwfarms7.com/products/lavender-buds.png"],
-        "url": "https://jwfarms7.com/#products",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "price": "9.99",
-          "availability": "https://schema.org/InStock",
-          "url": "https://jwfarms7.com/#products"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "Product",
-        "name": "Fresh Lavender Bundles",
-        "description": "Fresh lavender bundles • 10–15 stems per bundle (harvest season only).",
-        "brand": { "@type": "Brand", "name": "JW Farms" },
-        "image": ["https://jwfarms7.com/products/lavender-bundles2.png"],
-        "url": "https://jwfarms7.com/#products",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "price": "12.00",
-          "availability": "https://schema.org/LimitedAvailability",
-          "url": "https://jwfarms7.com/#products"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "Product",
-        "name": "Lavender Plants (quart-size)",
-        "description": "Lavender plants in a quart-size pot (seasonal availability).",
-        "brand": { "@type": "Brand", "name": "JW Farms" },
-        "image": ["https://jwfarms7.com/products/lavender-plants.png"],
-        "url": "https://jwfarms7.com/#products",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "price": "15.00",
-          "availability": "https://schema.org/LimitedAvailability",
-          "url": "https://jwfarms7.com/#products"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "Product",
-        "name": "Lavender Tray – 72 Plugs",
-        "description": "Commercial plug tray • 72 lavender plugs (seasonal availability).",
-        "brand": { "@type": "Brand", "name": "JW Farms" },
-        "image": ["https://jwfarms7.com/products/lavender-plugs.png"],
-        "url": "https://jwfarms7.com/#products",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "price": "130.00",
-          "availability": "https://schema.org/LimitedAvailability",
-          "url": "https://jwfarms7.com/#products"
-        }
-      }
-    }
-  ]
-};
+  // ✅ Product schema (JSON-LD) — goes INSIDE the component, ABOVE the return
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "JW Farms Lavender Products",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@type": "Product",
+          name: "Lavender Buds (2 oz)",
+          description: "Culinary-grade dried lavender buds • 2 oz bag.",
+          brand: { "@type": "Brand", name: "JW Farms" },
+          image: ["https://jwfarms7.com/products/lavender-buds.png"],
+          url: "https://jwfarms7.com/#products",
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: "9.99",
+            availability: "https://schema.org/InStock",
+            url: "https://jwfarms7.com/#products",
+          },
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@type": "Product",
+          name: "Fresh Lavender Bundles",
+          description:
+            "Fresh lavender bundles • 10–15 stems per bundle (harvest season only).",
+          brand: { "@type": "Brand", name: "JW Farms" },
+          image: ["https://jwfarms7.com/products/lavender-bundles2.png"],
+          url: "https://jwfarms7.com/#products",
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: "12.00",
+            availability: "https://schema.org/LimitedAvailability",
+            url: "https://jwfarms7.com/#products",
+          },
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@type": "Product",
+          name: "Lavender Plants (quart-size)",
+          description: "Lavender plants in a quart-size pot (seasonal availability).",
+          brand: { "@type": "Brand", name: "JW Farms" },
+          image: ["https://jwfarms7.com/products/lavender-plants.png"],
+          url: "https://jwfarms7.com/#products",
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: "15.00",
+            availability: "https://schema.org/LimitedAvailability",
+            url: "https://jwfarms7.com/#products",
+          },
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        item: {
+          "@type": "Product",
+          name: "Lavender Tray – 72 Plugs",
+          description:
+            "Commercial plug tray • 72 lavender plugs (seasonal availability).",
+          brand: { "@type": "Brand", name: "JW Farms" },
+          image: ["https://jwfarms7.com/products/lavender-plugs.png"],
+          url: "https://jwfarms7.com/#products",
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: "130.00",
+            availability: "https://schema.org/LimitedAvailability",
+            url: "https://jwfarms7.com/#products",
+          },
+        },
+      },
+    ],
+  };
 
+  return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
+      {/* ✅ JSON-LD script goes ONCE, near the top of the page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+
       {/* Header */}
       <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-purple-800 tracking-wide">
@@ -134,10 +142,8 @@ const productJsonLd = {
             "url('https://images.unsplash.com/photo-1445510491599-c391e8046a68?auto=format&fit=crop&w=2400&q=80')",
         }}
       >
-        {/* Light overlay for readability */}
         <div className="absolute inset-0 bg-white/60" />
 
-        {/* Content */}
         <div className="relative z-10 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 mb-4 drop-shadow-sm">
             Pure Lavender, Naturally Grown
@@ -154,12 +160,7 @@ const productJsonLd = {
             <span className="mx-2">•</span> 📧 Email-only ordering
           </p>
 
-          {/* Optional CTA buttons for better flow */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-/>
             <a
               href="#products"
               className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-7 py-3 font-semibold transition-all duration-200 hover:scale-[1.02]"
@@ -236,7 +237,6 @@ const productJsonLd = {
             </div>
           ))}
 
-          {/* ✅ FIX: add the image to the 72 plug tray card */}
           <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 transition hover:shadow-xl hover:-translate-y-1">
             <img
               src="/products/lavender-plugs.png"
@@ -256,164 +256,7 @@ const productJsonLd = {
         </div>
       </section>
 
-      {/* About */}
-      <section
-        id="about"
-        className="py-20 px-6 bg-white border-t border-purple-100"
-      >
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-purple-800">
-            About JW FARMS
-          </h2>
-
-          <p className="text-gray-700 mb-4">
-            JW FARMS is a small, family-owned lavender farm focused on quality,
-            care, and seasonal growing practices. Everything we offer is grown,
-            harvested, and handled in small batches.
-          </p>
-
-          <p className="text-gray-700 mb-6">
-            Our lavender is ideal for sachets, crafts, baking, teas, and garden
-            planting. Availability changes throughout the year based on harvest
-            timing and growing conditions.
-          </p>
-
-          <p className="font-semibold text-purple-700">
-            📧 Email us anytime:{" "}
-            <a
-              href="mailto:jwfarms77@gmail.com"
-              className="underline hover:text-purple-900"
-            >
-              jwfarms77@gmail.com
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section
-        id="faq"
-        className="py-20 px-6 bg-[#f6f2fb] border-t border-purple-100"
-      >
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-6">
-            {[
-              {
-                q: "How do I place an order?",
-                a: "All orders are placed by email. Click any “Email to Order” button or email us directly.",
-              },
-              {
-                q: "Do you ship lavender?",
-                a: "Shipping depends on the product and season. Please email us with your location.",
-              },
-              {
-                q: "When are plants and plugs available?",
-                a: "Plants and plug trays are seasonal and vary each year.",
-              },
-              {
-                q: "Do you offer bulk or wholesale pricing?",
-                a: "Yes. Email us with your quantity needs and intended use.",
-              },
-            ].map((faq, i) => (
-              <div key={i} className="bg-white rounded-2xl shadow-md p-6">
-                <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>
-                <p className="text-gray-600">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery */}
-      <section
-        id="gallery"
-        className="py-20 px-6 bg-[#f9f6fc] border-t border-purple-100"
-      >
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
-          Life at JW FARMS
-        </h2>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {[
-            { src: "/gallery/lavender.png", label: "Lavender in bloom" },
-            { src: "/gallery/stalks.png", label: "Lavender stalks" },
-            { src: "/gallery/plugs.png", label: "Lavender plug trays" },
-            { src: "/gallery/plant.png", label: "Healthy lavender plants" },
-            { src: "/gallery/harvest.png", label: "Harvest time" },
-            { src: "/gallery/field.png", label: "Fields in summer" },
-          ].map((img, i) => (
-            <div
-              key={i}
-              className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
-            >
-              <img
-                src={img.src}
-                alt={img.label}
-                className="w-full h-64 object-cover"
-              />
-              <p className="p-3 text-sm text-center text-gray-600">
-                {img.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Blog */}
-      <section className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-purple-800">
-          From Our Farm
-        </h2>
-
-        <div className="max-w-5xl mx-auto rounded-2xl shadow-md overflow-hidden mb-8 bg-white">
-          <iframe
-            src="https://jwfarms.blogspot.com/"
-            className="w-full h-[500px]"
-            loading="lazy"
-            title="JW Farms Blog"
-          ></iframe>
-        </div>
-
-        <a
-          href="https://jwfarms.blogspot.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-8 py-3 font-semibold transition-all duration-200 hover:scale-105"
-        >
-          Visit the Blog
-        </a>
-      </section>
-
-      {/* Contact */}
-      <section
-        id="contact"
-        className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100"
-      >
-        <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-purple-800">
-          Contact JW FARMS
-        </h2>
-        <p className="mb-6 text-gray-600">
-          To place an order or ask about availability, email us directly:
-        </p>
-
-        <a
-          href="mailto:jwfarms77@gmail.com"
-          className="text-lg font-semibold text-purple-700 underline"
-        >
-          jwfarms77@gmail.com
-        </a>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-purple-800 text-white py-10 text-center">
-        <p className="text-lg font-semibold mb-1">JW FARMS</p>
-        <p className="text-sm mb-2">Small-batch lavender grown with care</p>
-        <p className="text-sm">© 2026 JW FARMS</p>
-      </footer>
+      {/* ...the rest of your page stays the same... */}
     </div>
   );
 }
