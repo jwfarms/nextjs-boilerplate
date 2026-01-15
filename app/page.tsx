@@ -140,8 +140,11 @@ export default function Home() {
         </h1>
         <nav className="flex gap-4 text-sm font-semibold">
           <a href="/lavender" className="hover:text-purple-700">
-            Lavender
-          </a>
+            Lavender</a>
+            <a href="/lavender/knowledge" className="hover:text-[#6b4fa3]">
+  Knowledge Hub
+</a>
+          
           <a href="/downloadable-guides" className="hover:text-purple-700">
             Downloadable Guides
           </a>
