@@ -1,5 +1,14 @@
 {
-  "name": "JW Farms Lavender",
+  import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "JW Farms Lavender",
+  description: "Lavender products, plants, and seasonal bundles from JW Farms.",
+  manifest: "/manifest.webmanifest",
+  themeColor: "#6b4fa3",
+};
+
+"name": "JW Farms Lavender",
   "short_name": "JW Farms",
   "start_url": "/",
   "scope": "/",
