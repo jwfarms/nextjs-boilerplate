@@ -93,30 +93,40 @@ export default function Home() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Lavender Buds",
-              desc: "Culinary-grade dried buds • 2 oz bag",
-              price: "$9.99",
-              email: true,
-            },
-            {
-              title: "Fresh Lavender Bundles",
-              desc: "10–15 stems per bundle",
-              price: "$12.00",
-              note: "Harvest season only",
-            },
-            {
-              title: "Lavender Plants",
-              desc: "Quart-size pot",
-              price: "$15.00",
-              note: "Seasonal availability",
-            },
-          ].map((item, i) => (
+         {[
+  {
+    title: "Lavender Buds",
+    desc: "Culinary-grade dried buds • 2 oz bag",
+    price: "$9.99",
+    email: true,
+    image: "lavender-buds.png",
+  },
+  {
+    title: "Fresh Lavender Bundles",
+    desc: "10–15 stems per bundle",
+    price: "$12.00",
+    note: "Harvest season only",
+    image: "lavender-bundles2.png",
+  },
+  {
+    title: "Lavender Plants",
+    desc: "Quart-size pot",
+    price: "$15.00",
+    note: "Seasonal availability",
+    image: "lavender-plants.png",
+  },
+].map((item, i) => (
+
             <div
               key={i}
               className="rounded-2xl shadow-md bg-white p-6 text-center transition hover:shadow-xl hover:-translate-y-1"
             >
+              <img
+  src={`/products/${item.image}`}
+  alt={item.title}
+  className="w-full h-48 object-cover rounded-xl mb-4"
+/>
+
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{item.desc}</p>
               <p className="text-purple-700 font-semibold mb-4">{item.price}</p>
