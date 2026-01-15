@@ -9,8 +9,12 @@ export default function Home() {
           JW FARMS
         </h1>
         <nav className="flex gap-4 text-sm font-semibold">
-          <a href="/lavender" className="hover:text-purple-700">Lavender</a>
-          <a href="/downloadable-guides" className="hover:text-purple-700">Downloadable Guides</a>
+          <a href="/lavender" className="hover:text-purple-700">
+            Lavender
+          </a>
+          <a href="/downloadable-guides" className="hover:text-purple-700">
+            Downloadable Guides
+          </a>
           <a href="#products" className="hover:text-purple-700">
             Products
           </a>
@@ -93,43 +97,43 @@ export default function Home() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-         {[
-  {
-    title: "Lavender Buds",
-    desc: "Culinary-grade dried buds • 2 oz bag",
-    price: "$9.99",
-    email: true,
-    image: "lavender-buds.png",
-  },
-  {
-    title: "Fresh Lavender Bundles",
-    desc: "10–15 stems per bundle",
-    price: "$12.00",
-    note: "Harvest season only",
-    image: "lavender-bundles2.png",
-  },
-  {
-    title: "Lavender Plants",
-    desc: "Quart-size pot",
-    price: "$15.00",
-    note: "Seasonal availability",
-    image: "lavender-plants.png",
-  },
-].map((item, i) => (
-
+          {[
+            {
+              title: "Lavender Buds",
+              desc: "Culinary-grade dried buds • 2 oz bag",
+              price: "$9.99",
+              email: true,
+              image: "lavender-buds.png",
+            },
+            {
+              title: "Fresh Lavender Bundles",
+              desc: "10–15 stems per bundle",
+              price: "$12.00",
+              note: "Harvest season only",
+              image: "lavender-bundles2.png",
+            },
+            {
+              title: "Lavender Plants",
+              desc: "Quart-size pot",
+              price: "$15.00",
+              note: "Seasonal availability",
+              image: "lavender-plants.png",
+            },
+          ].map((item, i) => (
             <div
               key={i}
               className="rounded-2xl shadow-md bg-white p-6 text-center transition hover:shadow-xl hover:-translate-y-1"
             >
               <img
-  src={`/products/${item.image}`}
-  alt={item.title}
-  className="w-full h-48 object-cover rounded-xl mb-4"
-/>
+                src={`/products/${item.image}`}
+                alt={item.title}
+                className="w-full h-48 object-cover rounded-xl mb-4"
+              />
 
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{item.desc}</p>
               <p className="text-purple-700 font-semibold mb-4">{item.price}</p>
+
               {item.email ? (
                 <a
                   href="mailto:jwfarms77@gmail.com?subject=Lavender%20Order"
@@ -143,7 +147,14 @@ export default function Home() {
             </div>
           ))}
 
+          {/* ✅ FIX: add the image to the 72 plug tray card */}
           <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 transition hover:shadow-xl hover:-translate-y-1">
+            <img
+              src="/products/lavender-plugs.png"
+              alt="Lavender plug trays"
+              className="w-full h-56 object-cover rounded-xl mb-4"
+            />
+
             <h3 className="text-xl font-semibold mb-2">
               Lavender Tray – 72 Plugs
             </h3>
