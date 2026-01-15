@@ -69,9 +69,10 @@ export default function RootLayout({
 />
 
       <body
-        <RegisterSW />
 
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        <RegisterSW />
+
       >
         {children}
       </body>
