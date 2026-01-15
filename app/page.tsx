@@ -1,4 +1,5 @@
 "use client";
+import InstallApp from "@/components/InstallApp";
 
 export default function Home() {
   // ✅ Combined LocalBusiness + Product schema (JSON-LD)
@@ -122,12 +123,15 @@ export default function Home() {
   ];
 
   return (
+
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
       {/* ✅ JSON-LD goes ONCE, near the top */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jwFarmsJsonLd) }}
       />
+      <InstallApp />
+
 
       {/* Header */}
       <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
