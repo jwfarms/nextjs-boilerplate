@@ -87,6 +87,15 @@ export default function LavenderKnowledgeHubPage() {
           the home page—education is part of what we love.
         </p>
       </div>
+      <section className="mt-10 bg-white/80 rounded-2xl border border-purple-100 p-6">
+  <h2 className="text-xl font-semibold mb-3">Related JW Farms pages</h2>
+  <ul className="space-y-2 text-purple-700 font-semibold">
+    <li><a className="underline hover:text-purple-900" href="/lavender">Lavender overview</a></li>
+    <li><a className="underline hover:text-purple-900" href="/downloadable-guides">Downloadable guides</a></li>
+    <li><a className="underline hover:text-purple-900" href="/lavender-farm-tennessee">Lavender farm in Tennessee</a></li>
+  </ul>
+</section>
+
     </main>
   );
 }
