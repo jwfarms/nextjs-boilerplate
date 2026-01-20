@@ -90,6 +90,43 @@ export default function LavenderPage() {
   <h3 className="text-xl font-semibold text-purple-800 mb-4">
     Explore Lavender at JW Farms
   </h3>
+<section className="mt-12 bg-white rounded-2xl shadow-sm p-6">
+  <h2 className="text-xl font-semibold text-purple-800 mb-3">
+    Explore more from JW Farms
+  </h2>
+
+  <div className="grid sm:grid-cols-2 gap-4">
+    <a
+      href="/lavender/knowledge"
+      className="block rounded-xl border border-purple-100 p-4 hover:shadow-md transition"
+    >
+      <p className="font-semibold text-gray-900">Lavender Knowledge Hub</p>
+      <p className="text-sm text-gray-600 mt-1">
+        Growing, harvesting, drying, and seasonal care.
+      </p>
+    </a>
+
+    <a
+      href="/downloadable-guides"
+      className="block rounded-xl border border-purple-100 p-4 hover:shadow-md transition"
+    >
+      <p className="font-semibold text-gray-900">Downloadable Guides</p>
+      <p className="text-sm text-gray-600 mt-1">
+        Printable references for storing, crafting, and using lavender.
+      </p>
+    </a>
+
+    <a
+      href="/lavender-farm-tennessee"
+      className="block rounded-xl border border-purple-100 p-4 hover:shadow-md transition sm:col-span-2"
+    >
+      <p className="font-semibold text-gray-900">Lavender Farm in Tennessee</p>
+      <p className="text-sm text-gray-600 mt-1">
+        Learn about JW Farms (Cottontown / North Nashville) and how we grow.
+      </p>
+    </a>
+  </div>
+</section>
 
   <ul className="space-y-3 text-gray-700">
     <li>
