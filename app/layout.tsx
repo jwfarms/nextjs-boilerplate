@@ -69,6 +69,19 @@ export default function RootLayout({
 />
 <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
   <RegisterSW />
+  <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "JW Farms 7",
+      alternateName: "JW Farms",
+      url: "https://www.jwfarms7.com"
+    }),
+  }}
+/>
+
   {children}
 </body>
 </html>
