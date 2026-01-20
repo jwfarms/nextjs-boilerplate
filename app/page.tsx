@@ -321,6 +321,14 @@ export default function Home() {
             planting. Availability changes throughout the year based on harvest
             timing and growing conditions.
           </p>
+<p className="mt-6 text-gray-700">
+  <a
+    href="/lavender-farm-tennessee"
+    className="font-semibold text-purple-700 underline hover:text-purple-900"
+  >
+    Learn more about our lavender farm in Tennessee →
+  </a>
+</p>
 
           <p className="font-semibold text-purple-700">
             📧 Email us anytime:{" "}
