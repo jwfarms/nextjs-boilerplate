@@ -2,7 +2,11 @@ export const metadata = {
   title: "Downloadable Guides | JW Farms",
   description:
     "Printable lavender guides from JW Farms — simple, practical how-to references for storing, crafting, and using lavender at home.",
+  alternates: {
+    canonical: "https://www.jwfarms7.com/downloadable-guides",
+  },
 };
+
 
 export default function DownloadableGuidesPage() {
   return (
