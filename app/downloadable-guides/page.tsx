@@ -7,7 +7,6 @@ export const metadata = {
   },
 };
 
-
 export default function DownloadableGuidesPage() {
   return (
     <main className="bg-[#f6f2fb] text-gray-800">
@@ -70,6 +69,7 @@ export default function DownloadableGuidesPage() {
           ))}
         </div>
 
+        {/* Internal discovery links */}
         <div className="mt-12 bg-white rounded-2xl shadow-sm p-6">
           <h3 className="text-xl font-semibold text-purple-800 mb-3">
             Looking for the Lavender overview?
@@ -84,6 +84,13 @@ export default function DownloadableGuidesPage() {
             className="inline-block mt-4 bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-6 py-3 font-semibold transition-all duration-200 hover:scale-[1.02]"
           >
             Go to Lavender at JW Farms
+          </a>
+
+          <a
+            href="/lavender-farm-tennessee"
+            className="block mt-4 text-purple-700 font-semibold underline hover:text-purple-900"
+          >
+            Learn about our Tennessee lavender farm →
           </a>
         </div>
       </section>
