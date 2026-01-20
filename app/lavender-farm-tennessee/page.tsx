@@ -1,8 +1,12 @@
 export const metadata = {
   title: "Lavender Farm in Tennessee | JW Farms",
   description:
-    "JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee offering lavender buds, bundles, plants, and plug trays grown with care.",
+    "JW Farms is a small, family-owned lavender farm in Tennessee. Learn how we grow, harvest, and care for lavender using traditional, small-farm practices.",
+  alternates: {
+    canonical: "https://www.jwfarms7.com/lavender-farm-tennessee",
+  },
 };
+
 
 export default function LavenderFarmTennesseePage() {
   return (
