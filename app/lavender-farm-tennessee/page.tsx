@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Lavender Farm in Tennessee | JW Farms",
   description:
-    "JW Farms is a small, family-owned lavender farm in Tennessee. Learn how we grow, harvest, and care for lavender using traditional, small-farm practices.",
+    "JW Farms is a small lavender farm in Tennessee, growing and harvesting lavender using traditional, small-farm practices focused on quality and care.",
   alternates: {
     canonical: "https://www.jwfarms7.com/lavender-farm-tennessee",
   },
