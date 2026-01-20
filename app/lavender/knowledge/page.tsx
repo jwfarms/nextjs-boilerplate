@@ -1,8 +1,12 @@
 export const metadata = {
   title: "Lavender Knowledge Hub | JW Farms",
   description:
-    "Practical lavender guides from JW Farms—growing, harvesting, drying, uses, and seasonal care.",
+    "Practical lavender guides from JW Farms—growing, harvesting, drying, uses, and seasonal care from a Tennessee lavender farm.",
+  alternates: {
+    canonical: "https://www.jwfarms7.com/lavender/knowledge",
+  },
 };
+
 
 export default function LavenderKnowledgeHubPage() {
   return (
