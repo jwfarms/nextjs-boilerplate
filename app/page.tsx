@@ -390,14 +390,33 @@ export default function Home() {
         </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {[
-            { src: "/gallery/lavender.png", label: "Lavender in bloom" },
-            { src: "/gallery/stalks.png", label: "Lavender stalks" },
-            { src: "/gallery/plugs.png", label: "Lavender plug trays" },
-            { src: "/gallery/plant.png", label: "Healthy lavender plants" },
-            { src: "/gallery/harvest.png", label: "Harvest time" },
-            { src: "/gallery/field.png", label: "Fields in summer" },
-          ].map((img, i) => (
+       {[
+  {
+    src: "/gallery/lavender-in-bloom-jw-farms-tennessee.png",
+    label: "Lavender in bloom at JW Farms in Tennessee",
+  },
+  {
+    src: "/gallery/stalks.png",
+    label: "Fresh lavender stalks harvested at JW Farms",
+  },
+  {
+    src: "/gallery/plugs.png",
+    label: "Lavender plug trays grown at JW Farms in Tennessee",
+  },
+  {
+    src: "/gallery/plant.png",
+    label: "Healthy lavender plants growing at JW Farms",
+  },
+  {
+    src: "/gallery/lavender-harvest-jw-farms-tennessee.png",
+    label: "Lavender harvest at JW Farms in Tennessee",
+  },
+  {
+    src: "/gallery/tennessee-lavender-field-jw-farms.png",
+    label: "Lavender field at JW Farms in Tennessee",
+  },
+].map((img, i) => (
+
             <div
               key={i}
               className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
