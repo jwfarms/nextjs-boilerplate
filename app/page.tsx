@@ -192,10 +192,10 @@ export default function Home() {
           </h2>
 
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
-            Hand-harvested lavender grown with care at JW FARMS.
-            <br />
-            Sustainably grown and available by email order.
-          </p>
+  JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
+  <br />
+  Hand-harvested lavender, available by email order.
+</p>
 
           <p className="text-sm md:text-base text-gray-700">
             🌿 Family-owned <span className="mx-2">•</span> 🇺🇸 Grown in the USA{" "}
