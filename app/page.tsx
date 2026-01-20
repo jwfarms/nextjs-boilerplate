@@ -43,7 +43,8 @@ export default function Home() {
             name: "Lavender Buds (2 oz)",
             description: "Culinary-grade dried lavender buds • 2 oz bag.",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://www.jwfarms7.com/products/lavender-buds.png"],
+            // ✅ updated to match your renamed image in /public/products
+            image: ["https://www.jwfarms7.com/products/lavender-buds-jw-farms-tennessee.png"],
             url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
@@ -65,7 +66,10 @@ export default function Home() {
             description:
               "Fresh lavender bundles • 10–15 stems per bundle (harvest season only).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://www.jwfarms7.com/products/lavender-bundles2.png"],
+            // ✅ updated to match your renamed image in /public/products
+            image: [
+              "https://www.jwfarms7.com/products/fresh-lavender-bundles-jw-farms-tennessee.png",
+            ],
             url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
@@ -87,7 +91,8 @@ export default function Home() {
             description:
               "Lavender plants in a quart-size pot (seasonal availability).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://www.jwfarms7.com/products/lavender-plants.png"],
+            // ✅ updated to match your renamed image in /public/products
+            image: ["https://www.jwfarms7.com/products/lavender-plants-jw-farms-tennessee.png"],
             url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
@@ -109,7 +114,10 @@ export default function Home() {
             description:
               "Commercial plug tray • 72 lavender plugs (seasonal availability).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://www.jwfarms7.com/products/lavender-plugs.png"],
+            // ✅ updated to match your renamed image in /public/products
+            image: [
+              "https://www.jwfarms7.com/products/lavender-plug-tray-72-jw-farms-tennessee.png",
+            ],
             url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
@@ -239,21 +247,24 @@ export default function Home() {
               desc: "Culinary-grade dried buds • 2 oz bag",
               price: "$9.99",
               email: true,
-              image: "lavender-buds.png",
+              // ✅ updated to match your renamed image in /public/products
+              image: "lavender-buds-jw-farms-tennessee.png",
             },
             {
               title: "Fresh Lavender Bundles",
               desc: "10–15 stems per bundle",
               price: "$12.00",
               note: "Harvest season only",
-              image: "lavender-bundles2.png",
+              // ✅ updated to match your renamed image in /public/products
+              image: "fresh-lavender-bundles-jw-farms-tennessee.png",
             },
             {
               title: "Lavender Plants",
               desc: "Quart-size pot",
               price: "$15.00",
               note: "Seasonal availability",
-              image: "lavender-plants.png",
+              // ✅ updated to match your renamed image in /public/products
+              image: "lavender-plants-jw-farms-tennessee.png",
             },
           ].map((item, i) => (
             <div
@@ -285,7 +296,8 @@ export default function Home() {
 
           <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 transition hover:shadow-xl hover:-translate-y-1">
             <img
-              src="/products/lavender-plugs.png"
+              // ✅ updated to match your renamed image in /public/products
+              src="/products/lavender-plug-tray-72-jw-farms-tennessee.png"
               alt="Lavender plug trays"
               className="w-full h-56 object-cover rounded-xl mb-4"
             />
