@@ -10,15 +10,15 @@ export default function Home() {
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://jwfarms7.com/#business",
+      "@id": "https://www.jwfarms7.com/#business",
       name: "JW Farms",
-      url: "https://jwfarms7.com/",
-      image: "https://jwfarms7.com/gallery/field.png",
+      alternateName: "JW Farms 7",
+      url: "https://www.jwfarms7.com/",
+      image: "https://www.jwfarms7.com/gallery/field.png",
       description:
         "JW Farms is a small, family-owned lavender farm in Cottontown (North Nashville), Tennessee. We grow and harvest lavender with care and offer buds, bundles, plants, and plug trays. Serving local customers and shipping nationwide by email order.",
       email: "jwfarms77@gmail.com",
       sameAs: ["https://jwfarms.blogspot.com/"],
-    
       areaServed: [
         { "@type": "Place", name: "Cottontown, TN" },
         { "@type": "Place", name: "North Nashville, TN" },
@@ -29,28 +29,28 @@ export default function Home() {
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "@id": "https://jwfarms7.com/#products-list",
+      "@id": "https://www.jwfarms7.com/#products-list",
       name: "JW Farms Lavender Products",
-      url: "https://jwfarms7.com/#products",
+      url: "https://www.jwfarms7.com/#products",
       itemListElement: [
         {
           "@type": "ListItem",
           position: 1,
           item: {
             "@type": "Product",
-            "@id": "https://jwfarms7.com/#product-lavender-buds",
+            "@id": "https://www.jwfarms7.com/#product-lavender-buds",
             name: "Lavender Buds (2 oz)",
             description: "Culinary-grade dried lavender buds • 2 oz bag.",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://jwfarms7.com/products/lavender-buds.png"],
-            url: "https://jwfarms7.com/#products",
+            image: ["https://www.jwfarms7.com/products/lavender-buds.png"],
+            url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
               priceCurrency: "USD",
               price: "9.99",
               availability: "https://schema.org/InStock",
-              url: "https://jwfarms7.com/#products",
-              seller: { "@id": "https://jwfarms7.com/#business" },
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
             },
           },
         },
@@ -59,20 +59,20 @@ export default function Home() {
           position: 2,
           item: {
             "@type": "Product",
-            "@id": "https://jwfarms7.com/#product-fresh-bundles",
+            "@id": "https://www.jwfarms7.com/#product-fresh-bundles",
             name: "Fresh Lavender Bundles",
             description:
               "Fresh lavender bundles • 10–15 stems per bundle (harvest season only).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://jwfarms7.com/products/lavender-bundles2.png"],
-            url: "https://jwfarms7.com/#products",
+            image: ["https://www.jwfarms7.com/products/lavender-bundles2.png"],
+            url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
               priceCurrency: "USD",
               price: "12.0",
               availability: "https://schema.org/LimitedAvailability",
-              url: "https://jwfarms7.com/#products",
-              seller: { "@id": "https://jwfarms7.com/#business" },
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
             },
           },
         },
@@ -81,19 +81,20 @@ export default function Home() {
           position: 3,
           item: {
             "@type": "Product",
-            "@id": "https://jwfarms7.com/#product-lavender-plants",
+            "@id": "https://www.jwfarms7.com/#product-lavender-plants",
             name: "Lavender Plants (quart-size)",
-            description: "Lavender plants in a quart-size pot (seasonal availability).",
+            description:
+              "Lavender plants in a quart-size pot (seasonal availability).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://jwfarms7.com/products/lavender-plants.png"],
-            url: "https://jwfarms7.com/#products",
+            image: ["https://www.jwfarms7.com/products/lavender-plants.png"],
+            url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
               priceCurrency: "USD",
               price: "15.0",
               availability: "https://schema.org/LimitedAvailability",
-              url: "https://jwfarms7.com/#products",
-              seller: { "@id": "https://jwfarms7.com/#business" },
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
             },
           },
         },
@@ -102,19 +103,20 @@ export default function Home() {
           position: 4,
           item: {
             "@type": "Product",
-            "@id": "https://jwfarms7.com/#product-72-plugs",
+            "@id": "https://www.jwfarms7.com/#product-72-plugs",
             name: "Lavender Tray – 72 Plugs",
-            description: "Commercial plug tray • 72 lavender plugs (seasonal availability).",
+            description:
+              "Commercial plug tray • 72 lavender plugs (seasonal availability).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            image: ["https://jwfarms7.com/products/lavender-plugs.png"],
-            url: "https://jwfarms7.com/#products",
+            image: ["https://www.jwfarms7.com/products/lavender-plugs.png"],
+            url: "https://www.jwfarms7.com/#products",
             offers: {
               "@type": "Offer",
               priceCurrency: "USD",
               price: "130.0",
               availability: "https://schema.org/LimitedAvailability",
-              url: "https://jwfarms7.com/#products",
-              seller: { "@id": "https://jwfarms7.com/#business" },
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
             },
           },
         },
@@ -123,7 +125,6 @@ export default function Home() {
   ];
 
   return (
-
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
       {/* ✅ JSON-LD goes ONCE, near the top */}
       <script
@@ -132,7 +133,6 @@ export default function Home() {
       />
       <InstallApp />
 
-
       {/* Header */}
       <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-purple-800 tracking-wide">
@@ -140,11 +140,12 @@ export default function Home() {
         </h1>
         <nav className="flex gap-4 text-sm font-semibold">
           <a href="/lavender" className="hover:text-purple-700">
-            Lavender</a>
-            <a href="/lavender/knowledge" className="hover:text-[#6b4fa3]">
-  Knowledge Hub
-</a>
-          
+            Lavender
+          </a>
+          <a href="/lavender/knowledge" className="hover:text-[#6b4fa3]">
+            Knowledge Hub
+          </a>
+
           <a href="/downloadable-guides" className="hover:text-purple-700">
             Downloadable Guides
           </a>
@@ -192,10 +193,10 @@ export default function Home() {
           </h2>
 
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
-  JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
-  <br />
-  Hand-harvested lavender, available by email order.
-</p>
+            JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
+            <br />
+            Hand-harvested lavender, available by email order.
+          </p>
 
           <p className="text-sm md:text-base text-gray-700">
             🌿 Family-owned <span className="mx-2">•</span> 🇺🇸 Grown in the USA{" "}
@@ -393,7 +394,11 @@ export default function Home() {
               key={i}
               className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
             >
-              <img src={img.src} alt={img.label} className="w-full h-64 object-cover" />
+              <img
+                src={img.src}
+                alt={img.label}
+                className="w-full h-64 object-cover"
+              />
               <p className="p-3 text-sm text-center text-gray-600">{img.label}</p>
             </div>
           ))}
@@ -452,5 +457,8 @@ export default function Home() {
         <p className="text-sm">© 2026 JW FARMS</p>
       </footer>
     </div>
+  );
+}
+
   );
 }
