@@ -14,7 +14,8 @@ export default function Home() {
       name: "JW Farms",
       alternateName: "JW Farms 7",
       url: "https://www.jwfarms7.com/",
-      image: "https://www.jwfarms7.com/gallery/field.png",
+      // ✅ updated to match your renamed image in /public/gallery
+      image: "https://www.jwfarms7.com/gallery/tennessee-lavender-field-jw-farms.png",
       description:
         "JW Farms is a small, family-owned lavender farm in Cottontown (North Nashville), Tennessee. We grow and harvest lavender with care and offer buds, bundles, plants, and plug trays. Serving local customers and shipping nationwide by email order.",
       email: "jwfarms77@gmail.com",
@@ -193,7 +194,8 @@ export default function Home() {
           </h2>
 
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
-            JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
+            JW Farms (JW Farms 7) is a small, family-owned lavender farm in
+            Tennessee.
             <br />
             Hand-harvested lavender, available by email order.
           </p>
@@ -293,18 +295,13 @@ export default function Home() {
             </h3>
             <p className="text-sm text-gray-600 mb-2">Commercial plug tray</p>
             <p className="text-purple-700 font-semibold mb-4">$130.00</p>
-            <p className="text-sm text-gray-500">
-              Seasonal • Email for availability
-            </p>
+            <p className="text-sm text-gray-500">Seasonal • Email for availability</p>
           </div>
         </div>
       </section>
 
       {/* About */}
-      <section
-        id="about"
-        className="py-20 px-6 bg-white border-t border-purple-100"
-      >
+      <section id="about" className="py-20 px-6 bg-white border-t border-purple-100">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-purple-800">
             About JW FARMS
@@ -321,14 +318,15 @@ export default function Home() {
             planting. Availability changes throughout the year based on harvest
             timing and growing conditions.
           </p>
-<p className="mt-6 text-gray-700">
-  <a
-    href="/lavender-farm-tennessee"
-    className="font-semibold text-purple-700 underline hover:text-purple-900"
-  >
-    Learn more about our lavender farm in Tennessee →
-  </a>
-</p>
+
+          <p className="mt-6 text-gray-700">
+            <a
+              href="/lavender-farm-tennessee"
+              className="font-semibold text-purple-700 underline hover:text-purple-900"
+            >
+              Learn more about our lavender farm in Tennessee →
+            </a>
+          </p>
 
           <p className="font-semibold text-purple-700">
             📧 Email us anytime:{" "}
@@ -343,10 +341,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section
-        id="faq"
-        className="py-20 px-6 bg-[#f6f2fb] border-t border-purple-100"
-      >
+      <section id="faq" className="py-20 px-6 bg-[#f6f2fb] border-t border-purple-100">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
             Frequently Asked Questions
@@ -381,51 +376,43 @@ export default function Home() {
       </section>
 
       {/* Gallery */}
-      <section
-        id="gallery"
-        className="py-20 px-6 bg-[#f9f6fc] border-t border-purple-100"
-      >
+      <section id="gallery" className="py-20 px-6 bg-[#f9f6fc] border-t border-purple-100">
         <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
           Life at JW FARMS
         </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-       {[
-  {
-    src: "/gallery/lavender-in-bloom-jw-farms-tennessee.png",
-    label: "Lavender in bloom at JW Farms in Tennessee",
-  },
-  {
-    src: "/gallery/stalks.png",
-    label: "Fresh lavender stalks harvested at JW Farms",
-  },
-  {
-    src: "/gallery/plugs.png",
-    label: "Lavender plug trays grown at JW Farms in Tennessee",
-  },
-  {
-    src: "/gallery/plant.png",
-    label: "Healthy lavender plants growing at JW Farms",
-  },
-  {
-    src: "/gallery/lavender-harvest-jw-farms-tennessee.png",
-    label: "Lavender harvest at JW Farms in Tennessee",
-  },
-  {
-    src: "/gallery/tennessee-lavender-field-jw-farms.png",
-    label: "Lavender field at JW Farms in Tennessee",
-  },
-].map((img, i) => (
-
+          {[
+            {
+              src: "/gallery/lavender-in-bloom-jw-farms-tennessee.png",
+              label: "Lavender in bloom at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/stalks.png",
+              label: "Fresh lavender stalks harvested at JW Farms",
+            },
+            {
+              src: "/gallery/plugs.png",
+              label: "Lavender plug trays grown at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/plant.png",
+              label: "Healthy lavender plants growing at JW Farms",
+            },
+            {
+              src: "/gallery/lavender-harvest-jw-farms-tennessee.png",
+              label: "Lavender harvest at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/tennessee-lavender-field-jw-farms.png",
+              label: "Lavender field at JW Farms in Tennessee",
+            },
+          ].map((img, i) => (
             <div
               key={i}
               className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
             >
-              <img
-                src={img.src}
-                alt={img.label}
-                className="w-full h-64 object-cover"
-              />
+              <img src={img.src} alt={img.label} className="w-full h-64 object-cover" />
               <p className="p-3 text-sm text-center text-gray-600">{img.label}</p>
             </div>
           ))}
@@ -458,10 +445,7 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section
-        id="contact"
-        className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100"
-      >
+      <section id="contact" className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100">
         <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-purple-800">
           Contact JW FARMS
         </h2>
@@ -486,4 +470,3 @@ export default function Home() {
     </div>
   );
 }
-
