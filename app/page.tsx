@@ -177,10 +177,6 @@ export default function Home() {
   Tennessee Lavender Farm
 </a>
 
-<a href="/downloadable-guides" className="hover:text-purple-700">
-  Downloadable Guides
-</a>
-
           <a
             href="https://jwfarms.blogspot.com/"
             target="_blank"
