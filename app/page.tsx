@@ -1,127 +1,378 @@
 "use client";
+import InstallApp from "@/components/InstallApp";
 
 export default function Home() {
-  const gallery = [
-    { src: "/gallery/lavender.png", label: "Lavender in bloom" },
-    { src: "/gallery/stalks.png", label: "Lavender stalks" },
-    { src: "/gallery/plugs.png", label: "Lavender plug trays" },
-    { src: "/gallery/plant.png", label: "Healthy lavender plants" },
-    { src: "/gallery/harvest.png", label: "Harvest time" },
-    { src: "/gallery/field.png", label: "Fields in summer" },
+  // ✅ Combined LocalBusiness + Product schema (JSON-LD)
+  // - Service-area safe (no street address)
+  // - Geo-targeted to Cottontown / North Nashville, TN
+  // - Products included as an ItemList
+  const jwFarmsJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.jwfarms7.com/#business",
+      name: "JW Farms",
+      alternateName: "JW Farms 7",
+      url: "https://www.jwfarms7.com/",
+      // ✅ updated to match your renamed image in /public/gallery
+      image: "https://www.jwfarms7.com/gallery/tennessee-lavender-field-jw-farms.png",
+      description:
+        "JW Farms is a small, family-owned lavender farm in Cottontown (North Nashville), Tennessee. We grow and harvest lavender with care and offer buds, bundles, plants, and plug trays. Serving local customers and shipping nationwide by email order.",
+      email: "jwfarms77@gmail.com",
+      sameAs: ["https://jwfarms.blogspot.com/"],
+      areaServed: [
+        { "@type": "Place", name: "Cottontown, TN" },
+        { "@type": "Place", name: "North Nashville, TN" },
+        { "@type": "AdministrativeArea", name: "Tennessee" },
+        { "@type": "Country", name: "United States" },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "@id": "https://www.jwfarms7.com/#products-list",
+      name: "JW Farms Lavender Products",
+      url: "https://www.jwfarms7.com/#products",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          item: {
+            "@type": "Product",
+            "@id": "https://www.jwfarms7.com/#product-lavender-buds",
+            name: "Lavender Buds (2 oz)",
+            description: "Culinary-grade dried lavender buds • 2 oz bag.",
+            brand: { "@type": "Brand", name: "JW Farms" },
+            // ✅ updated to match your renamed image in /public/products
+            image: ["https://www.jwfarms7.com/products/lavender-buds-jw-farms-tennessee.png"],
+            url: "https://www.jwfarms7.com/#products",
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: "9.99",
+              availability: "https://schema.org/InStock",
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
+            },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          item: {
+            "@type": "Product",
+            "@id": "https://www.jwfarms7.com/#product-fresh-bundles",
+            name: "Fresh Lavender Bundles",
+            description:
+              "Fresh lavender bundles • 10–15 stems per bundle (harvest season only).",
+            brand: { "@type": "Brand", name: "JW Farms" },
+            // ✅ updated to match your renamed image in /public/products
+            image: [
+              "https://www.jwfarms7.com/products/fresh-lavender-bundles-jw-farms-tennessee.png",
+            ],
+            url: "https://www.jwfarms7.com/#products",
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: "12.0",
+              availability: "https://schema.org/LimitedAvailability",
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
+            },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          item: {
+            "@type": "Product",
+            "@id": "https://www.jwfarms7.com/#product-lavender-plants",
+            name: "Lavender Plants (quart-size)",
+            description:
+              "Lavender plants in a quart-size pot (seasonal availability).",
+            brand: { "@type": "Brand", name: "JW Farms" },
+            // ✅ updated to match your renamed image in /public/products
+            image: ["https://www.jwfarms7.com/products/lavender-plants-jw-farms-tennessee.png"],
+            url: "https://www.jwfarms7.com/#products",
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: "15.0",
+              availability: "https://schema.org/LimitedAvailability",
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
+            },
+          },
+        },
+        {
+          "@type": "ListItem",
+          position: 4,
+          item: {
+            "@type": "Product",
+            "@id": "https://www.jwfarms7.com/#product-72-plugs",
+            name: "Lavender Tray – 72 Plugs",
+            description:
+              "Commercial plug tray • 72 lavender plugs (seasonal availability).",
+            brand: { "@type": "Brand", name: "JW Farms" },
+            // ✅ updated to match your renamed image in /public/products
+            image: [
+              "https://www.jwfarms7.com/products/lavender-plug-tray-72-jw-farms-tennessee.png",
+            ],
+            url: "https://www.jwfarms7.com/#products",
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: "130.0",
+              availability: "https://schema.org/LimitedAvailability",
+              url: "https://www.jwfarms7.com/#products",
+              seller: { "@id": "https://www.jwfarms7.com/#business" },
+            },
+          },
+        },
+      ],
+    },
   ];
 
-  const pdfUrl = "/downloads/lavender-sheet.pdf";
-
   return (
-    <div className="min-h-screen text-gray-800 bg-gradient-to-b from-[#f6f2fb] via-[#fbfbfe] to-white">
+    <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
+      {/* ✅ JSON-LD goes ONCE, near the top */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jwFarmsJsonLd) }}
+      />
+      <InstallApp />
+
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur px-6 py-4">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <a href="#" className="flex items-center gap-2">
-            <span className="text-2xl font-bold tracking-tight text-purple-800">
-              JW FARMS
-            </span>
+      <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-purple-800 tracking-wide">JW FARMS</h1>
+
+        <nav className="flex gap-4 text-sm font-semibold">
+          <a href="/lavender" className="hover:text-purple-700">
+            Lavender
+          </a>
+          <a href="/lavender/knowledge" className="hover:text-[#6b4fa3]">
+            Knowledge Hub
           </a>
 
-          <nav className="hidden md:flex gap-5 text-sm font-semibold">
-            <a href="#products" className="hover:text-purple-700">Products</a>
-            <a href="#about" className="hover:text-purple-700">About</a>
-            <a href="#pdf" className="hover:text-purple-700">Lavender Sheet</a>
-            <a href="#faq" className="hover:text-purple-700">FAQ</a>
-            <a href="#gallery" className="hover:text-purple-700">Gallery</a>
-            <a href="#contact" className="hover:text-purple-700">Contact</a>
-            <a
-              href="https://jwfarms.blogspot.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-purple-700"
-            >
-              Blog
-            </a>
-          </nav>
+          {/* ✅ NEW: Benefits */}
+          <a href="#benefits" className="hover:text-purple-700">
+            Benefits
+          </a>
+
+          <a href="/downloadable-guides" className="hover:text-purple-700">
+            Downloadable Guides
+          </a>
+          <a href="#products" className="hover:text-purple-700">
+            Products
+          </a>
+          <a href="#about" className="hover:text-purple-700">
+            About
+          </a>
+          <a href="#faq" className="hover:text-purple-700">
+            FAQ
+          </a>
+          <a href="#gallery" className="hover:text-purple-700">
+            Gallery
+          </a>
+          <a href="#contact" className="hover:text-purple-700">
+            Contact
+          </a>
+          <a href="/lavender-farm-tennessee" className="hover:text-purple-700">
+            Tennessee Lavender Farm
+          </a>
 
           <a
-            href="mailto:jwfarms77@gmail.com?subject=JW%20Farms%20Order%20Question"
-            className="inline-flex items-center justify-center rounded-xl bg-purple-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-800"
+            href="https://jwfarms.blogspot.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-purple-700"
           >
-            Email Us
+            Blog
           </a>
-        </div>
+        </nav>
       </header>
 
       {/* Hero */}
       <section
-        className="relative py-24 px-6 text-center bg-cover bg-center"
+        className="relative py-28 px-6 text-center bg-cover bg-center overflow-hidden"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1445510491599-c391e8046a68?auto=format&fit=crop&w=2400&q=80')",
         }}
       >
-        <div className="absolute inset-0 bg-white/65" />
-        <div className="relative max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-4 drop-shadow-sm">
+        {/* Light overlay for readability */}
+        <div className="absolute inset-0 bg-white/60" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 mb-4 drop-shadow-sm">
             Pure Lavender, Naturally Grown
           </h2>
-          <p className="max-w-xl mx-auto text-lg mb-4 text-gray-800">
-            Hand-harvested lavender grown with care at JW FARMS. Sustainably grown
-            and available by email order.
-          </p>
-          <p className="text-sm text-gray-700">
-            🌿 Family-owned • 🇺🇸 Grown in the USA • 📧 Email-only ordering
+
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
+            JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
+            <br />
+            Hand-harvested lavender, available by email order.
           </p>
 
+          <p className="text-sm md:text-base text-gray-700">
+            🌿 Family-owned <span className="mx-2">•</span> 🇺🇸 Grown in the USA{" "}
+            <span className="mx-2">•</span> 📧 Email-only ordering
+          </p>
+
+          {/* Optional CTA buttons for better flow */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="#products"
-              className="inline-flex items-center justify-center rounded-xl bg-purple-700 px-6 py-3 font-semibold text-white shadow-md hover:bg-purple-800"
+              className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-7 py-3 font-semibold transition-all duration-200 hover:scale-[1.02]"
             >
               View Products
             </a>
             <a
-              href={pdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 font-semibold text-purple-800 shadow-md ring-1 ring-purple-200 hover:bg-purple-50"
+              href="#contact"
+              className="inline-block bg-white/80 hover:bg-white text-purple-800 rounded-xl px-7 py-3 font-semibold border border-purple-200 transition-all duration-200 hover:scale-[1.02]"
             >
-              View Lavender Sheet (PDF)
+              Email to Order
+            </a>
+
+            {/* ✅ NEW: Explore Benefits */}
+            <a
+              href="#benefits"
+              className="inline-block bg-white/80 hover:bg-white text-purple-800 rounded-xl px-7 py-3 font-semibold border border-purple-200 transition-all duration-200 hover:scale-[1.02]"
+            >
+              Explore Benefits
             </a>
           </div>
         </div>
       </section>
 
+      {/* ✅ NEW: Lavender Benefits */}
+      <section id="benefits" className="py-20 px-6 bg-white border-t border-purple-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-4 text-purple-800">
+            Lavender Benefits
+          </h2>
+          <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12">
+            Lavender has a long history of traditional use for comfort and everyday well-being.
+            Here are some of the most common ways people use lavender at home.
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Relaxing aroma",
+                text: "Many people enjoy lavender’s scent as part of a calming routine—diffuser, sachets, or dried bundles.",
+              },
+              {
+                title: "Sleep routine support",
+                text: "Often used in bedtime rituals like pillow sachets or linen sprays to create a soothing atmosphere.",
+              },
+              {
+                title: "Home + linens",
+                text: "A fresh, clean scent for drawers, closets, and linens—especially with dried buds.",
+              },
+              {
+                title: "Bath & self-care",
+                text: "Commonly included in bath soaks and simple self-care blends. Always patch test and dilute essential oils properly.",
+              },
+              {
+                title: "Cooking & baking",
+                text: "Culinary lavender can add a light floral note to syrups, teas, shortbread, and honey—use a little goes a long way.",
+              },
+              {
+                title: "Crafts & gifts",
+                text: "Bundles, sachets, and handcrafted items make thoughtful gifts—especially during harvest season.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl bg-[#f6f2fb] border border-purple-100 p-6 shadow-sm hover:shadow-md transition"
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-xs text-gray-500 mt-10 max-w-4xl mx-auto text-center">
+            Note: These are traditional and everyday wellness uses. Lavender isn’t a substitute for medical care.
+            If you’re pregnant, nursing, have sensitivities, or are using essential oils around children/pets,
+            use extra caution and consult a professional if needed.
+          </p>
+        </div>
+      </section>
+
       {/* Products */}
-      <section id="products" className="py-16 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-10">Our Products</h2>
+      <section
+        id="products"
+        className="py-20 px-6 max-w-6xl mx-auto border-t border-purple-100"
+      >
+        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
+          Our Products
+        </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="rounded-2xl shadow-md bg-white p-6 text-center ring-1 ring-black/5 hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2">Lavender Buds</h3>
-            <p className="text-sm text-gray-600 mb-2">Culinary-grade dried buds</p>
-            <p className="text-sm text-gray-600 mb-2">2 oz bag</p>
-            <p className="text-purple-700 font-semibold mb-4">$9.99</p>
-            <a
-              href="mailto:jwfarms77@gmail.com?subject=Lavender%20Buds%20Order"
-              className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-6 py-2 font-semibold shadow-sm"
+          {[
+            {
+              title: "Lavender Buds",
+              desc: "Culinary-grade dried buds • 2 oz bag",
+              price: "$9.99",
+              email: true,
+              // ✅ updated to match your renamed image in /public/products
+              image: "lavender-buds-jw-farms-tennessee.png",
+            },
+            {
+              title: "Fresh Lavender Bundles",
+              desc: "10–15 stems per bundle",
+              price: "$12.00",
+              note: "Harvest season only",
+              // ✅ updated to match your renamed image in /public/products
+              image: "fresh-lavender-bundles-jw-farms-tennessee.png",
+            },
+            {
+              title: "Lavender Plants",
+              desc: "Quart-size pot",
+              price: "$15.00",
+              note: "Seasonal availability",
+              // ✅ updated to match your renamed image in /public/products
+              image: "lavender-plants-jw-farms-tennessee.png",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="rounded-2xl shadow-md bg-white p-6 text-center transition hover:shadow-xl hover:-translate-y-1"
             >
-              Email to Order
-            </a>
-          </div>
+              <img
+                src={`/products/${item.image}`}
+                alt={item.title}
+                className="w-full h-48 object-cover rounded-xl mb-4"
+              />
 
-          <div className="rounded-2xl shadow-md bg-white p-6 text-center ring-1 ring-black/5 hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2">Fresh Lavender Bundles</h3>
-            <p className="text-sm text-gray-600 mb-2">10–15 stems per bundle</p>
-            <p className="text-purple-700 font-semibold mb-4">$12.00</p>
-            <p className="text-sm text-gray-500">Harvest season only</p>
-          </div>
+              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+              <p className="text-sm text-gray-600 mb-2">{item.desc}</p>
+              <p className="text-purple-700 font-semibold mb-4">{item.price}</p>
 
-          <div className="rounded-2xl shadow-md bg-white p-6 text-center ring-1 ring-black/5 hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2">Lavender Plants</h3>
-            <p className="text-sm text-gray-600 mb-2">Quart-size pot</p>
-            <p className="text-purple-700 font-semibold mb-4">$15.00</p>
-            <p className="text-sm text-gray-500">Seasonal availability</p>
-          </div>
+              {item.email ? (
+                <a
+                  href="mailto:jwfarms77@gmail.com?subject=Lavender%20Order"
+                  className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-6 py-2 transition-all duration-200 hover:scale-105"
+                >
+                  Email to Order
+                </a>
+              ) : (
+                <p className="text-sm text-gray-500">{item.note}</p>
+              )}
+            </div>
+          ))}
 
-          <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 ring-1 ring-black/5 hover:shadow-lg transition">
+          <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 transition hover:shadow-xl hover:-translate-y-1">
+            <img
+              // ✅ updated to match your renamed image in /public/products
+              src="/products/lavender-plug-tray-72-jw-farms-tennessee.png"
+              alt="Lavender plug trays"
+              className="w-full h-56 object-cover rounded-xl mb-4"
+            />
+
             <h3 className="text-xl font-semibold mb-2">Lavender Tray – 72 Plugs</h3>
             <p className="text-sm text-gray-600 mb-2">Commercial plug tray</p>
             <p className="text-purple-700 font-semibold mb-4">$130.00</p>
@@ -131,142 +382,111 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-16 px-6 bg-white border-y border-black/5">
+      <section id="about" className="py-20 px-6 bg-white border-t border-purple-100">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-purple-800 mb-6">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-purple-800">
             About JW FARMS
           </h2>
 
           <p className="text-gray-700 mb-4">
-            JW FARMS is a small, family-owned lavender farm focused on quality,
-            care, and seasonal growing practices. Everything we offer is grown,
-            harvested, and handled in small batches.
+            JW FARMS is a small, family-owned lavender farm focused on quality, care, and seasonal growing practices. Everything we offer is grown, harvested, and handled in small batches.
           </p>
 
-          <p className="text-gray-700 mb-4">
-            Our lavender is ideal for sachets, crafts, baking, teas, and garden
-            planting. Availability changes throughout the year based on harvest
-            timing and growing conditions.
+          <p className="text-gray-700 mb-6">
+            Our lavender is ideal for sachets, crafts, baking, teas, and garden planting. Availability changes throughout the year based on harvest timing and growing conditions.
+          </p>
+
+          <p className="mt-6 text-gray-700">
+            <a
+              href="/lavender-farm-tennessee"
+              className="font-semibold text-purple-700 underline hover:text-purple-900"
+            >
+              Learn more about our lavender farm in Tennessee →
+            </a>
           </p>
 
           <p className="font-semibold text-purple-700">
             📧 Email us anytime:{" "}
-            <a
-              href="mailto:jwfarms77@gmail.com"
-              className="underline hover:text-purple-900"
-            >
+            <a href="mailto:jwfarms77@gmail.com" className="underline hover:text-purple-900">
               jwfarms77@gmail.com
             </a>
           </p>
         </div>
       </section>
 
-      {/* PDF Sheet Section */}
-      <section id="pdf" className="py-16 px-6 bg-[#f6f2fb]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-semibold text-purple-800">
-              Lavender Quick Sheet (PDF)
-            </h2>
-            <p className="text-gray-600 mt-2">
-              A handy two-page reference you can view or download anytime.
-            </p>
-
-            <div className="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href={pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-xl bg-purple-700 px-6 py-3 font-semibold text-white shadow-md hover:bg-purple-800"
-              >
-                View PDF
-              </a>
-              <a
-                href={pdfUrl}
-                download
-                className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 font-semibold text-purple-800 shadow-md ring-1 ring-purple-200 hover:bg-purple-50"
-              >
-                Download PDF
-              </a>
-            </div>
-          </div>
-
-          {/* Embedded preview */}
-          <div className="rounded-2xl overflow-hidden shadow-lg ring-1 ring-black/5 bg-white">
-            <div className="px-5 py-3 border-b border-black/5 flex items-center justify-between">
-              <p className="font-semibold text-gray-800">Preview</p>
-              <p className="text-xs text-gray-500">If preview is blank on mobile, tap “View PDF”.</p>
-            </div>
-
-            <div className="w-full h-[780px]">
-              <iframe
-                src={`${pdfUrl}#view=FitH`}
-                className="w-full h-full"
-                title="Lavender Quick Sheet PDF"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
-      <section id="faq" className="py-16 px-6 bg-[#f6f2fb]">
+      <section id="faq" className="py-20 px-6 bg-[#f6f2fb] border-t border-purple-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-10 text-purple-800">
+          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
             Frequently Asked Questions
           </h2>
 
           <div className="space-y-6">
-            <div className="bg-white rounded-2xl shadow-md p-6 ring-1 ring-black/5">
-              <h3 className="font-semibold text-lg mb-2">How do I place an order?</h3>
-              <p className="text-gray-600">
-                All orders are placed by email. Simply click any “Email to Order”
-                button or email us directly at jwfarms77@gmail.com.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-md p-6 ring-1 ring-black/5">
-              <h3 className="font-semibold text-lg mb-2">Do you ship lavender?</h3>
-              <p className="text-gray-600">
-                Shipping availability depends on the product and season. Please email
-                us with your location and desired product for details.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-md p-6 ring-1 ring-black/5">
-              <h3 className="font-semibold text-lg mb-2">When are plants and plugs available?</h3>
-              <p className="text-gray-600">
-                Plants, bundles, and plug trays are seasonal and typically available
-                during the growing and harvest seasons. Availability varies year to year.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-md p-6 ring-1 ring-black/5">
-              <h3 className="font-semibold text-lg mb-2">Do you offer bulk or wholesale pricing?</h3>
-              <p className="text-gray-600">
-                Yes. Please email us with your quantity needs and intended use, and
-                we’ll be happy to discuss options.
-              </p>
-            </div>
+            {[
+              {
+                q: "How do I place an order?",
+                a: "All orders are placed by email. Click any “Email to Order” button or email us directly.",
+              },
+              {
+                q: "Do you ship lavender?",
+                a: "Shipping depends on the product and season. Please email us with your location.",
+              },
+              {
+                q: "When are plants and plugs available?",
+                a: "Plants and plug trays are seasonal and vary each year.",
+              },
+              {
+                q: "Do you offer bulk or wholesale pricing?",
+                a: "Yes. Email us with your quantity needs and intended use.",
+              },
+            ].map((faq, i) => (
+              <div key={i} className="bg-white rounded-2xl shadow-md p-6">
+                <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>
+                <p className="text-gray-600">{faq.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Photo Gallery */}
-      <section id="gallery" className="py-16 px-6 bg-white border-y border-black/5">
-        <h2 className="text-3xl font-semibold text-center mb-10">Life at JW FARMS</h2>
+      {/* Gallery */}
+      <section id="gallery" className="py-20 px-6 bg-[#f9f6fc] border-t border-purple-100">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
+          Life at JW FARMS
+        </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {gallery.map((img, i) => (
+          {[
+            {
+              src: "/gallery/lavender-in-bloom-jw-farms-tennessee.png",
+              label: "Lavender in bloom at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/stalks.png",
+              label: "Fresh lavender stalks harvested at JW Farms",
+            },
+            {
+              src: "/gallery/plugs.png",
+              label: "Lavender plug trays grown at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/plant.png",
+              label: "Healthy lavender plants growing at JW Farms",
+            },
+            {
+              src: "/gallery/lavender-harvest-jw-farms-tennessee.png",
+              label: "Lavender harvest at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/tennessee-lavender-field-jw-farms.png",
+              label: "Lavender field at JW Farms in Tennessee",
+            },
+          ].map((img, i) => (
             <div
               key={i}
-              className="group rounded-2xl overflow-hidden shadow-md ring-1 ring-black/5 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+              className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
             >
-              <img
-                src={img.src}
-                alt={img.label}
-                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-              />
+              <img src={img.src} alt={img.label} className="w-full h-64 object-cover" />
               <p className="p-3 text-sm text-center text-gray-600">{img.label}</p>
             </div>
           ))}
@@ -274,48 +494,52 @@ export default function Home() {
       </section>
 
       {/* Blog */}
-      <section className="py-20 px-6 bg-[#f6f2fb] text-center">
-        <h2 className="text-3xl font-semibold mb-6">From Our Farm</h2>
+      <section className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-purple-800">
+          From Our Farm
+        </h2>
 
-        <div className="max-w-5xl mx-auto rounded-2xl shadow-md overflow-hidden mb-8 ring-1 ring-black/5 bg-white">
+        <div className="max-w-5xl mx-auto rounded-2xl shadow-md overflow-hidden mb-8 bg-white">
           <iframe
             src="https://jwfarms.blogspot.com/"
             className="w-full h-[500px]"
             loading="lazy"
             title="JW Farms Blog"
-          />
+          ></iframe>
         </div>
 
         <a
           href="https://jwfarms.blogspot.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-8 py-3 font-semibold shadow-md"
+          className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-8 py-3 font-semibold transition-all duration-200 hover:scale-105"
         >
           Visit the Blog
         </a>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-16 px-6 bg-[#f6f2fb] text-center">
-        <h2 className="text-3xl font-semibold mb-4">Contact JW FARMS</h2>
+      <section id="contact" className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-purple-800">
+          Contact JW FARMS
+        </h2>
         <p className="mb-6 text-gray-600">
           To place an order or ask about availability, email us directly:
         </p>
 
         <a
           href="mailto:jwfarms77@gmail.com"
-          className="text-lg font-semibold text-purple-700 underline hover:text-purple-900"
+          className="text-lg font-semibold text-purple-700 underline"
         >
           jwfarms77@gmail.com
         </a>
       </section>
 
       {/* Footer */}
-      <footer className="bg-purple-900 text-white py-10 text-center">
+      <footer className="bg-purple-800 text-white py-10 text-center">
         <p className="text-lg font-semibold mb-1">JW FARMS</p>
-        <p className="text-sm mb-2 text-white/80">Small-batch lavender grown with care</p>
-        <p className="text-sm text-white/70">© 2026 JW FARMS</p>
+        <p className="text-sm mb-2">Small-batch lavender grown with care</p>
+        <p className="text-sm">© 2026 JW FARMS</p>
       </footer>
     </div>
   );
