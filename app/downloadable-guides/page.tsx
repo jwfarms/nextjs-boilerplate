@@ -58,7 +58,14 @@ export default function DownloadableGuidesPage() {
                 "An overview of lavender varieties, uses, and tips in one handy printable reference.",
               href: "/downloads/lavender-sheet.pdf",
               badge: "PDF",
-            },
+            },{
+  title: "7 Lavenders Compared",
+  description:
+    "A beginner-friendly visual guide comparing bloom times, USDA hardiness zones, and drought tolerance for seven popular lavender types. Includes English, Spanish, and French lavender.",
+  file: "/guides/7-lavenders-compared-jw-farms.pdf",
+  image: "/guides/7-lavenders-compared-preview.png", // optional but recommended
+}
+      
           ].map((g, i) => (
             <a
               key={i}
