@@ -144,15 +144,19 @@ export default function Home() {
 
       {/* Header */}
       <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-purple-800 tracking-wide">
-          JW FARMS
-        </h1>
+        <h1 className="text-2xl font-bold text-purple-800 tracking-wide">JW FARMS</h1>
+
         <nav className="flex gap-4 text-sm font-semibold">
           <a href="/lavender" className="hover:text-purple-700">
             Lavender
           </a>
           <a href="/lavender/knowledge" className="hover:text-[#6b4fa3]">
             Knowledge Hub
+          </a>
+
+          {/* ✅ NEW: Benefits */}
+          <a href="#benefits" className="hover:text-purple-700">
+            Benefits
           </a>
 
           <a href="/downloadable-guides" className="hover:text-purple-700">
@@ -174,8 +178,8 @@ export default function Home() {
             Contact
           </a>
           <a href="/lavender-farm-tennessee" className="hover:text-purple-700">
-  Tennessee Lavender Farm
-</a>
+            Tennessee Lavender Farm
+          </a>
 
           <a
             href="https://jwfarms.blogspot.com/"
@@ -206,8 +210,7 @@ export default function Home() {
           </h2>
 
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
-            JW Farms (JW Farms 7) is a small, family-owned lavender farm in
-            Tennessee.
+            JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
             <br />
             Hand-harvested lavender, available by email order.
           </p>
@@ -231,7 +234,71 @@ export default function Home() {
             >
               Email to Order
             </a>
+
+            {/* ✅ NEW: Explore Benefits */}
+            <a
+              href="#benefits"
+              className="inline-block bg-white/80 hover:bg-white text-purple-800 rounded-xl px-7 py-3 font-semibold border border-purple-200 transition-all duration-200 hover:scale-[1.02]"
+            >
+              Explore Benefits
+            </a>
           </div>
+        </div>
+      </section>
+
+      {/* ✅ NEW: Lavender Benefits */}
+      <section id="benefits" className="py-20 px-6 bg-white border-t border-purple-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-4 text-purple-800">
+            Lavender Benefits
+          </h2>
+          <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12">
+            Lavender has a long history of traditional use for comfort and everyday well-being.
+            Here are some of the most common ways people use lavender at home.
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Relaxing aroma",
+                text: "Many people enjoy lavender’s scent as part of a calming routine—diffuser, sachets, or dried bundles.",
+              },
+              {
+                title: "Sleep routine support",
+                text: "Often used in bedtime rituals like pillow sachets or linen sprays to create a soothing atmosphere.",
+              },
+              {
+                title: "Home + linens",
+                text: "A fresh, clean scent for drawers, closets, and linens—especially with dried buds.",
+              },
+              {
+                title: "Bath & self-care",
+                text: "Commonly included in bath soaks and simple self-care blends. Always patch test and dilute essential oils properly.",
+              },
+              {
+                title: "Cooking & baking",
+                text: "Culinary lavender can add a light floral note to syrups, teas, shortbread, and honey—use a little goes a long way.",
+              },
+              {
+                title: "Crafts & gifts",
+                text: "Bundles, sachets, and handcrafted items make thoughtful gifts—especially during harvest season.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl bg-[#f6f2fb] border border-purple-100 p-6 shadow-sm hover:shadow-md transition"
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-xs text-gray-500 mt-10 max-w-4xl mx-auto text-center">
+            Note: These are traditional and everyday wellness uses. Lavender isn’t a substitute for medical care.
+            If you’re pregnant, nursing, have sensitivities, or are using essential oils around children/pets,
+            use extra caution and consult a professional if needed.
+          </p>
         </div>
       </section>
 
@@ -306,9 +373,7 @@ export default function Home() {
               className="w-full h-56 object-cover rounded-xl mb-4"
             />
 
-            <h3 className="text-xl font-semibold mb-2">
-              Lavender Tray – 72 Plugs
-            </h3>
+            <h3 className="text-xl font-semibold mb-2">Lavender Tray – 72 Plugs</h3>
             <p className="text-sm text-gray-600 mb-2">Commercial plug tray</p>
             <p className="text-purple-700 font-semibold mb-4">$130.00</p>
             <p className="text-sm text-gray-500">Seasonal • Email for availability</p>
@@ -324,15 +389,11 @@ export default function Home() {
           </h2>
 
           <p className="text-gray-700 mb-4">
-            JW FARMS is a small, family-owned lavender farm focused on quality,
-            care, and seasonal growing practices. Everything we offer is grown,
-            harvested, and handled in small batches.
+            JW FARMS is a small, family-owned lavender farm focused on quality, care, and seasonal growing practices. Everything we offer is grown, harvested, and handled in small batches.
           </p>
 
           <p className="text-gray-700 mb-6">
-            Our lavender is ideal for sachets, crafts, baking, teas, and garden
-            planting. Availability changes throughout the year based on harvest
-            timing and growing conditions.
+            Our lavender is ideal for sachets, crafts, baking, teas, and garden planting. Availability changes throughout the year based on harvest timing and growing conditions.
           </p>
 
           <p className="mt-6 text-gray-700">
@@ -346,10 +407,7 @@ export default function Home() {
 
           <p className="font-semibold text-purple-700">
             📧 Email us anytime:{" "}
-            <a
-              href="mailto:jwfarms77@gmail.com"
-              className="underline hover:text-purple-900"
-            >
+            <a href="mailto:jwfarms77@gmail.com" className="underline hover:text-purple-900">
               jwfarms77@gmail.com
             </a>
           </p>
