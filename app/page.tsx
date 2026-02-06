@@ -162,6 +162,10 @@ export default function Home() {
           <a href="/downloadable-guides" className="hover:text-purple-700">
             Downloadable Guides
           </a>
+          <a href="/herbal-learning-library" className="hover:text-purple-700">
+  Herbal Learning Library
+</a>
+
           <a href="#products" className="hover:text-purple-700">
             Products
           </a>
