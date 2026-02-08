@@ -1,4 +1,4 @@
-"use client";
+// app/herbal-learning-library/page.tsx
 
 export const metadata = {
   title: "Herbal Learning Library | JW Farms",
@@ -11,7 +11,7 @@ export const metadata = {
 
 type Herb = {
   title: string;
-  slug: string; // must match BOTH the PDF name and PNG name
+  slug: string; // must match PDF + PNG filenames
 };
 
 const HERBS: Herb[] = [
@@ -35,7 +35,7 @@ const HERBS: Herb[] = [
   { title: "Oregano", slug: "oregano" },
   { title: "Parsley", slug: "parsley" },
   { title: "Peppermint", slug: "peppermint" },
-  { title: "Plantain Weed", slug: "plantain-weed" }, // change to "plantain" if your files are plantain.pdf/png
+  { title: "Plantain Weed", slug: "plantain" },
   { title: "Purslane", slug: "purslane" },
   { title: "Rosemary", slug: "rosemary" },
   { title: "Sage", slug: "sage" },
@@ -47,74 +47,93 @@ const HERBS: Herb[] = [
 ];
 
 export default function HerbalLearningLibraryPage() {
-  const items = [...HERBS].sort((a, b) => a.title.localeCompare(b.title));
-
   return (
-    <main className="bg-[#f6f2fb] text-gray-800">
+    <main className="min-h-screen bg-[#f6f2fb] text-gray-800">
       <section className="py-20 px-6 max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6">
+        {/* Back link */}
+        <a
+          href="/"
+          className="inline-block text-sm font-medium text-[#6b4fa3] hover:underline"
+        >
+          ← Back to JW Farms
+        </a>
+
+        <h1 className="mt-6 text-4xl md:text-5xl font-semibold text-purple-800">
           Herbal Learning Library
         </h1>
 
-        <p className="text-lg leading-relaxed mb-10 max-w-3xl">
-          A growing library of printable herbal reference sheets. Click any guide
-          to view or download the PDF.
+        <p className="mt-4 text-lg leading-relaxed max-w-3xl">
+          Printable herbal reference sheets—simple, practical guides you can
+          download and keep. Click any herb to open the PDF.
         </p>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {items.map((h) => {
-            const pdfHref = `/herbal-library/${h.slug}.pdf`;
-            const previewSrc = `/herbal-library/previews/${h.slug}.png`;
+        {/* Grid */}
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {HERBS.map((herb) => {
+            const pdfHref = `/herbal-library/${herb.slug}.pdf`;
+            const previewSrc = `/herbal-library/previews/${herb.slug}.png`;
 
             return (
               <a
-                key={h.slug}
+                key={herb.slug}
                 href={pdfHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-white rounded-2xl shadow-md overflow-hidden transition hover:shadow-xl hover:-translate-y-1"
+                className="group block rounded-2xl bg-white shadow-md overflow-hidden transition hover:shadow-xl hover:-translate-y-0.5"
               >
                 {/* Thumbnail */}
-                <div className="relative bg-[#f3eefb] border-b border-purple-100 h-64 flex items-center justify-center">
+                <div className="bg-white">
                   <img
                     src={previewSrc}
-                    alt={`${h.title} herbal reference preview`}
-                    className="max-h-full max-w-full object-contain p-4"
+                    alt={`${herb.title} herbal reference preview`}
+                    className="w-full h-64 object-contain bg-white"
                     loading="lazy"
-                    onError={(e) => {
-                      // Hide broken image and show a clean fallback
-                      const img = e.currentTarget as HTMLImageElement;
-                      img.style.display = "none";
-                      const parent = img.parentElement;
-                      if (parent) {
-                        parent.innerHTML = `
-                          <div style="height:100%; width:100%; display:flex; align-items:center; justify-content:center; color:#6b7280; font-weight:600;">
-                            Preview coming soon
-                          </div>
-                        `;
-                      }
-                    }}
                   />
                 </div>
 
                 {/* Text */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-4">
+                <div className="p-5 border-t border-purple-100">
+                  <div className="flex items-center justify-between gap-3">
                     <h2 className="text-xl font-semibold text-gray-900">
-                      {h.title}
+                      {herb.title}
                     </h2>
                     <span className="shrink-0 text-xs font-semibold bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
                       PDF
                     </span>
                   </div>
 
-                  <p className="mt-4 text-purple-700 font-semibold">
+                  <p className="mt-3 text-purple-700 font-semibold group-hover:underline">
                     View / Download →
+                  </p>
+
+                  <p className="mt-2 text-xs text-gray-500">
+                    {pdfHref}
                   </p>
                 </div>
               </a>
             );
           })}
+        </div>
+
+        {/* Note */}
+        <div className="mt-10 bg-white rounded-2xl shadow-sm p-6 border border-purple-100">
+          <h3 className="text-lg font-semibold text-purple-800 mb-2">
+            File naming must match
+          </h3>
+          <p className="text-gray-700 leading-relaxed">
+            Each card expects:
+            <br />
+            <span className="font-mono text-sm">
+              /public/herbal-library/&lt;slug&gt;.pdf
+            </span>
+            <br />
+            <span className="font-mono text-sm">
+              /public/herbal-library/previews/&lt;slug&gt;.png
+            </span>
+            <br />
+            Example: <span className="font-mono text-sm">basil.pdf</span> and{" "}
+            <span className="font-mono text-sm">previews/basil.png</span>
+          </p>
         </div>
       </section>
     </main>
