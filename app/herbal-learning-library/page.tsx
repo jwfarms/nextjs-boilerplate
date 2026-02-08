@@ -1,3 +1,5 @@
+import HerbLibraryClient from "./HerbLibraryClient";
+
 export const metadata = {
   title: "Herbal Learning Library | JW Farms",
   description:
@@ -6,8 +8,6 @@ export const metadata = {
     canonical: "https://www.jwfarms7.com/herbal-learning-library",
   },
 };
-
-import HerbLibraryClient from "./HerbLibraryClient";
 
 const HERBS = [
   { title: "Basil", slug: "basil" },
