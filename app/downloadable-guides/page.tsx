@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Downloadable Guides | JW Farms",
   description:
-    "Printable herbal guides from JW Farms—simple, practical references you can download and keep.",
+    "Print-friendly guides from JW Farms—simple references you can download and keep.",
   alternates: {
     canonical: "https://www.jwfarms7.com/downloadable-guides",
   },
@@ -10,52 +10,63 @@ export const metadata = {
 type Guide = {
   title: string;
   desc: string;
-  href: string; // PDF path (from /public)
-  badge?: string;
-  image?: string; // PNG/JPG preview path (from /public)
+  href: string; // PDF path in /public
+  image?: string; // preview image path in /public (optional)
+  badge?: string; // e.g. "PDF", "FREE PDF"
+  enabled?: boolean; // default true
 };
 
 const featured: Guide = {
   title: "Herbal First Aid Kit",
   desc: "A simple, print-friendly herbal reference—created to be kept close at hand for everyday care.",
   href: "/downloads/herbal-first-aid-kit.pdf",
-  badge: "FREE PDF",
   image: "/downloads/herbal-first-aid-kit-preview.png",
+  badge: "FREE PDF",
 };
 
 const guides: Guide[] = [
-  // ✅ Keep your existing guides and add new ones here.
-  // Update filenames to match exactly what’s in /public/downloads
+  // ✅ Keep ALL your guides here.
+  // If you want to hide one temporarily, set enabled: false (don’t delete it).
 
   {
     title: "How to Store Dried Lavender",
     desc: "A simple, practical storage guide to preserve aroma, color, and quality.",
     href: "/downloads/how-to-store-dried-lavender.pdf",
-    badge: "PDF",
     image: "/downloads/how-to-store-dried-lavender-preview.png",
+    badge: "PDF",
+    enabled: true,
   },
   {
     title: "Caring for Dried Lavender Wreaths",
-    desc: "Keep your wreath beautiful longer with a few simple care steps.",
+    desc: "Tips to reduce shedding, prevent fading, and store wreaths seasonally.",
     href: "/downloads/caring-for-dried-lavender-wreaths.pdf",
-    badge: "PDF",
     image: "/downloads/caring-for-dried-lavender-wreaths-preview.png",
+    badge: "PDF",
+    enabled: true,
   },
 
-  // ⭐ Add more here (copy/paste a block)
+  // ✅ ADD the missing ones back here (examples below)
   // {
-  //   title: "Lavender Sleep Guide",
-  //   desc: "Simple ways to use lavender for evening calm and rest.",
-  //   href: "/downloads/lavender-sleep-guide.pdf",
+  //   title: "Culinary Lavender Reference",
+  //   desc: "A quick variety guide and reminder for gentle, balanced culinary use.",
+  //   href: "/downloads/culinary-lavender-reference.pdf",
+  //   image: "/downloads/culinary-lavender-reference-preview.png",
   //   badge: "PDF",
-  //   image: "/downloads/lavender-sleep-guide-preview.png",
+  //   enabled: true,
+  // },
+  // {
+  //   title: "Lavender at Home Starter Pack",
+  //   desc: "A beginner-friendly set of ideas for everyday lavender use.",
+  //   href: "/downloads/lavender-at-home-starter-pack.pdf",
+  //   image: "/downloads/lavender-at-home-starter-pack-preview.png",
+  //   badge: "PDF",
+  //   enabled: true,
   // },
 ];
 
 function GuideCard({ g }: { g: Guide }) {
   return (
     <article className="bg-white/80 rounded-2xl border border-purple-100 shadow-sm overflow-hidden">
-      {/* Preview */}
       {g.image ? (
         <div className="relative aspect-[4/5] bg-white">
           <img
@@ -71,12 +82,11 @@ function GuideCard({ g }: { g: Guide }) {
         </div>
       )}
 
-      {/* Content */}
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">
-          <h2 className="text-lg font-semibold text-purple-900 leading-snug">
+          <h3 className="text-lg font-semibold text-purple-900 leading-snug">
             {g.title}
-          </h2>
+          </h3>
 
           {g.badge ? (
             <span className="shrink-0 inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium bg-purple-100 text-purple-900 border border-purple-200">
@@ -111,9 +121,11 @@ function GuideCard({ g }: { g: Guide }) {
 }
 
 export default function DownloadableGuidesPage() {
+  const visibleGuides = guides.filter((g) => g.enabled !== false);
+
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-800">
-      {/* ✅ Featured */}
+      {/* Featured */}
       <section className="border-b border-purple-100">
         <div className="max-w-6xl mx-auto px-6 py-16 grid gap-10 md:grid-cols-2 items-center">
           <div>
@@ -172,7 +184,7 @@ export default function DownloadableGuidesPage() {
         </div>
       </section>
 
-      {/* ✅ All Guides */}
+      {/* All Guides */}
       <section className="max-w-6xl mx-auto px-6 py-14">
         <h2 className="text-2xl md:text-3xl font-semibold text-purple-900">
           Downloadable Guides
@@ -184,7 +196,7 @@ export default function DownloadableGuidesPage() {
         </p>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {guides.map((g) => (
+          {visibleGuides.map((g) => (
             <GuideCard key={g.href} g={g} />
           ))}
         </div>
