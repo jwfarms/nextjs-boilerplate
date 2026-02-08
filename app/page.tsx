@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 "use client";
 import InstallApp from "@/components/InstallApp";
 
@@ -144,7 +147,16 @@ export default function Home() {
 
       {/* Header */}
       <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-purple-800 tracking-wide">JW FARMS</h1>
+       <Link href="/" className="flex items-center gap-3">
+  <Image
+    src="/logo/jwfarms7-logo.png"
+    alt="JW Farms 7"
+    width={48}
+    height={48}
+    priority
+    className="rounded-full"
+  />
+</Link>
 
         <nav className="flex gap-4 text-sm font-semibold">
           <a href="/lavender" className="hover:text-purple-700">
