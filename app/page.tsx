@@ -560,32 +560,33 @@ export default function Home() {
           jwfarms77@gmail.com
         </a>
       </section>
-
-   {/* Footer */}
-<footer className="bg-purple-800 text-white py-14 text-center">
-  <div className="flex flex-col items-center gap-4">
-    {/* Large logo */}
+{/* Footer */}
+<footer className="bg-gradient-to-b from-[#6b4fa3] via-[#7b5fc0] to-[#4a2c82] text-white py-16 text-center">
+  <div className="flex flex-col items-center gap-5">
+    {/* Logo */}
     <Image
       src="/logo/jwfarms7-logo.png"
       alt="JW Farms 7 Logo"
-      width={140}
-      height={140}
-      className="rounded-full shadow-lg"
+      width={150}
+      height={150}
+      priority={false}
+      className="rounded-full shadow-2xl bg-white/90 p-2"
     />
 
-    <p className="text-lg font-semibold tracking-wide">
+    <p className="text-xl font-semibold tracking-wide">
       JW FARMS
     </p>
 
-    <p className="text-sm text-purple-100">
-      Small-batch lavender grown with care
+    <p className="text-sm text-purple-100 max-w-md">
+      Small-batch lavender grown with care in Tennessee
     </p>
 
-    <p className="text-xs text-purple-200 mt-2">
+    <p className="text-xs text-purple-200 mt-3">
       © 2026 JW FARMS
     </p>
   </div>
 </footer>
+
 
     </div>
   );
