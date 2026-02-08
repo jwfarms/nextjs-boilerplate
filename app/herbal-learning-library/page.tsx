@@ -1,3 +1,5 @@
+"use client";
+
 export const metadata = {
   title: "Herbal Learning Library | JW Farms",
   description:
@@ -20,7 +22,7 @@ const HERBS: Herb[] = [
   { title: "Dandelion", slug: "dandelion" },
   { title: "Dill", slug: "dill" },
   { title: "Echinacea", slug: "echinacea" },
-  { title: "Edelweiss Lavender", slug: "edelwiss-lavender" }, // <-- note spelling below
+  { title: "Edelweiss Lavender", slug: "edelweiss-lavender" },
   { title: "Garlic", slug: "garlic" },
   { title: "Ginko", slug: "ginko" },
   { title: "Lavender", slug: "lavender" },
@@ -33,7 +35,7 @@ const HERBS: Herb[] = [
   { title: "Oregano", slug: "oregano" },
   { title: "Parsley", slug: "parsley" },
   { title: "Peppermint", slug: "peppermint" },
-  { title: "Plantain Weed", slug: "plantain-weed" }, // rename file if needed
+  { title: "Plantain Weed", slug: "plantain-weed" }, // change to "plantain" if your files are plantain.pdf/png
   { title: "Purslane", slug: "purslane" },
   { title: "Rosemary", slug: "rosemary" },
   { title: "Sage", slug: "sage" },
@@ -45,7 +47,6 @@ const HERBS: Herb[] = [
 ];
 
 export default function HerbalLearningLibraryPage() {
-  // Alphabetical
   const items = [...HERBS].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
@@ -74,19 +75,20 @@ export default function HerbalLearningLibraryPage() {
                 className="group block bg-white rounded-2xl shadow-md overflow-hidden transition hover:shadow-xl hover:-translate-y-1"
               >
                 {/* Thumbnail */}
-                <div className="relative bg-[#f3eefb] border-b border-purple-100">
+                <div className="relative bg-[#f3eefb] border-b border-purple-100 h-64 flex items-center justify-center">
                   <img
                     src={previewSrc}
                     alt={`${h.title} herbal reference preview`}
-                    className="w-full h-64 object-contain p-4"
+                    className="max-h-full max-w-full object-contain p-4"
                     loading="lazy"
                     onError={(e) => {
-                      // graceful fallback if a preview is missing
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
-                      const parent = (e.currentTarget as HTMLImageElement).parentElement;
+                      // Hide broken image and show a clean fallback
+                      const img = e.currentTarget as HTMLImageElement;
+                      img.style.display = "none";
+                      const parent = img.parentElement;
                       if (parent) {
                         parent.innerHTML = `
-                          <div style="height:16rem; display:flex; align-items:center; justify-content:center; color:#6b7280; font-weight:600;">
+                          <div style="height:100%; width:100%; display:flex; align-items:center; justify-content:center; color:#6b7280; font-weight:600;">
                             Preview coming soon
                           </div>
                         `;
