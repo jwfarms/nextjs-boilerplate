@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 // IMPORTANT: match the filename exactly (case-sensitive on Vercel)
-import HerbLibraryClient from "./herblibraryclient";
+import HerbLibraryClient from "./HerbLibraryClient";
 
 const HERBS = [
   { title: "Basil", slug: "basil" },
