@@ -22,12 +22,10 @@ const featured: Guide = {
   href: "/downloads/herbal-first-aid-kit.pdf",
   image: "/downloads/herbal-first-aid-kit-preview.png",
   badge: "FREE PDF",
+  enabled: true,
 };
 
 const guides: Guide[] = [
-  // ✅ Keep ALL your guides here.
-  // If you want to hide one temporarily, set enabled: false (don’t delete it).
-
   {
     title: "How to Store Dried Lavender",
     desc: "A simple, practical storage guide to preserve aroma, color, and quality.",
@@ -44,24 +42,38 @@ const guides: Guide[] = [
     badge: "PDF",
     enabled: true,
   },
-
-  // ✅ ADD the missing ones back here (examples below)
-  // {
-  //   title: "Culinary Lavender Reference",
-  //   desc: "A quick variety guide and reminder for gentle, balanced culinary use.",
-  //   href: "/downloads/culinary-lavender-reference.pdf",
-  //   image: "/downloads/culinary-lavender-reference-preview.png",
-  //   badge: "PDF",
-  //   enabled: true,
-  // },
-  // {
-  //   title: "Lavender at Home Starter Pack",
-  //   desc: "A beginner-friendly set of ideas for everyday lavender use.",
-  //   href: "/downloads/lavender-at-home-starter-pack.pdf",
-  //   image: "/downloads/lavender-at-home-starter-pack-preview.png",
-  //   badge: "PDF",
-  //   enabled: true,
-  // },
+  {
+    title: "Culinary Lavender Reference",
+    desc: "A quick variety guide and reminder for gentle, balanced culinary use.",
+    href: "/downloads/culinary-lavender-reference.pdf",
+    image: "/downloads/culinary-lavender-reference-preview.png",
+    badge: "PDF",
+    enabled: true,
+  },
+  {
+    title: "Lavender at Home Starter Pack",
+    desc: "A beginner-friendly set of ideas for everyday lavender use.",
+    href: "/downloads/lavender-at-home-starter-pack.pdf",
+    image: "/downloads/lavender-at-home-starter-pack-preview.png",
+    badge: "PDF",
+    enabled: true,
+  },
+  {
+    title: "7 Lavenders Compared",
+    desc: "A quick comparison chart to help you understand and choose varieties.",
+    href: "/downloads/7-lavenders-compared-jw-farms.pdf",
+    image: "/downloads/7-lavenders-compared-preview.png",
+    badge: "PDF",
+    enabled: true,
+  },
+  {
+    title: "Lavender Sheet",
+    desc: "A simple lavender reference sheet you can keep handy.",
+    // Space-safe URL (because your file is named: lavender-sheet copy.pdf)
+    href: "/downloads/lavender-sheet%20copy.pdf",
+    badge: "PDF",
+    enabled: true,
+  },
 ];
 
 function GuideCard({ g }: { g: Guide }) {
@@ -121,6 +133,7 @@ function GuideCard({ g }: { g: Guide }) {
 }
 
 export default function DownloadableGuidesPage() {
+  // Only hide items if enabled is explicitly set to false
   const visibleGuides = guides.filter((g) => g.enabled !== false);
 
   return (
