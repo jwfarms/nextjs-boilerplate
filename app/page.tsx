@@ -561,12 +561,32 @@ export default function Home() {
         </a>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-purple-800 text-white py-10 text-center">
-        <p className="text-lg font-semibold mb-1">JW FARMS</p>
-        <p className="text-sm mb-2">Small-batch lavender grown with care</p>
-        <p className="text-sm">© 2026 JW FARMS</p>
-      </footer>
+   {/* Footer */}
+<footer className="bg-purple-800 text-white py-14 text-center">
+  <div className="flex flex-col items-center gap-4">
+    {/* Large logo */}
+    <Image
+      src="/logo/jwfarms7-logo.png"
+      alt="JW Farms 7 Logo"
+      width={140}
+      height={140}
+      className="rounded-full shadow-lg"
+    />
+
+    <p className="text-lg font-semibold tracking-wide">
+      JW FARMS
+    </p>
+
+    <p className="text-sm text-purple-100">
+      Small-batch lavender grown with care
+    </p>
+
+    <p className="text-xs text-purple-200 mt-2">
+      © 2026 JW FARMS
+    </p>
+  </div>
+</footer>
+
     </div>
   );
 }
