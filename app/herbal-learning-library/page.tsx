@@ -1,5 +1,3 @@
-import HerbLibraryClient from "./HerbLibraryClient";
-
 export const metadata = {
   title: "Herbal Learning Library | JW Farms",
   description:
@@ -8,6 +6,9 @@ export const metadata = {
     canonical: "https://www.jwfarms7.com/herbal-learning-library",
   },
 };
+
+// IMPORTANT: match the filename exactly (case-sensitive on Vercel)
+import HerbLibraryClient from "./herblibraryclient";
 
 const HERBS = [
   { title: "Basil", slug: "basil" },
@@ -45,7 +46,10 @@ export default function HerbalLearningLibraryPage() {
   return (
     <main className="bg-[#f6f2fb] text-gray-800 min-h-screen">
       <section className="py-20 px-6 max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6">
+        <h1
+          id="top"
+          className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6"
+        >
           Herbal Learning Library
         </h1>
 
