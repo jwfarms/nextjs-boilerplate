@@ -66,14 +66,15 @@ const guides: Guide[] = [
     badge: "PDF",
     enabled: true,
   },
-  {
-    title: "Lavender Sheet",
-    desc: "A simple lavender reference sheet you can keep handy.",
-    // Space-safe URL (because your file is named: lavender-sheet copy.pdf)
-    href: "/downloads/lavender-sheet%20copy.pdf",
-    badge: "PDF",
-    enabled: true,
-  },
+ {
+  title: "Lavender Sheet",
+  desc: "A simple lavender reference sheet you can keep handy.",
+  href: "/downloads/lavender-sheet.pdf",
+  image: "/downloads/lavender-sheet-preview.png",
+  badge: "PDF",
+  enabled: true,
+},
+
 ];
 
 function GuideCard({ g }: { g: Guide }) {
