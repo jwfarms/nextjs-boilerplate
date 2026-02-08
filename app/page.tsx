@@ -1,7 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
-"use client";
 import InstallApp from "@/components/InstallApp";
 
 export default function Home() {
