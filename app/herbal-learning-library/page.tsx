@@ -1,5 +1,3 @@
-// app/herbal-learning-library/page.tsx
-
 export const metadata = {
   title: "Herbal Learning Library | JW Farms",
   description:
@@ -9,12 +7,9 @@ export const metadata = {
   },
 };
 
-type Herb = {
-  title: string;
-  slug: string; // must match PDF + PNG filenames
-};
+import HerbLibraryClient from "./HerbLibraryClient";
 
-const HERBS: Herb[] = [
+const HERBS = [
   { title: "Basil", slug: "basil" },
   { title: "Chamomile", slug: "chamomile" },
   { title: "Cilantro", slug: "cilantro" },
@@ -48,93 +43,18 @@ const HERBS: Herb[] = [
 
 export default function HerbalLearningLibraryPage() {
   return (
-    <main className="min-h-screen bg-[#f6f2fb] text-gray-800">
+    <main className="bg-[#f6f2fb] text-gray-800 min-h-screen">
       <section className="py-20 px-6 max-w-6xl mx-auto">
-        {/* Back link */}
-        <a
-          href="/"
-          className="inline-block text-sm font-medium text-[#6b4fa3] hover:underline"
-        >
-          ← Back to JW Farms
-        </a>
-
-        <h1 className="mt-6 text-4xl md:text-5xl font-semibold text-purple-800">
+        <h1 className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6">
           Herbal Learning Library
         </h1>
 
-        <p className="mt-4 text-lg leading-relaxed max-w-3xl">
-          Printable herbal reference sheets—simple, practical guides you can
-          download and keep. Click any herb to open the PDF.
+        <p className="text-lg leading-relaxed mb-10 max-w-3xl">
+          A growing library of printable herbal reference sheets—simple, practical
+          guides you can save, print, and keep on hand.
         </p>
 
-        {/* Grid */}
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {HERBS.map((herb) => {
-            const pdfHref = `/herbal-library/${herb.slug}.pdf`;
-            const previewSrc = `/herbal-library/previews/${herb.slug}.png`;
-
-            return (
-              <a
-                key={herb.slug}
-                href={pdfHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-2xl bg-white shadow-md overflow-hidden transition hover:shadow-xl hover:-translate-y-0.5"
-              >
-                {/* Thumbnail */}
-                <div className="bg-white">
-                  <img
-                    src={previewSrc}
-                    alt={`${herb.title} herbal reference preview`}
-                    className="w-full h-64 object-contain bg-white"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Text */}
-                <div className="p-5 border-t border-purple-100">
-                  <div className="flex items-center justify-between gap-3">
-                    <h2 className="text-xl font-semibold text-gray-900">
-                      {herb.title}
-                    </h2>
-                    <span className="shrink-0 text-xs font-semibold bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
-                      PDF
-                    </span>
-                  </div>
-
-                  <p className="mt-3 text-purple-700 font-semibold group-hover:underline">
-                    View / Download →
-                  </p>
-
-                  <p className="mt-2 text-xs text-gray-500">
-                    {pdfHref}
-                  </p>
-                </div>
-              </a>
-            );
-          })}
-        </div>
-
-        {/* Note */}
-        <div className="mt-10 bg-white rounded-2xl shadow-sm p-6 border border-purple-100">
-          <h3 className="text-lg font-semibold text-purple-800 mb-2">
-            File naming must match
-          </h3>
-          <p className="text-gray-700 leading-relaxed">
-            Each card expects:
-            <br />
-            <span className="font-mono text-sm">
-              /public/herbal-library/&lt;slug&gt;.pdf
-            </span>
-            <br />
-            <span className="font-mono text-sm">
-              /public/herbal-library/previews/&lt;slug&gt;.png
-            </span>
-            <br />
-            Example: <span className="font-mono text-sm">basil.pdf</span> and{" "}
-            <span className="font-mono text-sm">previews/basil.png</span>
-          </p>
-        </div>
+        <HerbLibraryClient herbs={HERBS} />
       </section>
     </main>
   );
