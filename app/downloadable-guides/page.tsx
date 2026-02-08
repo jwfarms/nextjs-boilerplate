@@ -7,6 +7,52 @@ export const metadata = {
   },
 };
 
+const guides = [
+  {
+    title: "How to Store Dried Lavender",
+    desc:
+      "A simple, practical storage guide to preserve aroma, color, and quality.",
+    href: "https://jwfarms.blogspot.com/",
+    badge: "PDF",
+  },
+  {
+    title: "Caring for Dried Lavender Wreaths",
+    desc:
+      "Tips to reduce shedding, prevent fading, and store wreaths seasonally.",
+    href: "https://jwfarms.blogspot.com/",
+    badge: "PDF",
+  },
+  {
+    title: "Culinary Lavender Reference",
+    desc:
+      "A quick variety guide and reminder for gentle, balanced culinary use.",
+    href: "https://jwfarms.blogspot.com/",
+    badge: "PDF",
+  },
+  {
+    title: "Lavender at Home Starter Pack",
+    desc:
+      "A beginner-friendly set of ideas for everyday lavender use.",
+    href: "https://jwfarms.blogspot.com/",
+    badge: "PDF",
+  },
+  {
+    title: "Lavender Quick Sheet",
+    desc:
+      "An overview of lavender varieties, uses, and tips in one handy printable reference.",
+    href: "/downloads/lavender-sheet.pdf",
+    badge: "PDF",
+  },
+  {
+    title: "7 Lavenders Compared",
+    desc:
+      "A beginner-friendly visual guide comparing bloom times, USDA hardiness zones, and drought tolerance. Includes English, Spanish, and French lavender.",
+    href: "/downloads/7-lavenders-compared-jw-farms.pdf",
+    badge: "PDF",
+    image: "/downloads/7-lavenders-compared-preview.png",
+  },
+];
+
 export default function DownloadableGuidesPage() {
   return (
     <main className="bg-[#f6f2fb] text-gray-800">
@@ -21,52 +67,8 @@ export default function DownloadableGuidesPage() {
           practices and thoughtful handling — created to be returned to as needed.
         </p>
 
-        {/* Guides grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {[
-            {
-              title: "How to Store Dried Lavender",
-              desc:
-                "A simple, practical storage guide to preserve aroma, color, and quality.",
-              href: "https://jwfarms.blogspot.com/",
-              badge: "PDF",
-            },
-            {
-              title: "Caring for Dried Lavender Wreaths",
-              desc:
-                "Tips to reduce shedding, prevent fading, and store wreaths seasonally.",
-              href: "https://jwfarms.blogspot.com/",
-              badge: "PDF",
-            },
-            {
-              title: "Culinary Lavender Reference",
-              desc:
-                "A quick variety guide and reminder for gentle, balanced culinary use.",
-              href: "https://jwfarms.blogspot.com/",
-              badge: "PDF",
-            },
-            {
-              title: "Lavender at Home Starter Pack",
-              desc:
-                "A beginner-friendly set of ideas for everyday lavender use.",
-              href: "https://jwfarms.blogspot.com/",
-              badge: "PDF",
-            },
-            {
-              title: "Lavender Quick Sheet",
-              desc:
-                "An overview of lavender varieties, uses, and tips in one handy printable reference.",
-              href: "/downloads/lavender-sheet.pdf",
-              badge: "PDF",
-            },
-            {
-              title: "7 Lavenders Compared",
-              desc:
-                "A beginner-friendly visual guide comparing bloom times, USDA hardiness zones, and drought tolerance for seven popular lavender types. Includes English, Spanish, and French lavender.",
-              href: "/downloads/7-lavenders-compared-jw-farms.pdf",
-              badge: "PDF",
-            },
-          ].map((g, i) => (
+          {guides.map((g, i) => (
             <a
               key={i}
               href={g.href}
@@ -87,6 +89,14 @@ export default function DownloadableGuidesPage() {
                 {g.desc}
               </p>
 
+              {g.image && (
+                <img
+                  src={g.image}
+                  alt={`${g.title} preview`}
+                  className="mt-4 rounded-xl border"
+                />
+              )}
+
               <p className="mt-4 text-purple-700 font-semibold">
                 View / Download →
               </p>
@@ -94,7 +104,6 @@ export default function DownloadableGuidesPage() {
           ))}
         </div>
 
-        {/* Internal discovery links */}
         <div className="mt-12 bg-white rounded-2xl shadow-sm p-6">
           <h3 className="text-xl font-semibold text-purple-800 mb-3">
             Looking for the Lavender overview?
@@ -123,3 +132,4 @@ export default function DownloadableGuidesPage() {
     </main>
   );
 }
+
