@@ -7,55 +7,52 @@ export const metadata = {
   },
 };
 
-type Guide = {
-  title: string;
-  desc: string;
-  href: string; // points to the PDF
-  badge: string;
-  image?: string; // optional thumbnail
-};
-
 export default function DownloadableGuidesPage() {
-  const guides: Guide[] = [
+  const guides = [
     {
       title: "How to Store Dried Lavender",
-      desc: "A simple, practical storage guide to preserve aroma, color, and quality.",
+      desc:
+        "A simple, practical storage guide to preserve aroma, color, and quality.",
       href: "/downloads/how-to-store-dried-lavender.pdf",
       badge: "PDF",
       image: "/downloads/how-to-store-dried-lavender-preview.png",
     },
     {
       title: "Caring for Dried Lavender Wreaths",
-      desc: "Tips to reduce shedding, prevent fading, and store wreaths seasonally.",
+      desc:
+        "Tips to reduce shedding, prevent fading, and store wreaths seasonally.",
       href: "/downloads/caring-for-dried-lavender-wreaths.pdf",
       badge: "PDF",
       image: "/downloads/caring-for-dried-lavender-wreaths-preview.png",
     },
     {
       title: "Culinary Lavender Reference",
-      desc: "A quick variety guide and reminder for gentle, balanced culinary use.",
+      desc:
+        "A quick variety guide and reminder for gentle, balanced culinary use.",
       href: "/downloads/culinary-lavender-reference.pdf",
       badge: "PDF",
       image: "/downloads/culinary-lavender-reference-preview.png",
     },
     {
       title: "Lavender at Home Starter Pack",
-      desc: "A beginner-friendly set of ideas for everyday lavender use.",
+      desc:
+        "A beginner-friendly set of ideas for everyday lavender use.",
       href: "/downloads/lavender-at-home-starter-pack.pdf",
       badge: "PDF",
       image: "/downloads/lavender-at-home-starter-pack-preview.png",
     },
     {
       title: "Lavender Quick Sheet",
-      desc: "An overview of lavender varieties, uses, and tips in one handy printable reference.",
+      desc:
+        "An overview of lavender varieties, uses, and tips in one handy printable reference.",
       href: "/downloads/lavender-sheet.pdf",
       badge: "PDF",
-      // optional thumbnail — add later if you want:
-      // image: "/downloads/lavender-sheet-preview.png",
+      image: "/downloads/lavender-sheet-preview.png",
     },
     {
       title: "7 Lavenders Compared",
-      desc: "A beginner-friendly visual guide comparing bloom times, USDA hardiness zones, and drought tolerance. Includes English, Spanish, and French lavender.",
+      desc:
+        "A beginner-friendly visual guide comparing bloom times, USDA hardiness zones, and drought tolerance. Includes English, Spanish, and French lavender.",
       href: "/downloads/7-lavenders-compared-jw-farms.pdf",
       badge: "PDF",
       image: "/downloads/7-lavenders-compared-preview.png",
@@ -63,8 +60,8 @@ export default function DownloadableGuidesPage() {
   ];
 
   return (
-    <main className="bg-[#f6f2fb] text-gray-800">
-      <section className="py-20 px-6 max-w-5xl mx-auto">
+    <main className="bg-[#f6f2fb] text-gray-800 min-h-screen">
+      <section className="py-20 px-6 max-w-6xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6">
           Downloadable Guides
         </h1>
@@ -83,23 +80,23 @@ export default function DownloadableGuidesPage() {
               href={g.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block bg-white rounded-2xl shadow-md overflow-hidden transition hover:shadow-xl hover:-translate-y-1"
+              className="block bg-white rounded-2xl shadow-md overflow-hidden transition hover:shadow-xl hover:-translate-y-1"
             >
-              {/* Thumbnail (optional) */}
+              {/* Thumbnail (clean, cover-like) */}
               {g.image ? (
-                <div className="border-b border-purple-50 bg-[#faf7ff]">
+                <div className="border-b border-purple-50 bg-gradient-to-b from-[#faf7ff] to-white flex items-center justify-center">
                   <img
                     src={g.image}
                     alt={`${g.title} preview`}
-                    className="w-full h-56 object-cover"
+                    className="w-auto h-44 object-contain my-4 rounded-lg shadow-sm"
                     loading="lazy"
                   />
                 </div>
               ) : null}
 
-              <div className="p-6">
+              <div className="p-6 space-y-3">
                 <div className="flex items-start justify-between gap-4">
-                  <h2 className="text-xl font-semibold text-gray-900 group-hover:text-purple-800 transition">
+                  <h2 className="text-xl font-semibold text-gray-900">
                     {g.title}
                   </h2>
                   <span className="shrink-0 text-xs font-semibold bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
@@ -107,9 +104,11 @@ export default function DownloadableGuidesPage() {
                   </span>
                 </div>
 
-                <p className="mt-3 text-gray-600 leading-relaxed">{g.desc}</p>
+                <p className="text-gray-600 leading-relaxed">
+                  {g.desc}
+                </p>
 
-                <p className="mt-4 text-purple-700 font-semibold">
+                <p className="text-purple-700 font-semibold">
                   View / Download →
                 </p>
               </div>
