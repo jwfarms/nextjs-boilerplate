@@ -1,3 +1,94 @@
+import Image from "next/image";
+
+export const metadata = {
+  title: "Downloadable Guides | JW Farms",
+  description:
+    "Printable herbal guides from JW Farms—simple, practical references you can download and keep.",
+  alternates: { canonical: "https://www.jwfarms7.com/downloadable-guides" },
+};
+
+const guides = [
+  {
+    title: "Herbal First Aid Kit",
+    description:
+      "A simple, print-friendly herbal reference—kept close at hand.",
+    pdfHref: "/downloads/herbal-first-aid-kit.pdf",
+    thumbSrc: "/downloads/herbal-first-aid-kit.png", // make sure this exists
+    fileLabel: "PDF",
+  },
+  // Add more guides here the same way:
+  // {
+  //   title: "Lavender Drying Guide",
+  //   description: "How to harvest and dry lavender for best color and scent.",
+  //   pdfHref: "/downloads/lavender-drying-guide.pdf",
+  //   thumbSrc: "/downloads/lavender-drying-guide.png",
+  //   fileLabel: "PDF",
+  // },
+];
+
+export default function DownloadableGuidesPage() {
+  return (
+    <main className="min-h-screen bg-[#f6f2fb] text-gray-800">
+      <section className="max-w-6xl mx-auto px-6 py-14">
+        <h1 className="text-4xl md:text-5xl font-semibold text-purple-900">
+          Downloadable Guides
+        </h1>
+        <p className="mt-4 max-w-2xl text-lg text-gray-700">
+          Print-friendly guides from JW Farms—simple references you can keep in
+          the kitchen, the craft room, or the medicine cabinet.
+        </p>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {guides.map((g) => (
+            <article
+              key={g.pdfHref}
+              className="bg-white/80 rounded-2xl shadow-sm border border-purple-100 overflow-hidden"
+            >
+              <div className="relative aspect-[4/5] bg-white">
+                <Image
+                  src={g.thumbSrc}
+                  alt={`${g.title} preview`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+
+              <div className="p-5">
+                <h2 className="text-xl font-semibold text-purple-900">
+                  {g.title}
+                </h2>
+                <p className="mt-2 text-sm text-gray-700">{g.description}</p>
+
+                <div className="mt-4 flex gap-3">
+                  {/* Open in browser */}
+                  <a
+                    href={g.pdfHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-purple-800 text-white hover:bg-purple-900"
+                  >
+                    View {g.fileLabel}
+                  </a>
+
+                  {/* Force download */}
+                  <a
+                    href={g.pdfHref}
+                    download
+                    className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium border border-purple-200 text-purple-900 hover:bg-purple-50"
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
 export const metadata = {
   title: "Downloadable Lavender Guides | JW Farms",
   description:
