@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import RegisterSW from "@/components/RegisterSW";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -44,46 +47,49 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "JW Farms",
+    description:
+      "JW Farms is a small, family-owned lavender farm offering seasonal lavender plants, fresh bundles, dried buds, and wholesale availability. Serving the local community and surrounding areas.",
+    url: "https://jwfarms7.com",
+    email: "jwfarms77@gmail.com",
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "United States",
+    },
+    sameAs: ["https://jwfarms.blogspot.com/"],
+  };
+
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "JW Farms 7",
+    alternateName: "JW Farms",
+    url: "https://www.jwfarms7.com",
+  };
+
   return (
     <html lang="en">
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "JW Farms",
-      "description":
-        "JW Farms is a small, family-owned lavender farm offering seasonal lavender plants, fresh bundles, dried buds, and wholesale availability. Serving the local community and surrounding areas.",
-      "url": "https://jwfarms7.com",
-      "email": "jwfarms77@gmail.com",
-      "areaServed": {
-        "@type": "AdministrativeArea",
-        "name": "United States"
-      },
-      "sameAs": [
-        "https://jwfarms.blogspot.com/"
-      ]
-    }),
-  }}
-/>
-<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-  <RegisterSW />
-  <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "JW Farms 7",
-      alternateName: "JW Farms",
-      url: "https://www.jwfarms7.com"
-    }),
-  }}
-/>
+      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>
+        <RegisterSW />
 
-  {children}
-</body>
-</html>
-);
+        {/* JSON-LD: LocalBusiness */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+
+        {/* JSON-LD: Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
+
+        {children}
+      </body>
+    </html>
+  );
 }
+
