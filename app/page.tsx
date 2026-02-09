@@ -564,14 +564,25 @@ export default function Home() {
           ></iframe>
         </div>
 
-        <a
-          href="https://jwfarms.blogspot.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-8 py-3 font-semibold transition-all duration-200 hover:scale-105"
-        >
-          Visit the Blog
-        </a>
+     <a
+  href="https://jwfarms.blogspot.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2
+             rounded-full px-8 py-3
+             font-serif font-medium text-[17px]
+             text-purple-800
+             bg-purple-50/70
+ border border-purple-200
+             shadow-sm backdrop-blur
+             hover:bg-white hover:shadow-md
+             hover:-translate-y-[1px]
+             transition-all duration-200"
+>
+  Visit the Blog
+  <span aria-hidden="true">→</span>
+</a>
+
       </section>
 
       {/* Contact */}
