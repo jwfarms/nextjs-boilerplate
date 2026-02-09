@@ -164,7 +164,8 @@ export default function Home() {
           />
         </Link>
 
-        <nav className="flex gap-4 text-sm font-semibold">
+    <nav className="flex gap-4 text-[15px] font-medium text-slate-700">
+
           <a href="/lavender" className="hover:text-purple-700">
             Lavender
           </a>
