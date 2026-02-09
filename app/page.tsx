@@ -228,9 +228,10 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-semibold text-gray-900 mb-4 drop-shadow-sm">
-            Pure Lavender, Naturally Grown
-          </h2>
+          <h1 className="font-serif font-medium tracking-tight text-slate-900 mb-4 drop-shadow-sm text-4xl md:text-6xl leading-[1.05]">
+  Pure Lavender, Naturally Grown
+</h1>
+
 
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
             JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
