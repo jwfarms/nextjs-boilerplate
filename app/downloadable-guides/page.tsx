@@ -5,7 +5,7 @@ export const metadata = {
   alternates: {
     canonical: "https://www.jwfarms7.com/downloadable-guides",
   },
-};
+}; 
 
 type Guide = {
   title: string;
