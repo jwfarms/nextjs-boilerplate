@@ -95,7 +95,8 @@ export default function Home() {
             "@type": "Product",
             "@id": "https://www.jwfarms7.com/#product-lavender-plants",
             name: "Lavender Plants (quart-size)",
-            description: "Lavender plants in a quart-size pot (seasonal availability).",
+            description:
+              "Lavender plants in a quart-size pot (seasonal availability).",
             brand: { "@type": "Brand", name: "JW Farms" },
             // ✅ updated to match your renamed image in /public/products
             image: [
@@ -141,6 +142,10 @@ export default function Home() {
     },
   ];
 
+  // Reusable heading style for the landing page sections (soft serif)
+  const sectionHeading =
+    "font-serif font-medium text-3xl md:text-4xl text-purple-700 text-center tracking-tight";
+
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
       {/* ✅ JSON-LD goes ONCE, near the top */}
@@ -152,7 +157,6 @@ export default function Home() {
 
       {/* Header */}
       <header className="sticky top-0 bg-white/90 backdrop-blur shadow-sm z-50 px-6 py-4 flex justify-between items-center">
-        {/* ✅ Replace JW text with your logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo/jwfarms7-logo.png"
@@ -164,8 +168,7 @@ export default function Home() {
           />
         </Link>
 
-    <nav className="flex gap-4 text-[15px] font-medium text-slate-700">
-
+        <nav className="flex gap-4 text-[15px] font-medium text-slate-700">
           <a href="/lavender" className="hover:text-purple-700">
             Lavender
           </a>
@@ -173,7 +176,6 @@ export default function Home() {
             Knowledge Hub
           </a>
 
-          {/* ✅ NEW: Benefits */}
           <a href="#benefits" className="hover:text-purple-700">
             Benefits
           </a>
@@ -228,24 +230,24 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/60" />
 
         {/* Content */}
-      {/* Content */}
-<div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-<Image
-  src="/logo/jwfarms7-logo.png"
-  alt="JW Farms 7"
-  width={140}
-  height={140}
-  priority
-  className="mb-6 rounded-full bg-white/80 p-2 shadow-lg"
-/>
+        <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+          {/* ✅ Centered, enlarged logo above headline */}
+          <Image
+            src="/logo/jwfarms7-logo.png"
+            alt="JW Farms 7"
+            width={160}
+            height={160}
+            priority
+            className="mb-6 rounded-full bg-white/80 p-2 shadow-lg"
+          />
 
-          <h1 className="font-serif font-medium tracking-tight text-slate-900 mb-4 drop-shadow-sm text-4xl md:text-6xl leading-[1.05]">
-  Pure Lavender, Naturally Grown
-</h1>
-
+          <h1 className="font-serif font-medium tracking-tight text-slate-900 mb-4 drop-shadow-sm text-4xl md:text-6xl leading-[1.05] text-center">
+            Pure Lavender, Naturally Grown
+          </h1>
 
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-800 mb-4 leading-relaxed">
-            JW Farms (JW Farms 7) is a small, family-owned lavender farm in Tennessee.
+            JW Farms (JW Farms 7) is a small, family-owned lavender farm in
+            Tennessee.
             <br />
             Hand-harvested lavender, available by email order.
           </p>
@@ -270,7 +272,6 @@ export default function Home() {
               Email to Order
             </a>
 
-            {/* ✅ NEW: Explore Benefits */}
             <a
               href="#benefits"
               className="inline-block bg-white/80 hover:bg-white text-purple-800 rounded-xl px-7 py-3 font-semibold border border-purple-200 transition-all duration-200 hover:scale-[1.02]"
@@ -281,18 +282,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ✅ NEW: Lavender Benefits */}
+      {/* Lavender Benefits */}
       <section
         id="benefits"
         className="py-20 px-6 bg-white border-t border-purple-100"
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-4 text-purple-800">
-            Lavender Benefits
-          </h2>
+          <h2 className={`${sectionHeading} mb-4`}>Lavender Benefits</h2>
+
           <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12">
-            Lavender has a long history of traditional use for comfort and everyday well-being.
-            Here are some of the most common ways people use lavender at home.
+            Lavender has a long history of traditional use for comfort and
+            everyday well-being. Here are some of the most common ways people
+            use lavender at home.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -335,8 +336,9 @@ export default function Home() {
           </div>
 
           <p className="text-xs text-gray-500 mt-10 max-w-4xl mx-auto text-center">
-            Note: These are traditional and everyday wellness uses. Lavender isn’t a substitute for medical care.
-            If you’re pregnant, nursing, have sensitivities, or are using essential oils around children/pets,
+            Note: These are traditional and everyday wellness uses. Lavender
+            isn’t a substitute for medical care. If you’re pregnant, nursing,
+            have sensitivities, or are using essential oils around children/pets,
             use extra caution and consult a professional if needed.
           </p>
         </div>
@@ -347,9 +349,7 @@ export default function Home() {
         id="products"
         className="py-20 px-6 max-w-6xl mx-auto border-t border-purple-100"
       >
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
-          Our Products
-        </h2>
+        <h2 className={`${sectionHeading} mb-12`}>Our Products</h2>
 
         <div className="grid md:grid-cols-3 gap-8">
           {[
@@ -409,29 +409,36 @@ export default function Home() {
               className="w-full h-56 object-cover rounded-xl mb-4"
             />
 
-            <h3 className="text-xl font-semibold mb-2">Lavender Tray – 72 Plugs</h3>
+            <h3 className="text-xl font-semibold mb-2">
+              Lavender Tray – 72 Plugs
+            </h3>
             <p className="text-sm text-gray-600 mb-2">Commercial plug tray</p>
             <p className="text-purple-700 font-semibold mb-4">$130.00</p>
-            <p className="text-sm text-gray-500">Seasonal • Email for availability</p>
+            <p className="text-sm text-gray-500">
+              Seasonal • Email for availability
+            </p>
           </div>
         </div>
       </section>
 
       {/* About */}
-      <section id="about" className="py-20 px-6 bg-white border-t border-purple-100">
+      <section
+        id="about"
+        className="py-20 px-6 bg-white border-t border-purple-100"
+      >
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-purple-800">
-            About JW FARMS
-          </h2>
+          <h2 className={`${sectionHeading} mb-8`}>About JW Farms</h2>
 
           <p className="text-gray-700 mb-4">
-            JW FARMS is a small, family-owned lavender farm focused on quality, care, and seasonal growing practices.
-            Everything we offer is grown, harvested, and handled in small batches.
+            JW FARMS is a small, family-owned lavender farm focused on quality,
+            care, and seasonal growing practices. Everything we offer is grown,
+            harvested, and handled in small batches.
           </p>
 
           <p className="text-gray-700 mb-6">
-            Our lavender is ideal for sachets, crafts, baking, teas, and garden planting.
-            Availability changes throughout the year based on harvest timing and growing conditions.
+            Our lavender is ideal for sachets, crafts, baking, teas, and garden
+            planting. Availability changes throughout the year based on harvest
+            timing and growing conditions.
           </p>
 
           <p className="mt-6 text-gray-700">
@@ -445,7 +452,10 @@ export default function Home() {
 
           <p className="font-semibold text-purple-700">
             📧 Email us anytime:{" "}
-            <a href="mailto:jwfarms77@gmail.com" className="underline hover:text-purple-900">
+            <a
+              href="mailto:jwfarms77@gmail.com"
+              className="underline hover:text-purple-900"
+            >
               jwfarms77@gmail.com
             </a>
           </p>
@@ -453,11 +463,12 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20 px-6 bg-[#f6f2fb] border-t border-purple-100">
+      <section
+        id="faq"
+        className="py-20 px-6 bg-[#f6f2fb] border-t border-purple-100"
+      >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
-            Frequently Asked Questions
-          </h2>
+          <h2 className={`${sectionHeading} mb-12`}>Frequently Asked Questions</h2>
 
           <div className="space-y-6">
             {[
@@ -488,10 +499,11 @@ export default function Home() {
       </section>
 
       {/* Gallery */}
-      <section id="gallery" className="py-20 px-6 bg-[#f9f6fc] border-t border-purple-100">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-purple-800">
-          Life at JW FARMS
-        </h2>
+      <section
+        id="gallery"
+        className="py-20 px-6 bg-[#f9f6fc] border-t border-purple-100"
+      >
+        <h2 className={`${sectionHeading} mb-12`}>Life at JW Farms</h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {[
@@ -524,8 +536,14 @@ export default function Home() {
               key={i}
               className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
             >
-              <img src={img.src} alt={img.label} className="w-full h-64 object-cover" />
-              <p className="p-3 text-sm text-center text-gray-600">{img.label}</p>
+              <img
+                src={img.src}
+                alt={img.label}
+                className="w-full h-64 object-cover"
+              />
+              <p className="p-3 text-sm text-center text-gray-600">
+                {img.label}
+              </p>
             </div>
           ))}
         </div>
@@ -533,7 +551,7 @@ export default function Home() {
 
       {/* Blog */}
       <section className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-purple-800">
+        <h2 className="font-serif font-medium text-3xl md:text-4xl text-purple-700 mb-8 tracking-tight">
           From Our Farm
         </h2>
 
@@ -557,9 +575,12 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-purple-800">
-          Contact JW FARMS
+      <section
+        id="contact"
+        className="py-20 px-6 bg-[#f6f2fb] text-center border-t border-purple-100"
+      >
+        <h2 className="font-serif font-medium text-3xl md:text-4xl text-purple-700 mb-4 tracking-tight">
+          Contact JW Farms
         </h2>
         <p className="mb-6 text-gray-600">
           To place an order or ask about availability, email us directly:
@@ -572,34 +593,29 @@ export default function Home() {
           jwfarms77@gmail.com
         </a>
       </section>
-{/* Footer */}
-<footer className="bg-gradient-to-b from-[#6b4fa3] via-[#7b5fc0] to-[#4a2c82] text-white py-16 text-center">
-  <div className="flex flex-col items-center gap-5">
-    {/* Logo */}
-    <Image
-      src="/logo/jwfarms7-logo.png"
-      alt="JW Farms 7 Logo"
-      width={150}
-      height={150}
-      priority={false}
-      className="rounded-full shadow-2xl bg-white/90 p-2"
-    />
 
-    <p className="text-xl font-semibold tracking-wide">
-      JW FARMS
-    </p>
+      {/* Footer */}
+      <footer className="bg-gradient-to-b from-[#6b4fa3] via-[#7b5fc0] to-[#4a2c82] text-white py-16 text-center">
+        <div className="flex flex-col items-center gap-5">
+          <Image
+            src="/logo/jwfarms7-logo.png"
+            alt="JW Farms 7 Logo"
+            width={150}
+            height={150}
+            priority={false}
+            className="rounded-full shadow-2xl bg-white/90 p-2"
+          />
 
-    <p className="text-sm text-purple-100 max-w-md">
-      Small-batch lavender grown with care in Tennessee
-    </p>
+          <p className="text-xl font-semibold tracking-wide">JW FARMS</p>
 
-    <p className="text-xs text-purple-200 mt-3">
-      © 2026 JW FARMS
-    </p>
-  </div>
-</footer>
+          <p className="text-sm text-purple-100 max-w-md">
+            Small-batch lavender grown with care in Tennessee
+          </p>
 
-
+          <p className="text-xs text-purple-200 mt-3">© 2026 JW FARMS</p>
+        </div>
+      </footer>
     </div>
   );
 }
+
