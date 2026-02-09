@@ -228,7 +228,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/60" />
 
         {/* Content */}
-        <div className="relative z-10 max-w-3xl mx-auto">
+      {/* Content */}
+<div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+
           <h1 className="font-serif font-medium tracking-tight text-slate-900 mb-4 drop-shadow-sm text-4xl md:text-6xl leading-[1.05]">
   Pure Lavender, Naturally Grown
 </h1>
