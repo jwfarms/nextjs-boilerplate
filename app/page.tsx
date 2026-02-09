@@ -258,27 +258,56 @@ export default function Home() {
           </p>
 
           {/* Optional CTA buttons for better flow */}
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href="#products"
-              className="inline-block bg-purple-700 hover:bg-purple-800 text-white rounded-xl px-7 py-3 font-semibold transition-all duration-200 hover:scale-[1.02]"
-            >
-              View Products
-            </a>
-            <a
-              href="#contact"
-              className="inline-block bg-white/80 hover:bg-white text-purple-800 rounded-xl px-7 py-3 font-semibold border border-purple-200 transition-all duration-200 hover:scale-[1.02]"
-            >
-              Email to Order
-            </a>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+  <a
+    href="#products"
+    className="inline-flex items-center justify-center
+               rounded-full px-8 py-3
+               font-serif font-medium text-[17px]
+               text-white
+               bg-purple-700/90
+               shadow-sm
+               hover:bg-purple-700
+               hover:shadow-md
+               hover:-translate-y-[1px]
+               transition-all duration-200"
+  >
+    View Products
+  </a>
 
-            <a
-              href="#benefits"
-              className="inline-block bg-white/80 hover:bg-white text-purple-800 rounded-xl px-7 py-3 font-semibold border border-purple-200 transition-all duration-200 hover:scale-[1.02]"
-            >
-              Explore Benefits
-            </a>
-          </div>
+  <a
+    href="#contact"
+    className="inline-flex items-center justify-center
+               rounded-full px-8 py-3
+               font-serif font-medium text-[17px]
+               text-purple-800
+               bg-white/70 border border-purple-200
+               shadow-sm backdrop-blur
+               hover:bg-white
+               hover:shadow-md
+               hover:-translate-y-[1px]
+               transition-all duration-200"
+  >
+    Email to Order
+  </a>
+
+  <a
+    href="#benefits"
+    className="inline-flex items-center justify-center
+               rounded-full px-8 py-3
+               font-serif font-medium text-[17px]
+               text-purple-800
+               bg-purple-50/70 border border-purple-200
+               shadow-sm backdrop-blur
+               hover:bg-purple-50
+               hover:shadow-md
+               hover:-translate-y-[1px]
+               transition-all duration-200"
+  >
+    Explore Benefits
+  </a>
+</div>
+
         </div>
       </section>
 
