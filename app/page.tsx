@@ -157,8 +157,8 @@ export default function Home() {
           <Image
             src="/logo/jwfarms7-logo.png"
             alt="JW Farms 7"
-            width={56}
-            height={56}
+            width={72}
+            height={72}
             priority
             className="rounded-full"
           />
