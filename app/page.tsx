@@ -146,6 +146,33 @@ export default function Home() {
   const sectionHeading =
     "font-serif font-medium text-3xl md:text-4xl text-purple-700 text-center tracking-tight";
 
+  // ✅ ONE shared button system (so every button matches)
+  const softButtonBase =
+    "inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 " +
+    "font-serif font-medium text-[17px] shadow-sm transition-all duration-200 " +
+    "hover:shadow-md hover:-translate-y-[1px]";
+
+  const softButtonPrimary =
+    softButtonBase + " bg-purple-700/90 text-white hover:bg-purple-700";
+
+  const softButtonSecondary =
+    softButtonBase +
+    " bg-white/80 text-purple-800 border border-purple-200 backdrop-blur hover:bg-white";
+
+  const softButtonTertiary =
+    softButtonBase +
+    " bg-purple-50/70 text-purple-800 border border-purple-200 backdrop-blur hover:bg-purple-50";
+
+  // For slightly smaller buttons inside product cards
+  const softButtonSmall =
+    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 " +
+    "font-serif font-medium text-[16px] shadow-sm transition-all duration-200 " +
+    "hover:shadow-md hover:-translate-y-[1px]";
+
+  const softButtonSmallSecondary =
+    softButtonSmall +
+    " bg-purple-50/70 text-purple-800 border border-purple-200 backdrop-blur hover:bg-white";
+
   return (
     <div className="min-h-screen bg-[#f6f2fb] text-gray-800">
       {/* ✅ JSON-LD goes ONCE, near the top */}
@@ -256,25 +283,17 @@ export default function Home() {
             <span className="mx-2">•</span> 📧 Email-only ordering
           </p>
 
+          {/* ✅ Matching hero buttons */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#products"
-              className="inline-flex items-center justify-center rounded-full px-8 py-3 font-serif font-medium text-[17px] text-white bg-purple-700/90 shadow-sm hover:bg-purple-700 hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
-            >
+            <a href="#products" className={softButtonPrimary}>
               View Products
             </a>
 
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full px-8 py-3 font-serif font-medium text-[17px] text-purple-800 bg-white/70 border border-purple-200 shadow-sm backdrop-blur hover:bg-white hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
-            >
+            <a href="#contact" className={softButtonSecondary}>
               Email to Order
             </a>
 
-            <a
-              href="#benefits"
-              className="inline-flex items-center justify-center rounded-full px-8 py-3 font-serif font-medium text-[17px] text-purple-800 bg-purple-50/70 border border-purple-200 shadow-sm backdrop-blur hover:bg-purple-50 hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
-            >
+            <a href="#benefits" className={softButtonTertiary}>
               Explore Benefits
             </a>
           </div>
@@ -391,7 +410,7 @@ export default function Home() {
               {item.email ? (
                 <a
                   href="mailto:jwfarms77@gmail.com?subject=Lavender%20Order"
-                  className="inline-flex items-center justify-center rounded-full px-7 py-3 font-serif font-medium text-[16px] text-purple-800 bg-purple-50/70 border border-purple-200 shadow-sm backdrop-blur hover:bg-white hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
+                  className={softButtonSmallSecondary}
                 >
                   Email to Order
                 </a>
@@ -563,11 +582,12 @@ export default function Home() {
           ></iframe>
         </div>
 
+        {/* ✅ Matching blog button */}
         <a
           href="https://jwfarms.blogspot.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 font-serif font-medium text-[17px] text-purple-800 bg-purple-50/70 border border-purple-200 shadow-sm backdrop-blur hover:bg-white hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
+          className={softButtonTertiary}
         >
           Visit the Blog <span aria-hidden="true">→</span>
         </a>
