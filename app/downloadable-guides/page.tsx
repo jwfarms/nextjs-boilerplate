@@ -74,6 +74,14 @@ const guides: Guide[] = [
   badge: "PDF",
   enabled: true,
 },
+{
+  title: "Vitamin & Mineral Guide",
+  desc: "A simple, print-friendly reference for everyday wellness—vitamins, minerals, and food sources.",
+  href: "/downloads/JW_Farms_Vitamin_Mineral_Guide.pdf",
+  image: "/downloads/JW_Farms_Vitamin_Mineral_Guide_Preview.png",
+  badge: "FREE PDF",
+  enabled: true,
+},
 
 ];
 
