@@ -230,6 +230,14 @@ export default function Home() {
         {/* Content */}
       {/* Content */}
 <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+<Image
+  src="/logo/jwfarms7-logo.png"
+  alt="JW Farms 7"
+  width={140}
+  height={140}
+  priority
+  className="mb-6 rounded-full bg-white/80 p-2 shadow-lg"
+/>
 
           <h1 className="font-serif font-medium tracking-tight text-slate-900 mb-4 drop-shadow-sm text-4xl md:text-6xl leading-[1.05]">
   Pure Lavender, Naturally Grown
