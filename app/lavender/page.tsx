@@ -21,8 +21,7 @@ export default function LavenderPage() {
     "hover:shadow-md hover:-translate-y-[1px]";
 
   const softButtonPrimarySoft =
-  softButtonBase +
-  " bg-purple-600/80 text-white hover:bg-purple-600";
+    softButtonBase + " bg-purple-600/80 text-white hover:bg-purple-600";
 
   const softButtonSecondary =
     softButtonBase +
@@ -59,18 +58,22 @@ export default function LavenderPage() {
             Lavender has been part of daily life for generations — valued for
             its fragrance, usefulness, and steady presence. At JW Farms, we grow
             lavender with care and intention, and we share traditional ways of
-            using it at home, in the kitchen, and as part of everyday well-being.
+            using it at home, in the kitchen, and as part of everyday
+            well-being.
           </p>
 
           <p className="mt-4 leading-relaxed text-gray-700">
-            This page offers a clear overview of lavender, how we grow it, and how
-            it is commonly used. For deeper guides and hands-on projects, we link
-            to our extended resources throughout.
+            This page offers a clear overview of lavender, how we grow it, and
+            how it is commonly used. For deeper guides and hands-on projects, we
+            link to our extended resources throughout.
           </p>
 
           {/* Quick actions */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Link href="/lavender/knowledge" className={softButtonPrimary}>
+            <Link
+              href="/lavender/knowledge"
+              className={softButtonPrimarySoft}
+            >
               Visit the Knowledge Hub
             </Link>
             <Link href="/#products" className={softButtonSecondary}>
@@ -86,19 +89,20 @@ export default function LavenderPage() {
             <section className={softCard}>
               <h2 className={sectionHeading}>What Is Lavender?</h2>
               <p className="mt-3 leading-relaxed text-gray-700">
-                Lavender is a flowering perennial known for its aromatic buds and
-                adaptability. While many varieties exist, lavender has long been
-                appreciated for its versatility — from household use to culinary and
-                decorative applications.
+                Lavender is a flowering perennial known for its aromatic buds
+                and adaptability. While many varieties exist, lavender has long
+                been appreciated for its versatility — from household use to
+                culinary and decorative applications.
               </p>
             </section>
 
             <section className={softCard}>
               <h2 className={sectionHeading}>How We Grow Lavender at JW Farms</h2>
               <p className="mt-3 leading-relaxed text-gray-700">
-                JW Farms is a small, family-owned lavender farm focused on quality
-                rather than scale. Our lavender is grown seasonally, harvested by hand,
-                and handled in small batches with attention to timing and care.
+                JW Farms is a small, family-owned lavender farm focused on
+                quality rather than scale. Our lavender is grown seasonally,
+                harvested by hand, and handled in small batches with attention
+                to timing and care.
               </p>
 
               <ul className="mt-5 space-y-2 text-gray-700">
@@ -116,39 +120,45 @@ export default function LavenderPage() {
               </ul>
 
               <div className="mt-6">
-                <Link href="/lavender/knowledge/how-we-grow" className={inlineLink}>
+                <Link
+                  href="/lavender/knowledge/how-we-grow"
+                  className={inlineLink}
+                >
                   Read: How We Grow Lavender at JW Farms →
                 </Link>
               </div>
             </section>
 
             <section className={softCard}>
-              <h2 className={sectionHeading}>Ways Lavender Is Traditionally Used</h2>
+              <h2 className={sectionHeading}>
+                Ways Lavender Is Traditionally Used
+              </h2>
               <p className="mt-3 leading-relaxed text-gray-700">
-                Lavender has traditionally been used in simple, practical ways that
-                fit naturally into daily life — from scenting drawers and closets to
-                culinary use with appropriate varieties.
+                Lavender has traditionally been used in simple, practical ways
+                that fit naturally into daily life — from scenting drawers and
+                closets to culinary use with appropriate varieties.
               </p>
               <p className="mt-4 leading-relaxed text-gray-700">
-                We focus on uses that are approachable and rooted in tradition rather
-                than excess.
+                We focus on uses that are approachable and rooted in tradition
+                rather than excess.
               </p>
             </section>
 
             <section className={softCard}>
               <h2 className={sectionHeading}>Lavender for Well-Being</h2>
               <p className="mt-3 leading-relaxed text-gray-700">
-                Lavender has long been associated with calm environments and gentle
-                routines. Our approach emphasizes moderation, simplicity, safety, and
-                education rather than promises or outcomes.
+                Lavender has long been associated with calm environments and
+                gentle routines. Our approach emphasizes moderation, simplicity,
+                safety, and education rather than promises or outcomes.
               </p>
             </section>
 
             <section className={softCard}>
               <h2 className={sectionHeading}>Learn More</h2>
               <p className="mt-3 leading-relaxed text-gray-700">
-                Lavender rewards patience. Whether grown, used, or enjoyed simply for
-                its presence, it fits best into life when approached without urgency.
+                Lavender rewards patience. Whether grown, used, or enjoyed
+                simply for its presence, it fits best into life when approached
+                without urgency.
               </p>
             </section>
 
@@ -158,7 +168,8 @@ export default function LavenderPage() {
                 Explore more from JW Farms
               </h2>
               <p className="mt-2 text-gray-700 leading-relaxed max-w-3xl">
-                If you’d like deeper guides or print-friendly references, these are a great next step.
+                If you’d like deeper guides or print-friendly references, these
+                are a great next step.
               </p>
 
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
@@ -182,7 +193,8 @@ export default function LavenderPage() {
                     Downloadable Guides
                   </p>
                   <p className="text-sm text-gray-600 mt-1">
-                    Printable references for storing, crafting, and using lavender.
+                    Printable references for storing, crafting, and using
+                    lavender.
                   </p>
                 </Link>
 
@@ -194,7 +206,8 @@ export default function LavenderPage() {
                     Lavender Farm in Tennessee
                   </p>
                   <p className="text-sm text-gray-600 mt-1">
-                    Learn about JW Farms (Cottontown / North Nashville) and how we grow.
+                    Learn about JW Farms (Cottontown / North Nashville) and how
+                    we grow.
                   </p>
                 </Link>
               </div>
@@ -245,7 +258,10 @@ export default function LavenderPage() {
 
               {/* CTA */}
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Link href="/lavender/knowledge" className={softButtonPrimary}>
+                <Link
+                  href="/lavender/knowledge"
+                  className={softButtonPrimarySoft}
+                >
                   Start in the Knowledge Hub
                 </Link>
                 <Link href="/#contact" className={softButtonTertiary}>
