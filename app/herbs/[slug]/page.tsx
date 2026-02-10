@@ -95,6 +95,15 @@ const HERBS: Herb[] = [
   },
 ];
 
+// ✅ IMPORTANT for static exports (output: "export"):
+// Pre-build each herb page at build time.
+export function generateStaticParams() {
+  return HERBS.map((h) => ({ slug: h.slug }));
+}
+
+// ✅ Do not allow unknown slugs in static export mode
+export const dynamicParams = false;
+
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
   if (!herb) return { title: "Herb | JW Farms" };
@@ -151,9 +160,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         <h1 className="mt-6 text-4xl font-bold tracking-tight text-purple-950">
           {herb.name}
         </h1>
-        <p className="mt-2 text-lg italic text-gray-700">
-          {herb.botanical}
-        </p>
+        <p className="mt-2 text-lg italic text-gray-700">{herb.botanical}</p>
 
         <p className="mt-6 text-lg leading-relaxed text-gray-800">
           {herb.intro}
@@ -199,9 +206,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
           <Steps items={herb.tea.steps} />
           {herb.tea.notes?.length ? (
             <>
-              <div className="font-semibold text-gray-900 mt-5 mb-2">
-                Notes
-              </div>
+              <div className="font-semibold text-gray-900 mt-5 mb-2">Notes</div>
               <Bullets items={herb.tea.notes} />
             </>
           ) : null}
@@ -215,9 +220,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
           <Steps items={herb.tincture.steps} />
           {herb.tincture.notes?.length ? (
             <>
-              <div className="font-semibold text-gray-900 mt-5 mb-2">
-                Notes
-              </div>
+              <div className="font-semibold text-gray-900 mt-5 mb-2">Notes</div>
               <Bullets items={herb.tincture.notes} />
             </>
           ) : null}
@@ -231,9 +234,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
           <Steps items={herb.capsules.steps} />
           {herb.capsules.notes?.length ? (
             <>
-              <div className="font-semibold text-gray-900 mt-5 mb-2">
-                Notes
-              </div>
+              <div className="font-semibold text-gray-900 mt-5 mb-2">Notes</div>
               <Bullets items={herb.capsules.notes} />
             </>
           ) : null}
@@ -254,3 +255,4 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
     </main>
   );
 }
+
