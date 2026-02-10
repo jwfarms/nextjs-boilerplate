@@ -398,10 +398,10 @@ export default function Home() {
               className="rounded-2xl shadow-md bg-white p-6 text-center transition hover:shadow-xl hover:-translate-y-1"
             >
               <img
-                src={`/products/${item.image}`}
-                alt={item.title}
-                className="w-full h-48 object-cover rounded-xl mb-4"
-              />
+  src={`/products/${item.image}`}
+  alt={item.title}
+  className="w-full h-56 object-contain rounded-xl mb-4 bg-[#f6f2fb] p-3"
+/>
 
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{item.desc}</p>
