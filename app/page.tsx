@@ -588,12 +588,12 @@ export default function Home() {
         </h2>
 
         <div className="max-w-5xl mx-auto rounded-2xl shadow-md overflow-hidden mb-8 bg-white">
-          <iframe
-            src="https://jwfarms.blogspot.com/"
-            className="w-full h-[500px]"
-            loading="lazy"
-            title="JW Farms Blog"
-          ></iframe>
+         <iframe
+  src="https://jwfarms.blogspot.com/"
+  className="w-full h-[650px] md:h-[720px]"
+  loading="lazy"
+  title="JW Farms Blog"
+></iframe>
         </div>
 
         <a
