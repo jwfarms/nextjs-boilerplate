@@ -554,11 +554,11 @@ export default function Home() {
               key={i}
               className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
             >
-              <img
-                src={img.src}
-                alt={img.label}
-                className="w-full h-64 object-cover"
-              />
+             <img
+  src={img.src}
+  alt={img.label}
+  className="w-full h-64 object-contain bg-[#f6f2fb] p-4"
+/>
               <p className="p-3 text-sm text-center text-gray-600">
                 {img.label}
               </p>
