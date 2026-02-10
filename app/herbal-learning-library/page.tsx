@@ -24,7 +24,7 @@ const HERBS = [
   { title: "Edelweiss Lavender", slug: "edelweiss-lavender" },
   { title: "Garlic", slug: "garlic" },
   { title: "Ginko", slug: "ginko" },
-  { title: "Lavender", slug: "lavender" },
+  { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender" },
   { title: "Lemon Balm", slug: "lemonbalm" },
   { title: "Marjoram", slug: "marjoram" },
   { title: "Marshmallow", slug: "marshmallow" },
