@@ -397,11 +397,17 @@ export default function Home() {
               key={i}
               className="rounded-2xl shadow-md bg-white p-6 text-center transition hover:shadow-xl hover:-translate-y-1"
             >
-              <img
-  src={`/products/${item.image}`}
-  alt={item.title}
-  className="w-full h-56 object-contain rounded-xl mb-4 bg-[#f6f2fb] p-3"
-/>
+            <div className="relative w-full h-48 rounded-xl mb-4 overflow-hidden bg-[#f6f2fb]">
+  <img
+    src={`/products/${item.image}`}
+    alt={item.title}
+    className="w-full h-full object-contain p-3"
+    loading="lazy"
+  />
+  {/* subtle edge fade */}
+  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0)_55%,rgba(246,242,251,0.85)_100%)]" />
+</div>
+
 
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{item.desc}</p>
