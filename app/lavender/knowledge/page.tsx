@@ -34,6 +34,10 @@ export default function LavenderKnowledgeHubPage() {
   const relatedLink =
     "font-serif text-lg text-purple-700 underline underline-offset-4 decoration-purple-300 hover:text-purple-900";
 
+  // Magazine-clean card base (subtle borders + consistent rounding)
+  const softCard =
+    "rounded-3xl bg-white/80 border border-purple-100 shadow-sm hover:shadow-md transition";
+
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-800">
       <div className="max-w-5xl mx-auto px-6 py-14">
@@ -60,9 +64,9 @@ export default function LavenderKnowledgeHubPage() {
 
         {/* Related pages */}
         <div className="mt-10 rounded-3xl bg-white/70 border border-purple-100 shadow-sm p-7 md:p-8">
-          <h2 className="font-serif font-medium text-2xl text-slate-900 mb-4">
+          <p className="text-sm font-semibold text-slate-800 mb-3">
             Related JW Farms pages
-          </h2>
+          </p>
 
           <div className="flex flex-col gap-3">
             <Link href="/lavender" className={relatedLink}>
@@ -89,7 +93,10 @@ export default function LavenderKnowledgeHubPage() {
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <Link href="/lavender/knowledge/how-we-grow" className={softButtonPrimary}>
+              <Link
+                href="/lavender/knowledge/how-we-grow"
+                className={softButtonPrimary}
+              >
                 How We Grow Lavender at JW Farms
               </Link>
 
@@ -136,7 +143,7 @@ export default function LavenderKnowledgeHubPage() {
             ].map((card) => (
               <div
                 key={card.title}
-                className="rounded-3xl bg-white/80 border border-purple-100 shadow-sm p-6 md:p-7 hover:shadow-md transition"
+                className={`${softCard} p-6 md:p-7`}
               >
                 <h3 className="font-serif font-medium text-xl text-slate-900">
                   {card.title}
@@ -155,6 +162,25 @@ export default function LavenderKnowledgeHubPage() {
             <Link href="/#contact" className={softButtonTertiary}>
               Contact JW Farms <span aria-hidden="true">→</span>
             </Link>
+          </div>
+        </section>
+
+        {/* Magazine-clean CTA (matches your landing page vibe) */}
+        <section className="mt-14">
+          <div className="rounded-3xl bg-white border border-purple-100 shadow-sm p-7 md:p-10">
+            <h2 className="font-serif font-medium text-2xl md:text-3xl text-slate-900">
+              Want printable how-to guides?
+            </h2>
+            <p className="mt-2 text-gray-700 leading-relaxed max-w-3xl">
+              Our downloadable guides are designed to be simple, practical
+              references you can return to anytime.
+            </p>
+
+            <div className="mt-6">
+              <Link href="/downloadable-guides" className={softButtonTertiary}>
+                Go to Downloadable Guides <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </section>
       </div>
