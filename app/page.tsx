@@ -5,6 +5,46 @@ import Link from "next/link";
 
 import InstallApp from "@/components/InstallApp";
 
+function SoftImage({
+  src,
+  alt,
+  heightClass = "h-48",
+}: {
+  src: string;
+  alt: string;
+  heightClass?: string;
+}) {
+  return (
+    <div
+      className={`group relative w-full ${heightClass} rounded-xl mb-4 overflow-hidden bg-[#f6f2fb] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg`}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.02]"
+      />
+      {/* subtle edge fade */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0)_55%,rgba(246,242,251,0.85)_100%)]" />
+    </div>
+  );
+}
+
+function SoftGalleryImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="group relative w-full h-64 overflow-hidden bg-[#f6f2fb]">
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-[1.02]"
+      />
+      {/* subtle edge fade */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0)_55%,rgba(246,242,251,0.85)_100%)]" />
+    </div>
+  );
+}
+
 export default function Home() {
   // ✅ Combined LocalBusiness + Product schema (JSON-LD)
   // - Service-area safe (no street address)
@@ -18,7 +58,6 @@ export default function Home() {
       name: "JW Farms",
       alternateName: "JW Farms 7",
       url: "https://www.jwfarms7.com/",
-      // ✅ updated to match your renamed image in /public/gallery
       image:
         "https://www.jwfarms7.com/gallery/tennessee-lavender-field-jw-farms.png",
       description:
@@ -48,7 +87,6 @@ export default function Home() {
             name: "Lavender Buds (2 oz)",
             description: "Culinary-grade dried lavender buds • 2 oz bag.",
             brand: { "@type": "Brand", name: "JW Farms" },
-            // ✅ updated to match your renamed image in /public/products
             image: [
               "https://www.jwfarms7.com/products/lavender-buds-jw-farms-tennessee.png",
             ],
@@ -73,7 +111,6 @@ export default function Home() {
             description:
               "Fresh lavender bundles • 10–15 stems per bundle (harvest season only).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            // ✅ updated to match your renamed image in /public/products
             image: [
               "https://www.jwfarms7.com/products/fresh-lavender-bundles-jw-farms-tennessee.png",
             ],
@@ -98,7 +135,6 @@ export default function Home() {
             description:
               "Lavender plants in a quart-size pot (seasonal availability).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            // ✅ updated to match your renamed image in /public/products
             image: [
               "https://www.jwfarms7.com/products/lavender-plants-jw-farms-tennessee.png",
             ],
@@ -123,7 +159,6 @@ export default function Home() {
             description:
               "Commercial plug tray • 72 lavender plugs (seasonal availability).",
             brand: { "@type": "Brand", name: "JW Farms" },
-            // ✅ updated to match your renamed image in /public/products
             image: [
               "https://www.jwfarms7.com/products/lavender-plug-tray-72-jw-farms-tennessee.png",
             ],
@@ -253,10 +288,8 @@ export default function Home() {
             "url('https://images.unsplash.com/photo-1445510491599-c391e8046a68?auto=format&fit=crop&w=2400&q=80')",
         }}
       >
-        {/* Light overlay for readability */}
         <div className="absolute inset-0 bg-white/60" />
 
-        {/* Content */}
         <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
           <Image
             src="/logo/jwfarms7-logo.png"
@@ -283,7 +316,6 @@ export default function Home() {
             <span className="mx-2">•</span> 📧 Email-only ordering
           </p>
 
-          {/* ✅ Matching hero buttons */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#products" className={softButtonPrimary}>
               View Products
@@ -397,17 +429,11 @@ export default function Home() {
               key={i}
               className="rounded-2xl shadow-md bg-white p-6 text-center transition hover:shadow-xl hover:-translate-y-1"
             >
-            <div className="relative w-full h-48 rounded-xl mb-4 overflow-hidden bg-[#f6f2fb]">
-  <img
-    src={`/products/${item.image}`}
-    alt={item.title}
-    className="w-full h-full object-contain p-3"
-    loading="lazy"
-  />
-  {/* subtle edge fade */}
-  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0)_55%,rgba(246,242,251,0.85)_100%)]" />
-</div>
-
+              <SoftImage
+                src={`/products/${item.image}`}
+                alt={item.title}
+                heightClass="h-48"
+              />
 
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{item.desc}</p>
@@ -426,11 +452,12 @@ export default function Home() {
             </div>
           ))}
 
+          {/* Plug tray (also fixed: no cut-off now) */}
           <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 transition hover:shadow-xl hover:-translate-y-1">
-            <img
+            <SoftImage
               src="/products/lavender-plug-tray-72-jw-farms-tennessee.png"
               alt="Lavender plug trays"
-              className="w-full h-56 object-cover rounded-xl mb-4"
+              heightClass="h-56"
             />
 
             <h3 className="text-xl font-semibold mb-2">
@@ -558,14 +585,11 @@ export default function Home() {
           ].map((img, i) => (
             <div
               key={i}
-              className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl hover:scale-105"
+              className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl"
             >
-             <img
-  src={img.src}
-  alt={img.label}
-  className="w-full h-64 object-contain bg-[#f6f2fb] p-4"
-/>
-              <p className="p-3 text-sm text-center text-gray-600">
+              <SoftGalleryImage src={img.src} alt={img.label} />
+
+              <p className="p-3 text-sm text-center text-gray-600 bg-white">
                 {img.label}
               </p>
             </div>
@@ -588,7 +612,6 @@ export default function Home() {
           ></iframe>
         </div>
 
-        {/* ✅ Matching blog button */}
         <a
           href="https://jwfarms.blogspot.com/"
           target="_blank"
