@@ -20,8 +20,9 @@ export default function LavenderPage() {
     "font-serif font-medium text-[17px] shadow-sm transition-all duration-200 " +
     "hover:shadow-md hover:-translate-y-[1px]";
 
-  const softButtonPrimary =
-    softButtonBase + " bg-purple-700/90 text-white hover:bg-purple-700";
+  const softButtonPrimarySoft =
+  softButtonBase +
+  " bg-purple-600/80 text-white hover:bg-purple-600";
 
   const softButtonSecondary =
     softButtonBase +
