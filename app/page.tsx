@@ -16,13 +16,13 @@ function SoftImage({
 }) {
   return (
     <div
-      className={`group relative w-full ${heightClass} rounded-xl mb-4 overflow-hidden bg-[#f6f2fb] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg`}
+      className={`group relative w-full ${heightClass} rounded-xl mb-4 overflow-hidden bg-[#f6f2fb] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg`}
     >
       <img
         src={src}
         alt={alt}
         loading="lazy"
-        className="w-full h-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.02]"
+        className="w-full h-full object-contain p-3 transform scale-[1.06] transition-transform duration-300 group-hover:scale-[1.1]"
       />
       {/* subtle edge fade */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0)_55%,rgba(246,242,251,0.85)_100%)]" />
@@ -30,14 +30,22 @@ function SoftImage({
   );
 }
 
-function SoftGalleryImage({ src, alt }: { src: string; alt: string }) {
+function SoftGalleryImage({
+  src,
+  alt,
+  heightClass = "h-64",
+}: {
+  src: string;
+  alt: string;
+  heightClass?: string;
+}) {
   return (
-    <div className="group relative w-full h-64 overflow-hidden bg-[#f6f2fb]">
+    <div className={`group relative w-full ${heightClass} overflow-hidden bg-[#f6f2fb]`}>
       <img
         src={src}
         alt={alt}
         loading="lazy"
-        className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-[1.02]"
+        className="w-full h-full object-contain p-4 transform scale-[1.06] transition-transform duration-300 group-hover:scale-[1.1]"
       />
       {/* subtle edge fade */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0)_55%,rgba(246,242,251,0.85)_100%)]" />
@@ -237,19 +245,15 @@ export default function Home() {
           <a href="/lavender/knowledge" className="hover:text-[#6b4fa3]">
             Knowledge Hub
           </a>
-
           <a href="#benefits" className="hover:text-purple-700">
             Benefits
           </a>
-
           <a href="/downloadable-guides" className="hover:text-purple-700">
             Downloadable Guides
           </a>
-
           <a href="/herbal-learning-library" className="hover:text-purple-700">
             Herbal Learning Library
           </a>
-
           <a href="#products" className="hover:text-purple-700">
             Products
           </a>
@@ -268,7 +272,6 @@ export default function Home() {
           <a href="/lavender-farm-tennessee" className="hover:text-purple-700">
             Tennessee Lavender Farm
           </a>
-
           <a
             href="https://jwfarms.blogspot.com/"
             target="_blank"
@@ -320,11 +323,9 @@ export default function Home() {
             <a href="#products" className={softButtonPrimary}>
               View Products
             </a>
-
             <a href="#contact" className={softButtonSecondary}>
               Email to Order
             </a>
-
             <a href="#benefits" className={softButtonTertiary}>
               Explore Benefits
             </a>
@@ -429,11 +430,7 @@ export default function Home() {
               key={i}
               className="rounded-2xl shadow-md bg-white p-6 text-center transition hover:shadow-xl hover:-translate-y-1"
             >
-              <SoftImage
-                src={`/products/${item.image}`}
-                alt={item.title}
-                heightClass="h-48"
-              />
+              <SoftImage src={`/products/${item.image}`} alt={item.title} />
 
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{item.desc}</p>
@@ -452,7 +449,6 @@ export default function Home() {
             </div>
           ))}
 
-          {/* Plug tray (also fixed: no cut-off now) */}
           <div className="rounded-2xl shadow-md bg-white p-6 text-center md:col-span-3 transition hover:shadow-xl hover:-translate-y-1">
             <SoftImage
               src="/products/lavender-plug-tray-72-jw-farms-tennessee.png"
@@ -519,7 +515,9 @@ export default function Home() {
         className="py-20 px-6 bg-[#f6f2fb] border-t border-purple-100"
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className={`${sectionHeading} mb-12`}>Frequently Asked Questions</h2>
+          <h2 className={`${sectionHeading} mb-12`}>
+            Frequently Asked Questions
+          </h2>
 
           <div className="space-y-6">
             {[
@@ -562,33 +560,19 @@ export default function Home() {
               src: "/gallery/lavender-in-bloom-jw-farms-tennessee.png",
               label: "Lavender in bloom at JW Farms in Tennessee",
             },
-            {
-              src: "/gallery/stalks.png",
-              label: "Fresh lavender stalks harvested at JW Farms",
-            },
-            {
-              src: "/gallery/plugs.png",
-              label: "Lavender plug trays grown at JW Farms in Tennessee",
-            },
-            {
-              src: "/gallery/plant.png",
-              label: "Healthy lavender plants growing at JW Farms",
-            },
-            {
-              src: "/gallery/lavender-harvest-jw-farms-tennessee.png",
-              label: "Lavender harvest at JW Farms in Tennessee",
-            },
-            {
-              src: "/gallery/tennessee-lavender-field-jw-farms.png",
-              label: "Lavender field at JW Farms in Tennessee",
-            },
+            { src: "/gallery/stalks.png", label: "Fresh lavender stalks harvested at JW Farms" },
+            { src: "/gallery/plugs.png", label: "Lavender plug trays grown at JW Farms in Tennessee" },
+            { src: "/gallery/plant.png", label: "Healthy lavender plants growing at JW Farms" },
+            { src: "/gallery/lavender-harvest-jw-farms-tennessee.png", label: "Lavender harvest at JW Farms in Tennessee" },
+            { src: "/gallery/tennessee-lavender-field-jw-farms.png", label: "Lavender field at JW Farms in Tennessee" },
           ].map((img, i) => (
             <div
               key={i}
               className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl"
             >
-              <SoftGalleryImage src={img.src} alt={img.label} />
-
+              {/* consistent image block */}
+              <SoftGalleryImage src={img.src} alt={img.label} heightClass="h-64" />
+              {/* caption block */}
               <p className="p-3 text-sm text-center text-gray-600 bg-white">
                 {img.label}
               </p>
