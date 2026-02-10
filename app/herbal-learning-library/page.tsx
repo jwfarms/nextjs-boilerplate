@@ -10,8 +10,11 @@ export const metadata = {
 // IMPORTANT: match the filename exactly (case-sensitive on Vercel)
 import HerbLibraryClient from "./HerbLibraryClient";
 
+// ✅ Add a `learnHref` for any herbs that have a full web page.
+// Start with Basil (live now). Add more as you publish them.
 const HERBS = [
-  { title: "Basil", slug: "basil" },
+  { title: "Basil", slug: "basil", learnHref: "/herbs/basil" },
+
   { title: "Chamomile", slug: "chamomile" },
   { title: "Cilantro", slug: "cilantro" },
   { title: "Cleavers", slug: "cleavers" },
@@ -58,6 +61,8 @@ export default function HerbalLearningLibraryPage() {
           guides you can save, print, and keep on hand.
         </p>
 
+        {/* ✅ HerbLibraryClient will now be able to show a “Learn More →” link
+            when `learnHref` exists on a herb item. */}
         <HerbLibraryClient herbs={HERBS} />
       </section>
     </main>
