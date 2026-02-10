@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 type Herb = {
   title: string;
   slug: string;
+  // ✅ Optional: when present, we show a “Learn More →” link to the web page
+  learnHref?: string;
 };
 
 const STORAGE_KEY = "jwfarms_herb_library_search";
@@ -103,9 +106,7 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
             <span className="font-semibold">{herbs.length}</span>
           </p>
 
-          <p className="text-sm text-gray-700">
-            All guides are printable PDFs.
-          </p>
+          <p className="text-sm text-gray-700">All guides are printable PDFs.</p>
         </div>
       </div>
 
@@ -130,7 +131,10 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
 
               <span className="mx-2 text-purple-300">|</span>
 
-              <a href="#top" className="text-purple-700 font-semibold hover:underline">
+              <a
+                href="#top"
+                className="text-purple-700 font-semibold hover:underline"
+              >
                 Top ↑
               </a>
             </div>
@@ -158,7 +162,11 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
       ) : (
         <div className="space-y-14">
           {letters.map((letter) => (
-            <section key={letter} id={`letter-${letter}`} className="scroll-mt-24">
+            <section
+              key={letter}
+              id={`letter-${letter}`}
+              className="scroll-mt-24"
+            >
               <div className="flex items-baseline justify-between mb-6">
                 <h2 className="text-2xl font-semibold text-purple-800">
                   {letter}
@@ -178,47 +186,65 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                   const imgSrc = `/herbal-library/previews/${herb.slug}.png`;
 
                   return (
-                    <a
+                    <div
                       key={herb.slug}
-                      href={pdfHref}
-                      className="group block bg-white rounded-3xl shadow-sm overflow-hidden
-                                 border border-purple-100
-                                 hover:shadow-md hover:-translate-y-[1px]
-                                 active:translate-y-0 active:shadow-sm transition"
-                      aria-label={`Open ${herb.title} PDF`}
+                      className="bg-white rounded-3xl shadow-sm overflow-hidden
+                                 border border-purple-100"
                     >
-                      {/* Thumbnail */}
-                      <div className="bg-purple-50 px-6 pt-6">
-                        <div className="rounded-2xl bg-white/70 border border-purple-100 overflow-hidden">
-                          <img
-                            src={imgSrc}
-                            alt={`${herb.title} herbal reference preview`}
-                            className="w-full aspect-[3/4] object-contain"
-                            loading="lazy"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-6">
-                        <div className="flex items-center justify-between gap-4 mb-2">
-                          <h3 className="text-xl font-semibold text-gray-900">
-                            {herb.title}
-                          </h3>
-                          <span className="shrink-0 text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full">
-                            PDF
-                          </span>
+                      {/* PDF Card (kept as the primary click target) */}
+                      <a
+                        href={pdfHref}
+                        className="group block
+                                   hover:shadow-md hover:-translate-y-[1px]
+                                   active:translate-y-0 active:shadow-sm transition"
+                        aria-label={`Open ${herb.title} PDF`}
+                      >
+                        {/* Thumbnail */}
+                        <div className="bg-purple-50 px-6 pt-6">
+                          <div className="rounded-2xl bg-white/70 border border-purple-100 overflow-hidden">
+                            <img
+                              src={imgSrc}
+                              alt={`${herb.title} herbal reference preview`}
+                              className="w-full aspect-[3/4] object-contain"
+                              loading="lazy"
+                            />
+                          </div>
                         </div>
 
-                        <div className="text-purple-700 font-semibold group-hover:underline">
-                          View / Download →
-                        </div>
+                        {/* Content */}
+                        <div className="p-6">
+                          <div className="flex items-center justify-between gap-4 mb-2">
+                            <h3 className="text-xl font-semibold text-gray-900">
+                              {herb.title}
+                            </h3>
+                            <span className="shrink-0 text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full">
+                              PDF
+                            </span>
+                          </div>
 
-                        <div className="mt-2 text-sm text-gray-500 break-all">
-                          {pdfHref}
+                          <div className="text-purple-700 font-semibold group-hover:underline">
+                            View / Download →
+                          </div>
+
+                          <div className="mt-2 text-sm text-gray-500 break-all">
+                            {pdfHref}
+                          </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+
+                      {/* ✅ Secondary action: Learn More (only shows when learnHref exists) */}
+                      {herb.learnHref ? (
+                        <div className="px-6 pb-6 -mt-2">
+                          <Link
+                            href={herb.learnHref}
+                            className="inline-flex items-center text-sm font-semibold text-purple-700 hover:underline"
+                            aria-label={`Learn more about ${herb.title}`}
+                          >
+                            Learn More →
+                          </Link>
+                        </div>
+                      ) : null}
+                    </div>
                   );
                 })}
               </div>
@@ -229,4 +255,3 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
     </>
   );
 }
-
