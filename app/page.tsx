@@ -587,14 +587,19 @@ export default function Home() {
           From Our Farm
         </h2>
 
-        <div className="max-w-5xl mx-auto rounded-2xl shadow-md overflow-hidden mb-8 bg-white">
-         <iframe
-  src="https://jwfarms.blogspot.com/"
-  className="w-full h-[650px] md:h-[720px]"
-  loading="lazy"
-  title="JW Farms Blog"
-></iframe>
-        </div>
+      <div className="max-w-6xl mx-auto mb-10">
+  <div className="rounded-3xl bg-white/90 border border-purple-100 shadow-lg p-6 md:p-8">
+    <div className="rounded-2xl overflow-hidden">
+      <iframe
+        src="https://jwfarms.blogspot.com/"
+        className="w-full h-[650px] md:h-[720px]"
+        loading="lazy"
+        title="JW Farms Blog"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
 
         <a
           href="https://jwfarms.blogspot.com/"
