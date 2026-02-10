@@ -1,30 +1,56 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "Lavender Knowledge Hub | JW Farms",
   description:
-    "Practical lavender guides from JW Farms—growing, harvesting, drying, uses, and seasonal care from a Tennessee lavender farm.",
+    "Practical lavender guides from JW Farms—growing, harvesting, drying, uses, and seasonal care.",
   alternates: {
     canonical: "https://www.jwfarms7.com/lavender/knowledge",
   },
 };
 
-
 export default function LavenderKnowledgeHubPage() {
+  // Reusable heading style (soft serif)
+  const sectionHeading =
+    "font-serif font-medium text-3xl md:text-4xl text-purple-700 tracking-tight";
+
+  // ✅ ONE shared button system (matches your landing page)
+  const softButtonBase =
+    "inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 " +
+    "font-serif font-medium text-[17px] shadow-sm transition-all duration-200 " +
+    "hover:shadow-md hover:-translate-y-[1px]";
+
+  const softButtonPrimary =
+    softButtonBase + " bg-purple-700/90 text-white hover:bg-purple-700";
+
+  const softButtonSecondary =
+    softButtonBase +
+    " bg-white/80 text-purple-800 border border-purple-200 backdrop-blur hover:bg-white";
+
+  const softButtonTertiary =
+    softButtonBase +
+    " bg-purple-50/70 text-purple-800 border border-purple-200 backdrop-blur hover:bg-purple-50";
+
+  const relatedLink =
+    "font-serif text-lg text-purple-700 underline underline-offset-4 decoration-purple-300 hover:text-purple-900";
+
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-800">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        {/* Breadcrumb / Back link */}
-        <a
+      <div className="max-w-5xl mx-auto px-6 py-14">
+        {/* Back link */}
+        <Link
           href="/"
-          className="inline-block text-sm font-medium text-[#6b4fa3] hover:underline"
+          className="inline-flex items-center text-sm font-medium text-purple-700/80 hover:text-purple-900 hover:underline"
         >
           ← Back to JW Farms
-        </a>
+        </Link>
 
-        <h1 className="mt-6 text-4xl font-bold tracking-tight">
+        {/* Page header */}
+        <h1 className="mt-6 font-serif font-medium tracking-tight text-slate-900 text-4xl md:text-6xl leading-[1.05]">
           Lavender Knowledge Hub
         </h1>
 
-        <p className="mt-4 text-lg leading-relaxed text-gray-700">
+        <p className="mt-5 text-lg md:text-xl leading-relaxed text-gray-700 max-w-4xl">
           Lavender has been grown and used for centuries, yet much of what’s
           shared today overlooks climate, soil, and the patience the plant
           requires. This Knowledge Hub is where we share what we’ve learned
@@ -32,70 +58,68 @@ export default function LavenderKnowledgeHubPage() {
           hype. Just real experience, season by season.
         </p>
 
-        {/* Featured / Start here */}
-        <section className="mt-10 rounded-2xl bg-white/80 backdrop-blur border border-[#6b4fa3]/10 p-6 shadow-sm">
-          <h2 className="text-xl font-semibold">Start here</h2>
-          <p className="mt-2 text-gray-700">
-            Our cornerstone guide to how we grow, care for, harvest, and dry
-            lavender at JW Farms.
-          </p>
+        {/* Related pages */}
+        <div className="mt-10 rounded-3xl bg-white/70 border border-purple-100 shadow-sm p-7 md:p-8">
+          <h2 className="font-serif font-medium text-2xl text-slate-900 mb-4">
+            Related JW Farms pages
+          </h2>
 
-          <a
-            href="/lavender/knowledge/how-we-grow"
-            className="mt-4 inline-flex items-center justify-center rounded-xl bg-[#6b4fa3] px-4 py-2 text-white font-semibold hover:opacity-95"
-          >
-            How We Grow Lavender at JW Farms
-          </a>
-          <a
-  href="/lavender/knowledge/beginner-mistakes"
-  className="mt-3 inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-[#6b4fa3] font-semibold border border-[#6b4fa3]/20 hover:bg-[#f6f2fb]"
->
-  Beginner Mistakes We See Most Often
-</a>
+          <div className="flex flex-col gap-3">
+            <Link href="/lavender" className={relatedLink}>
+              Lavender overview
+            </Link>
+            <Link href="/downloadable-guides" className={relatedLink}>
+              Downloadable guides
+            </Link>
+            <Link href="/lavender-farm-tennessee" className={relatedLink}>
+              Lavender farm in Tennessee
+            </Link>
+          </div>
+        </div>
 
-        </section>
+        {/* Start here */}
+        <section className="mt-12">
+          <div className="rounded-3xl bg-white border border-purple-100 shadow-md p-7 md:p-10">
+            <h2 className="font-serif font-medium text-2xl md:text-3xl text-slate-900">
+              Start here
+            </h2>
+            <p className="mt-2 text-gray-700 leading-relaxed max-w-3xl">
+              Our cornerstone guide to how we grow, care for, harvest, and dry
+              lavender at JW Farms.
+            </p>
 
-        {/* Coming soon list */}
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">More guides coming soon</h2>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <Link href="/lavender/knowledge/how-we-grow" className={softButtonPrimary}>
+                How We Grow Lavender at JW Farms
+              </Link>
 
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {[
-              "Beginner mistakes we see most often",
-              "When to harvest lavender (buds vs bundles)",
-              "How to dry lavender properly (without mold)",
-              "Pruning lavender without harming the plant",
-              "Lavender types: English vs French vs Spanish",
-              "Seasonal lavender care calendar",
-            ].map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl bg-white/70 border border-black/5 p-4"
+              <Link
+                href="/lavender/knowledge/beginner-mistakes"
+                className={softButtonSecondary}
               >
-                <div className="font-medium">{item}</div>
-                <div className="mt-1 text-sm text-gray-600">
-                  Coming soon in the Knowledge Hub.
-                </div>
-              </div>
-            ))}
+                Beginner Mistakes We See Most Often
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* Gentle footer */}
-        <p className="mt-12 text-sm text-gray-600">
-          Want a guide added first? Send us a note through the Contact section on
-          the home page—education is part of what we love.
-        </p>
-      </div>
-      <section className="mt-10 bg-white/80 rounded-2xl border border-purple-100 p-6">
-  <h2 className="text-xl font-semibold mb-3">Related JW Farms pages</h2>
-  <ul className="space-y-2 text-purple-700 font-semibold">
-    <li><a className="underline hover:text-purple-900" href="/lavender">Lavender overview</a></li>
-    <li><a className="underline hover:text-purple-900" href="/downloadable-guides">Downloadable guides</a></li>
-    <li><a className="underline hover:text-purple-900" href="/lavender-farm-tennessee">Lavender farm in Tennessee</a></li>
-  </ul>
-</section>
+        {/* More guides */}
+        <section className="mt-14">
+          <h2 className={`${sectionHeading} mb-8`}>More guides coming soon</h2>
 
-    </main>
-  );
-}
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                title: "Beginner mistakes we see most often",
+                desc: "Coming soon in the Knowledge Hub.",
+              },
+              {
+                title: "When to harvest lavender (buds vs bundles)",
+                desc: "Coming soon in the Knowledge Hub.",
+              },
+              {
+                title: "How to dry lavender properly (without mold)",
+                desc: "Coming soon in the Knowledge Hub.",
+              },
+              {
+                title: "Pruning lavender without harming the plant",
