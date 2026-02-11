@@ -42,5 +42,40 @@ export default function SleepSupportPage() {
             <div className="font-semibold text-gray-900">Lavender</div>
             <div className="mt-1 text-sm font-semibold text-purple-700">
               Learn more →
-            </di
+            </div>
+          </Link>
+        </div>
 
+        <h2 className="text-2xl font-semibold text-purple-900 mt-10 mb-3">
+          Suggested blends
+        </h2>
+
+        <p className="text-gray-700">
+          No blends linked yet. (Next we’ll add Jet Fuel Latte and other blends
+          and connect them here.)
+        </p>
+
+        <h2 className="text-2xl font-semibold text-purple-900 mt-10 mb-3">
+          Notes &amp; considerations
+        </h2>
+
+        <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
+          <ul className="list-disc pl-6 space-y-1 text-gray-800">
+            <li>
+              Start small and keep it simple—especially with strongly aromatic
+              herbs.
+            </li>
+            <li>
+              If you are pregnant, breastfeeding, taking medications, or managing
+              a condition, consult a qualified professional.
+            </li>
+            <li>
+              These statements have not been evaluated by the FDA. Educational
+              only.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  );
+}
