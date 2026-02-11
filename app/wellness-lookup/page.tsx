@@ -1,4 +1,5 @@
 import WellnessLookupClient from "./WellnessLookupClient";
+import { TOPICS } from "./data";
 
 export const metadata = {
   title: "Wellness Lookup | JW Farms",
@@ -6,27 +7,6 @@ export const metadata = {
     "Explore wellness topics and discover herbs and blends traditionally used in simple, everyday routines. Educational reference from JW Farms.",
   alternates: { canonical: "https://www.jwfarms7.com/wellness-lookup" },
 };
-
-const TOPICS = [
-  {
-    title: "Digestion Support",
-    slug: "digestion-support",
-    summary:
-      "Traditional routines and herbs often used for post-meal comfort and everyday digestive support.",
-    tags: ["digestion", "after meals", "comfort"],
-    herbs: ["basil"],
-    blends: [],
-  },
-  {
-    title: "Sleep Support",
-    slug: "sleep-support",
-    summary:
-      "Gentle evening routines and calming herbs traditionally used for a restful wind-down.",
-    tags: ["sleep", "calm", "evening"],
-    herbs: ["lavender"],
-    blends: [],
-  },
-];
 
 export default function WellnessLookupPage() {
   return (
