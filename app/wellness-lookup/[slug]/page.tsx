@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export type Ailment = {
+type AilmentDetail = {
   slug: string;
   title: string;
   intro: string;
@@ -10,7 +10,7 @@ export type Ailment = {
   notes: string[];
 };
 
-export const AILMENTS: Ailment[] = [
+const AILMENTS: AilmentDetail[] = [
   {
     slug: "sleep-support",
     title: "Sleep Support",
@@ -37,8 +37,61 @@ export const AILMENTS: Ailment[] = [
       "These statements have not been evaluated by the FDA. Educational only.",
     ],
   },
+  {
+    slug: "stress-support",
+    title: "Stress Support",
+    intro:
+      "Aromatic and relaxing routines traditionally used during occasional stress. Educational only.",
+    herbs: [{ title: "Lavender", href: "/herbs/lavender" }],
+    blends: [],
+    notes: [
+      "Consider aroma-based routines like tea, steam, or a gentle evening wind-down.",
+      "Consult a qualified professional for medical advice.",
+      "These statements have not been evaluated by the FDA. Educational only.",
+    ],
+  },
+  {
+    slug: "seasonal-support",
+    title: "Seasonal Support",
+    intro:
+      "Traditional wellness habits people use during seasonal transitions. Educational only.",
+    herbs: [{ title: "Lavender", href: "/herbs/lavender" }],
+    blends: [],
+    notes: [
+      "Traditional use is not the same as proven medical treatment.",
+      "Consult a qualified professional for medical advice.",
+      "These statements have not been evaluated by the FDA. Educational only.",
+    ],
+  },
+  {
+    slug: "head-comfort",
+    title: "Head Comfort",
+    intro:
+      "Wellness routines people often use during occasional head tension or stress. Educational only.",
+    herbs: [{ title: "Lavender", href: "/herbs/lavender" }],
+    blends: [],
+    notes: [
+      "Hydration, rest, and calming routines can be part of a supportive approach.",
+      "Consult a qualified professional for medical advice.",
+      "These statements have not been evaluated by the FDA. Educational only.",
+    ],
+  },
+  {
+    slug: "skin-comfort",
+    title: "Skin Comfort",
+    intro:
+      "Traditional household herbal routines often used for general skin comfort. Educational only.",
+    herbs: [{ title: "Lavender", href: "/herbs/lavender" }],
+    blends: [],
+    notes: [
+      "Always patch test topical preparations and discontinue if irritation occurs.",
+      "Consult a qualified professional for medical advice.",
+      "These statements have not been evaluated by the FDA. Educational only.",
+    ],
+  },
 ];
 
+// ✅ Static export: prebuild known slugs
 export function generateStaticParams() {
   return AILMENTS.map((a) => ({ slug: a.slug }));
 }
@@ -130,7 +183,10 @@ export default function WellnessTopicPage({
             ))}
           </div>
         ) : (
-          <p className="text-gray-700">No blends linked yet.</p>
+          <p className="text-gray-700">
+            No blends linked yet. (Next we’ll add Jet Fuel Latte and connect it
+            here.)
+          </p>
         )}
 
         <h2 className="text-2xl font-semibold text-purple-900 mt-10 mb-3">
