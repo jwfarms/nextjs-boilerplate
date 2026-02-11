@@ -59,7 +59,10 @@ export default function DigestionSupportPage() {
           <ul className="list-disc pl-6 space-y-1 text-gray-800">
             <li>Traditional use is not the same as proven medical treatment.</li>
             <li>Consult a qualified professional for medical advice.</li>
-            <li>These statements have not been evaluated by the FDA. Educational only.</li>
+            <li>
+              These statements have not been evaluated by the FDA. Educational
+              only.
+            </li>
           </ul>
         </div>
       </div>
