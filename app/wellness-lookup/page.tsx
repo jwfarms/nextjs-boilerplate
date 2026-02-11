@@ -3,7 +3,7 @@ import WellnessLookupClient from "./WellnessLookupClient";
 export const metadata = {
   title: "Wellness Lookup | JW Farms",
   description:
-    "Explore common wellness topics and discover herbs and blends traditionally used in simple, everyday routines.",
+    "Explore wellness topics and discover herbs and blends traditionally used in simple, everyday routines. Educational reference from JW Farms.",
   alternates: {
     canonical: "https://www.jwfarms7.com/wellness-lookup",
   },
@@ -14,16 +14,16 @@ const AILMENTS = [
     title: "Digestion Support",
     slug: "digestion-support",
     summary:
-      "Traditionally used herbs and blends for post-meal comfort and routine support.",
+      "Traditional routines and herbs often used for post-meal comfort and everyday digestive support.",
     tags: ["digestion", "after meals", "comfort"],
-    herbs: ["basil", "peppermint", "ginger"],
-    blends: ["jet-fuel-latte"],
+    herbs: ["basil"],
+    blends: [],
   },
   {
     title: "Head Comfort",
     slug: "head-comfort",
     summary:
-      "Wellness routines often used during occasional head tension or stress.",
+      "Wellness routines people often use during occasional head tension or stress.",
     tags: ["head", "tension", "routine"],
     herbs: ["lavender", "peppermint"],
     blends: [],
