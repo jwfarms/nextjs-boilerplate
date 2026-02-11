@@ -50,11 +50,9 @@ export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
       if (!map[letter]) map[letter] = [];
       map[letter].push(t);
     });
-
     Object.keys(map).forEach((k) =>
       map[k].sort((a, b) => a.title.localeCompare(b.title))
     );
-
     return map;
   }, [filtered]);
 
@@ -67,7 +65,6 @@ export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
 
   return (
     <>
-      {/* Search */}
       <div className="mb-6">
         <label className="block font-medium mb-2 text-purple-900">
           Search wellness topics
@@ -102,12 +99,10 @@ export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
             Showing <span className="font-semibold">{filtered.length}</span> of{" "}
             <span className="font-semibold">{topics.length}</span>
           </p>
-
           <p className="text-sm text-gray-700">Educational information only.</p>
         </div>
       </div>
 
-      {/* Sticky Alphabet Jump Links */}
       {letters.length > 0 && (
         <div className="sticky top-0 z-10 -mx-2 mb-10">
           <div className="mx-2 rounded-2xl border border-purple-200 bg-[#f6f2fb]/90 backdrop-blur px-4 py-3 shadow-sm">
@@ -139,7 +134,6 @@ export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
         </div>
       )}
 
-      {/* Empty State */}
       {filtered.length === 0 ? (
         <div className="rounded-2xl border border-purple-200 bg-white p-8 shadow-sm">
           <h2 className="text-xl font-semibold text-purple-900 mb-2">
@@ -168,7 +162,6 @@ export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
                 <h2 className="text-2xl font-semibold text-purple-800">
                   {letter}
                 </h2>
-
                 <a
                   href="#top"
                   className="text-sm font-semibold text-purple-700 hover:underline"
