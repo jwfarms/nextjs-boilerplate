@@ -16,13 +16,8 @@ const AILMENTS: Ailment[] = [
     title: "Sleep Support",
     intro:
       "These are gentle, traditional ideas people use in evening routines to support relaxation and restful wind-down. This page is educational and not medical advice.",
-    herbs: [
-      { title: "Lavender", href: "/herbs/lavender" },
-    ],
-    blends: [
-      // Add your first blend when it’s ready:
-      // { title: "Jet Fuel Latte", href: "/herbal-blends/jet-fuel-latte", note: "A warming, energizing routine—best earlier in the day." },
-    ],
+    herbs: [{ title: "Lavender", href: "/herbs/lavender" }],
+    blends: [],
     notes: [
       "Start small and keep it simple—especially with strongly aromatic herbs.",
       "If you are pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
@@ -34,9 +29,7 @@ const AILMENTS: Ailment[] = [
     title: "Digestion Support",
     intro:
       "Traditional household herbs and routines often used for post-meal comfort and everyday digestive support. Educational only.",
-    herbs: [
-      { title: "Basil", href: "/herbs/basil" },
-    ],
+    herbs: [{ title: "Basil", href: "/herbs/basil" }],
     blends: [],
     notes: [
       "Traditional use is not the same as proven medical treatment.",
@@ -59,11 +52,17 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   return {
     title: `${topic.title} | Wellness Lookup | JW Farms`,
     description: `Explore herbs and blends traditionally used in simple routines for ${topic.title.toLowerCase()}. Educational reference from JW Farms.`,
-    alternates: { canonical: `https://www.jwfarms7.com/wellness-lookup/${topic.slug}` },
+    alternates: {
+      canonical: `https://www.jwfarms7.com/wellness-lookup/${topic.slug}`,
+    },
   };
 }
 
-export default function WellnessTopicPage({ params }: { params: { slug: string } }) {
+export default function WellnessTopicPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const topic = AILMENTS.find((a) => a.slug === params.slug);
   if (!topic) return notFound();
 
@@ -89,7 +88,7 @@ export default function WellnessTopicPage({ params }: { params: { slug: string }
           Suggested herbs
         </h2>
 
-        {topic.herbs.length ? (
+        {topic.herbs?.length ? (
           <div className="grid sm:grid-cols-2 gap-4">
             {topic.herbs.map((h) => (
               <Link
@@ -112,7 +111,7 @@ export default function WellnessTopicPage({ params }: { params: { slug: string }
           Suggested blends
         </h2>
 
-        {topic.blends.length ? (
+        {topic.blends?.length ? (
           <div className="grid sm:grid-cols-2 gap-4">
             {topic.blends.map((b) => (
               <Link
@@ -132,16 +131,18 @@ export default function WellnessTopicPage({ params }: { params: { slug: string }
           </div>
         ) : (
           <p className="text-gray-700">
-            No blends linked yet. (Next we’ll add Jet Fuel Latte and connect it here.)
+            No blends linked yet. (Next we’ll add Jet Fuel Latte and connect it
+            here.)
           </p>
         )}
 
         <h2 className="text-2xl font-semibold text-purple-900 mt-10 mb-3">
           Notes &amp; considerations
         </h2>
+
         <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
           <ul className="list-disc pl-6 space-y-1 text-gray-800">
-            {topic.notes.map((t) => (
+            {(topic.notes ?? []).map((t) => (
               <li key={t}>{t}</li>
             ))}
           </ul>
