@@ -3,13 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-type Ailment = {
+type Topic = {
   title: string;
   slug: string;
   summary: string;
-  tags?: string[];
-  herbs?: string[];
-  blends?: string[];
+  tags: string[];
+  herbs: string[];
+  blends: string[];
 };
 
 const STORAGE_KEY = "jwfarms_wellness_lookup_search";
@@ -18,17 +18,9 @@ function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
 }
 
-export default function WellnessLookupClient({
-  ailments,
-}: {
-  ailments?: Ailment[];
-}) {
-  // ✅ Guard against undefined in export / prerender edge cases
-  const safeAilments = Array.isArray(ailments) ? ailments : [];
-
+export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
   const [query, setQuery] = useState("");
 
-  // Remember last search (localStorage)
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
@@ -44,35 +36,32 @@ export default function WellnessLookupClient({
 
   const filtered = useMemo(() => {
     const q = normalizeQuery(query);
-    if (!q) return safeAilments;
+    if (!q) return topics;
 
-    return safeAilments.filter((a) => {
-      const hay = [a.title, a.summary, ...(a.tags ?? [])]
-        .join(" ")
-        .toLowerCase();
-      return hay.includes(q);
-    });
-  }, [query, safeAilments]);
+    return topics.filter((t) =>
+      [t.title, t.summary, ...t.tags].join(" ").toLowerCase().includes(q)
+    );
+  }, [query, topics]);
 
-  // Group by first letter
   const grouped = useMemo(() => {
-    const map: Record<string, Ailment[]> = {};
-    filtered.forEach((a) => {
-      const letter = a.title?.[0]?.toUpperCase() || "#";
+    const map: Record<string, Topic[]> = {};
+    filtered.forEach((t) => {
+      const letter = t.title?.[0]?.toUpperCase() || "#";
       if (!map[letter]) map[letter] = [];
-      map[letter].push(a);
+      map[letter].push(t);
     });
 
-    Object.keys(map).forEach((k) => {
-      map[k].sort((x, y) => x.title.localeCompare(y.title));
-    });
+    Object.keys(map).forEach((k) =>
+      map[k].sort((a, b) => a.title.localeCompare(b.title))
+    );
 
     return map;
   }, [filtered]);
 
-  const letters = useMemo(() => {
-    return Object.keys(grouped).sort((a, b) => a.localeCompare(b));
-  }, [grouped]);
+  const letters = useMemo(
+    () => Object.keys(grouped).sort((a, b) => a.localeCompare(b)),
+    [grouped]
+  );
 
   const clear = () => setQuery("");
 
@@ -91,7 +80,7 @@ export default function WellnessLookupClient({
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 rounded-2xl border border-purple-300 bg-white/80 px-5 py-4 text-lg
                        focus:outline-none focus:ring-2 focus:ring-purple-400"
-            placeholder="Type a topic… (sleep, digestion, stress)"
+            placeholder="Type a topic… (sleep, digestion)"
             inputMode="search"
             aria-label="Search wellness topics"
           />
@@ -111,7 +100,7 @@ export default function WellnessLookupClient({
         <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p className="text-sm text-gray-700">
             Showing <span className="font-semibold">{filtered.length}</span> of{" "}
-            <span className="font-semibold">{safeAilments.length}</span>
+            <span className="font-semibold">{topics.length}</span>
           </p>
 
           <p className="text-sm text-gray-700">Educational information only.</p>
@@ -157,8 +146,7 @@ export default function WellnessLookupClient({
             No topics found
           </h2>
           <p className="text-gray-700 mb-5">
-            Try a different word (like sleep, stress, digestion), or clear your
-            search.
+            Try a different keyword, or clear your search to see everything.
           </p>
           <button
             type="button"
@@ -190,47 +178,48 @@ export default function WellnessLookupClient({
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {(grouped[letter] ?? []).map((a) => (
+                {(grouped[letter] ?? []).map((t) => (
                   <div
-                    key={a.slug}
+                    key={t.slug}
                     className="bg-white rounded-3xl shadow-sm overflow-hidden border border-purple-100"
                   >
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900">
-                        {a.title}
-                      </h3>
+                      <div className="flex items-start justify-between gap-3">
+                        <h3 className="text-xl font-semibold text-gray-900">
+                          {t.title}
+                        </h3>
+                        <span className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full">
+                          Topic
+                        </span>
+                      </div>
 
                       <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-                        {a.summary}
+                        {t.summary}
                       </p>
 
-                      {a.tags?.length ? (
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {a.tags.slice(0, 5).map((t) => (
-                            <span
-                              key={t}
-                              className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full"
-                            >
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      ) : null}
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {t.tags.slice(0, 6).map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
 
                       <div className="mt-5 flex items-center justify-between">
                         <div className="text-xs text-gray-500">
                           Herbs:{" "}
-                          <span className="font-semibold">
-                            {a.herbs?.length ?? 0}
-                          </span>{" "}
+                          <span className="font-semibold">{t.herbs.length}</span>{" "}
                           • Blends:{" "}
                           <span className="font-semibold">
-                            {a.blends?.length ?? 0}
+                            {t.blends.length}
                           </span>
                         </div>
 
                         <Link
-                          href={`/wellness-lookup/${a.slug}`}
+                          href={`/wellness-lookup/${t.slug}`}
                           className="text-sm font-semibold text-purple-700 hover:underline"
                         >
                           View suggestions →
