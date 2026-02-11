@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { TOPICS } from "../page";
+import { TOPICS } from "../data";
 
 // ✅ Static export support (prebuild each topic page)
 export function generateStaticParams() {
