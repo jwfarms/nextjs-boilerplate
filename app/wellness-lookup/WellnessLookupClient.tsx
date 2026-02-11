@@ -2,15 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-
-type Topic = {
-  title: string;
-  slug: string;
-  summary: string;
-  tags: string[];
-  herbs: string[];
-  blends: string[];
-};
+import type { WellnessTopic } from "./page";
 
 const STORAGE_KEY = "jwfarms_wellness_lookup_search";
 
@@ -18,7 +10,11 @@ function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
 }
 
-export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
+export default function WellnessLookupClient({
+  topics,
+}: {
+  topics: WellnessTopic[];
+}) {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -37,14 +33,13 @@ export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
   const filtered = useMemo(() => {
     const q = normalizeQuery(query);
     if (!q) return topics;
-
     return topics.filter((t) =>
       [t.title, t.summary, ...t.tags].join(" ").toLowerCase().includes(q)
     );
   }, [query, topics]);
 
   const grouped = useMemo(() => {
-    const map: Record<string, Topic[]> = {};
+    const map: Record<string, WellnessTopic[]> = {};
     filtered.forEach((t) => {
       const letter = t.title?.[0]?.toUpperCase() || "#";
       if (!map[letter]) map[letter] = [];
@@ -151,78 +146,53 @@ export default function WellnessLookupClient({ topics }: { topics: Topic[] }) {
           </button>
         </div>
       ) : (
-        <div className="space-y-14">
-          {letters.map((letter) => (
-            <section
-              key={letter}
-              id={`letter-${letter}`}
-              className="scroll-mt-24"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filtered.map((t) => (
+            <div
+              key={t.slug}
+              className="bg-white rounded-3xl shadow-sm overflow-hidden border border-purple-100"
             >
-              <div className="flex items-baseline justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-purple-800">
-                  {letter}
-                </h2>
-                <a
-                  href="#top"
-                  className="text-sm font-semibold text-purple-700 hover:underline"
-                >
-                  Back to top ↑
-                </a>
-              </div>
+              <div className="p-6">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {t.title}
+                  </h3>
+                  <span className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full">
+                    Topic
+                  </span>
+                </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {(grouped[letter] ?? []).map((t) => (
-                  <div
-                    key={t.slug}
-                    className="bg-white rounded-3xl shadow-sm overflow-hidden border border-purple-100"
-                  >
-                    <div className="p-6">
-                      <div className="flex items-start justify-between gap-3">
-                        <h3 className="text-xl font-semibold text-gray-900">
-                          {t.title}
-                        </h3>
-                        <span className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full">
-                          Topic
-                        </span>
-                      </div>
+                <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                  {t.summary}
+                </p>
 
-                      <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-                        {t.summary}
-                      </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {t.tags.slice(0, 6).map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
 
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {t.tags.slice(0, 6).map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="mt-5 flex items-center justify-between">
-                        <div className="text-xs text-gray-500">
-                          Herbs:{" "}
-                          <span className="font-semibold">{t.herbs.length}</span>{" "}
-                          • Blends:{" "}
-                          <span className="font-semibold">
-                            {t.blends.length}
-                          </span>
-                        </div>
-
-                        <Link
-                          href={`/wellness-lookup/${t.slug}`}
-                          className="text-sm font-semibold text-purple-700 hover:underline"
-                        >
-                          View suggestions →
-                        </Link>
-                      </div>
-                    </div>
+                <div className="mt-5 flex items-center justify-between">
+                  <div className="text-xs text-gray-500">
+                    Herbs: <span className="font-semibold">{t.herbs.length}</span>{" "}
+                    • Blends:{" "}
+                    <span className="font-semibold">{t.blends.length}</span>
                   </div>
-                ))}
+
+                  <Link
+                    href={`/wellness-lookup/${t.slug}`}
+                    className="text-sm font-semibold text-purple-700 hover:underline"
+                  >
+                    View suggestions →
+                  </Link>
+                </div>
               </div>
-            </section>
+            </div>
           ))}
         </div>
       )}
