@@ -8,8 +8,8 @@ type Ailment = {
   slug: string;
   summary: string;
   tags?: string[];
-  herbs?: string[];  // herb slugs
-  blends?: string[]; // blend slugs
+  herbs?: string[];
+  blends?: string[];
 };
 
 const STORAGE_KEY = "jwfarms_wellness_lookup_search";
@@ -18,7 +18,14 @@ function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
 }
 
-export default function WellnessLookupClient({ ailments }: { ailments: Ailment[] }) {
+export default function WellnessLookupClient({
+  ailments,
+}: {
+  ailments?: Ailment[];
+}) {
+  // ✅ Bulletproof against undefined during prerender/export edge cases
+  const safeAilments = Array.isArray(ailments) ? ailments : [];
+
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -36,22 +43,19 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
 
   const filtered = useMemo(() => {
     const q = normalizeQuery(query);
-    if (!q) return ailments;
+    if (!q) return safeAilments;
 
-    return ailments.filter((a) => {
-      const hay = [
-        a.title,
-        a.summary,
-        ...(a.tags ?? []),
-      ]
+    return safeAilments.filter((a) => {
+      const hay = [a.title, a.summary, ...(a.tags ?? [])]
         .join(" ")
         .toLowerCase();
       return hay.includes(q);
     });
-  }, [query, ailments]);
+  }, [query, safeAilments]);
 
   const grouped = useMemo(() => {
     const map: Record<string, Ailment[]> = {};
+
     filtered.forEach((a) => {
       const letter = a.title?.[0]?.toUpperCase() || "#";
       if (!map[letter]) map[letter] = [];
@@ -98,7 +102,6 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
             className="rounded-2xl px-7 py-4 font-semibold
                        bg-purple-700 text-white disabled:bg-purple-200 disabled:text-purple-500
                        hover:bg-purple-800 active:scale-[0.99] transition"
-            aria-disabled={!query}
           >
             Clear
           </button>
@@ -107,12 +110,10 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
         <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p className="text-sm text-gray-700">
             Showing <span className="font-semibold">{filtered.length}</span> of{" "}
-            <span className="font-semibold">{ailments.length}</span>
+            <span className="font-semibold">{safeAilments.length}</span>
           </p>
 
-          <p className="text-sm text-gray-700">
-            Educational information only.
-          </p>
+          <p className="text-sm text-gray-700">Educational information only.</p>
         </div>
       </div>
 
@@ -137,7 +138,10 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
 
               <span className="mx-2 text-purple-300">|</span>
 
-              <a href="#top" className="text-purple-700 font-semibold hover:underline">
+              <a
+                href="#top"
+                className="text-purple-700 font-semibold hover:underline"
+              >
                 Top ↑
               </a>
             </div>
@@ -152,7 +156,8 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
             No topics found
           </h2>
           <p className="text-gray-700 mb-5">
-            Try a different word (like sleep, stress, digestion), or clear your search.
+            Try a different word (like sleep, stress, digestion), or clear your
+            search.
           </p>
           <button
             type="button"
@@ -165,7 +170,11 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
       ) : (
         <div className="space-y-14">
           {letters.map((letter) => (
-            <section key={letter} id={`letter-${letter}`} className="scroll-mt-24">
+            <section
+              key={letter}
+              id={`letter-${letter}`}
+              className="scroll-mt-24"
+            >
               <div className="flex items-baseline justify-between mb-6">
                 <h2 className="text-2xl font-semibold text-purple-800">
                   {letter}
@@ -180,7 +189,7 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {grouped[letter].map((a) => (
+                {(grouped[letter] ?? []).map((a) => (
                   <div
                     key={a.slug}
                     className="bg-white rounded-3xl shadow-sm overflow-hidden border border-purple-100"
@@ -208,8 +217,14 @@ export default function WellnessLookupClient({ ailments }: { ailments: Ailment[]
 
                       <div className="mt-5 flex items-center justify-between">
                         <div className="text-xs text-gray-500">
-                          Herbs: <span className="font-semibold">{a.herbs?.length ?? 0}</span> • Blends:{" "}
-                          <span className="font-semibold">{a.blends?.length ?? 0}</span>
+                          Herbs:{" "}
+                          <span className="font-semibold">
+                            {a.herbs?.length ?? 0}
+                          </span>{" "}
+                          • Blends:{" "}
+                          <span className="font-semibold">
+                            {a.blends?.length ?? 0}
+                          </span>
                         </div>
 
                         <Link
