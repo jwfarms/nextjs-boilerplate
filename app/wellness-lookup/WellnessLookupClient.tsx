@@ -23,11 +23,12 @@ export default function WellnessLookupClient({
 }: {
   ailments?: Ailment[];
 }) {
-  // ✅ Bulletproof against undefined during prerender/export edge cases
+  // ✅ Guard against undefined in export / prerender edge cases
   const safeAilments = Array.isArray(ailments) ? ailments : [];
 
   const [query, setQuery] = useState("");
 
+  // Remember last search (localStorage)
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
@@ -53,9 +54,9 @@ export default function WellnessLookupClient({
     });
   }, [query, safeAilments]);
 
+  // Group by first letter
   const grouped = useMemo(() => {
     const map: Record<string, Ailment[]> = {};
-
     filtered.forEach((a) => {
       const letter = a.title?.[0]?.toUpperCase() || "#";
       if (!map[letter]) map[letter] = [];
@@ -198,6 +199,7 @@ export default function WellnessLookupClient({
                       <h3 className="text-xl font-semibold text-gray-900">
                         {a.title}
                       </h3>
+
                       <p className="mt-2 text-sm text-gray-700 leading-relaxed">
                         {a.summary}
                       </p>
