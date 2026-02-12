@@ -1,4 +1,5 @@
 "use client";
+
 import InstallPwaCTA from "@/components/InstallPwaCTA";
 import Image from "next/image";
 import Link from "next/link";
@@ -223,6 +224,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jwFarmsJsonLd) }}
       />
+
       <InstallApp />
 
       {/* Header */}
@@ -237,9 +239,6 @@ export default function Home() {
             className="rounded-full"
           />
         </Link>
-<Link href="/#install-app" className="hover:underline">
-  Install App
-</Link>
 
         <nav className="flex gap-4 text-[15px] font-medium text-slate-700">
           <a href="/lavender" className="hover:text-purple-700">
@@ -260,6 +259,12 @@ export default function Home() {
           <a href="#products" className="hover:text-purple-700">
             Products
           </a>
+
+          {/* ✅ New menu item */}
+          <a href="#install-app" className="hover:text-purple-700">
+            Install App
+          </a>
+
           <a href="#about" className="hover:text-purple-700">
             About
           </a>
@@ -563,19 +568,32 @@ export default function Home() {
               src: "/gallery/lavender-in-bloom-jw-farms-tennessee.png",
               label: "Lavender in bloom at JW Farms in Tennessee",
             },
-            { src: "/gallery/stalks.png", label: "Fresh lavender stalks harvested at JW Farms" },
-            { src: "/gallery/plugs.png", label: "Lavender plug trays grown at JW Farms in Tennessee" },
-            { src: "/gallery/plant.png", label: "Healthy lavender plants growing at JW Farms" },
-            { src: "/gallery/lavender-harvest-jw-farms-tennessee.png", label: "Lavender harvest at JW Farms in Tennessee" },
-            { src: "/gallery/tennessee-lavender-field-jw-farms.png", label: "Lavender field at JW Farms in Tennessee" },
+            {
+              src: "/gallery/stalks.png",
+              label: "Fresh lavender stalks harvested at JW Farms",
+            },
+            {
+              src: "/gallery/plugs.png",
+              label: "Lavender plug trays grown at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/plant.png",
+              label: "Healthy lavender plants growing at JW Farms",
+            },
+            {
+              src: "/gallery/lavender-harvest-jw-farms-tennessee.png",
+              label: "Lavender harvest at JW Farms in Tennessee",
+            },
+            {
+              src: "/gallery/tennessee-lavender-field-jw-farms.png",
+              label: "Lavender field at JW Farms in Tennessee",
+            },
           ].map((img, i) => (
             <div
               key={i}
               className="rounded-2xl overflow-hidden shadow-md transition hover:shadow-xl"
             >
-              {/* consistent image block */}
               <SoftGalleryImage src={img.src} alt={img.label} heightClass="h-64" />
-              {/* caption block */}
               <p className="p-3 text-sm text-center text-gray-600 bg-white">
                 {img.label}
               </p>
@@ -590,19 +608,18 @@ export default function Home() {
           From Our Farm
         </h2>
 
-      <div className="max-w-6xl mx-auto mb-10">
-  <div className="rounded-3xl bg-white/90 border border-purple-100 shadow-lg p-6 md:p-8">
-    <div className="rounded-2xl overflow-hidden">
-      <iframe
-        src="https://jwfarms.blogspot.com/"
-        className="w-full h-[650px] md:h-[720px]"
-        loading="lazy"
-        title="JW Farms Blog"
-      ></iframe>
-    </div>
-  </div>
-</div>
-
+        <div className="max-w-6xl mx-auto mb-10">
+          <div className="rounded-3xl bg-white/90 border border-purple-100 shadow-lg p-6 md:p-8">
+            <div className="rounded-2xl overflow-hidden">
+              <iframe
+                src="https://jwfarms.blogspot.com/"
+                className="w-full h-[650px] md:h-[720px]"
+                loading="lazy"
+                title="JW Farms Blog"
+              ></iframe>
+            </div>
+          </div>
+        </div>
 
         <a
           href="https://jwfarms.blogspot.com/"
@@ -633,7 +650,11 @@ export default function Home() {
           jwfarms77@gmail.com
         </a>
       </section>
-<InstallPwaCTA />
+
+      {/* Install App CTA (kept tidy + aligned) */}
+      <div className="max-w-6xl mx-auto px-6 pb-10">
+        <InstallPwaCTA />
+      </div>
 
       {/* Footer */}
       <footer className="bg-gradient-to-b from-[#6b4fa3] via-[#7b5fc0] to-[#4a2c82] text-white py-16 text-center">
@@ -659,4 +680,3 @@ export default function Home() {
     </div>
   );
 }
-
