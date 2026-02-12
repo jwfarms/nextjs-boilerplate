@@ -7,7 +7,8 @@ type BeforeInstallPromptEvent = Event & {
   userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
 };
 
-const DISMISS_KEY = "jw_pwa_install_dismissed_v1";
+const DISMISS_KEY = "jw_pwa_install_dismissed_until_v1";
+const DISMISS_DAYS = 7;
 
 function ShareIcon(props: { className?: string }) {
   return (
@@ -37,8 +38,11 @@ export default function InstallPwaCTA() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
+    // read dismiss-until timestamp (ms)
     try {
-      setDismissed(localStorage.getItem(DISMISS_KEY) === "1");
+      const untilRaw = localStorage.getItem(DISMISS_KEY);
+      const until = untilRaw ? Number(untilRaw) : 0;
+      setDismissed(Boolean(until && Date.now() < until));
     } catch {}
 
     const ua = window.navigator.userAgent || "";
@@ -65,8 +69,8 @@ export default function InstallPwaCTA() {
   }, []);
 
   const shouldShow = useMemo(() => {
-    if (isStandalone) return false;
-    if (dismissed) return false;
+    if (isStandalone) return false; // already installed
+    if (dismissed) return false; // dismissed (temporarily)
     return true;
   }, [isStandalone, dismissed]);
 
@@ -83,7 +87,8 @@ export default function InstallPwaCTA() {
   function dismiss() {
     setDismissed(true);
     try {
-      localStorage.setItem(DISMISS_KEY, "1");
+      const until = Date.now() + DISMISS_DAYS * 24 * 60 * 60 * 1000;
+      localStorage.setItem(DISMISS_KEY, String(until));
     } catch {}
   }
 
