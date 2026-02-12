@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HERBS, type Herb } from "../data";
+import { HERBS } from "../data";
 
-// ✅ Static export support (prebuild each herb page)
 export function generateStaticParams() {
   return HERBS.map((h) => ({ slug: h.slug }));
 }
 
-// ✅ Do not allow unknown slugs in static export mode
 export const dynamicParams = false;
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
@@ -15,8 +13,8 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   if (!herb) return { title: "Herb | JW Farms" };
 
   return {
-    title: `${herb.name} (${herb.botanical}) | JW Farms`,
-    description: herb.intro,
+    title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
+    description: `Learn traditional ways to prepare ${herb.name}—tea, tincture, and capsules—plus safety notes. Educational reference from JW Farms.`,
     alternates: { canonical: `https://www.jwfarms7.com/herbs/${herb.slug}` },
   };
 }
@@ -49,36 +47,6 @@ function Steps({ items }: { items: string[] }) {
   );
 }
 
-function PrepCard({
-  title,
-  bullets,
-  steps,
-  notes,
-}: {
-  title: string;
-  bullets: string[];
-  steps: string[];
-  notes?: string[];
-}) {
-  return (
-    <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
-      <div className="font-semibold text-gray-900 mb-2">{title}</div>
-      <div className="text-sm font-semibold text-gray-700 mb-2">You’ll need</div>
-      <Bullets items={bullets} />
-      <div className="text-sm font-semibold text-gray-700 mt-5 mb-2">Directions</div>
-      <Steps items={steps} />
-      {notes?.length ? (
-        <>
-          <div className="text-sm font-semibold text-gray-700 mt-5 mb-2">
-            Notes
-          </div>
-          <Bullets items={notes} />
-        </>
-      ) : null}
-    </div>
-  );
-}
-
 export default function HerbPage({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
   if (!herb) return notFound();
@@ -98,7 +66,9 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         </h1>
         <p className="mt-2 text-lg italic text-gray-700">{herb.botanical}</p>
 
-        <p className="mt-6 text-lg leading-relaxed text-gray-800">{herb.intro}</p>
+        <p className="mt-6 text-lg leading-relaxed text-gray-800">
+          {herb.intro}
+        </p>
 
         {herb.pdfHref ? (
           <div className="mt-6">
@@ -135,36 +105,66 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         {herb.tea ? (
           <>
             <SectionTitle>{herb.tea.title}</SectionTitle>
-            <PrepCard
-              title="Tea (Infusion)"
-              bullets={herb.tea.bullets}
-              steps={herb.tea.steps}
-              notes={herb.tea.notes}
-            />
+            <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
+              <div className="font-semibold text-gray-900 mb-2">You’ll need</div>
+              <Bullets items={herb.tea.bullets} />
+              <div className="font-semibold text-gray-900 mt-5 mb-2">
+                Directions
+              </div>
+              <Steps items={herb.tea.steps} />
+              {herb.tea.notes?.length ? (
+                <>
+                  <div className="font-semibold text-gray-900 mt-5 mb-2">
+                    Notes
+                  </div>
+                  <Bullets items={herb.tea.notes} />
+                </>
+              ) : null}
+            </div>
           </>
         ) : null}
 
         {herb.tincture ? (
           <>
             <SectionTitle>Tincture (Alcohol extract)</SectionTitle>
-            <PrepCard
-              title="Tincture basics"
-              bullets={herb.tincture.bullets}
-              steps={herb.tincture.steps}
-              notes={herb.tincture.notes}
-            />
+            <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
+              <div className="font-semibold text-gray-900 mb-2">Basics</div>
+              <Bullets items={herb.tincture.bullets} />
+              <div className="font-semibold text-gray-900 mt-5 mb-2">
+                Directions
+              </div>
+              <Steps items={herb.tincture.steps} />
+              {herb.tincture.notes?.length ? (
+                <>
+                  <div className="font-semibold text-gray-900 mt-5 mb-2">
+                    Notes
+                  </div>
+                  <Bullets items={herb.tincture.notes} />
+                </>
+              ) : null}
+            </div>
           </>
         ) : null}
 
         {herb.capsules ? (
           <>
             <SectionTitle>Capsules</SectionTitle>
-            <PrepCard
-              title="Capsules"
-              bullets={herb.capsules.bullets}
-              steps={herb.capsules.steps}
-              notes={herb.capsules.notes}
-            />
+            <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
+              <div className="font-semibold text-gray-900 mb-2">You’ll need</div>
+              <Bullets items={herb.capsules.bullets} />
+              <div className="font-semibold text-gray-900 mt-5 mb-2">
+                Directions
+              </div>
+              <Steps items={herb.capsules.steps} />
+              {herb.capsules.notes?.length ? (
+                <>
+                  <div className="font-semibold text-gray-900 mt-5 mb-2">
+                    Notes
+                  </div>
+                  <Bullets items={herb.capsules.notes} />
+                </>
+              ) : null}
+            </div>
           </>
         ) : null}
 
