@@ -5,36 +5,36 @@ export type WellnessTopic = {
   slug: string;
   summary: string;
   tags: string[];
-  herbs: string[];  // herb slugs (must match /herbs/[slug])
+  herbs: string[]; // herb slugs (must match /herbs/[slug])
   blends: string[]; // blend slugs (we'll build pages later)
 };
 
 export const TOPICS: WellnessTopic[] = [
   {
-    title: "Digestion Support",
-    slug: "digestion-support",
-    summary:
-      "Traditional routines and herbs often used for post-meal comfort and gentle digestive support.",
-    tags: ["digestion", "gut", "comfort", "after meals"],
-    herbs: ["peppermint", "ginger", "chamomile", "fennel"],
-    blends: ["after-meal-tea", "gentle-digest-blend"],
-  },
-  {
     title: "Sleep & Calm",
     slug: "sleep-calm",
     summary:
       "Gentle, traditional calming routines and herbs commonly used to support rest and relaxation.",
-    tags: ["sleep", "calm", "relaxation", "stress"],
-    herbs: ["lavender", "lemon-balm", "chamomile", "passionflower"],
+    tags: ["sleep", "calm", "relaxation", "stress", "evening"],
+    herbs: ["lavender", "chamomile"],
     blends: ["evening-calm-tea", "bedtime-blend"],
+  },
+  {
+    title: "Digestive Comfort",
+    slug: "digestive-comfort",
+    summary:
+      "Simple, traditional routines often used for post-meal comfort and gentle digestive support.",
+    tags: ["digestion", "comfort", "after meals", "routine"],
+    herbs: ["chamomile"],
+    blends: ["after-meal-tea", "gentle-digest-blend"],
   },
   {
     title: "Seasonal Wellness",
     slug: "seasonal-wellness",
     summary:
-      "Traditional herbs and routines commonly used during seasonal transitions for everyday wellness support.",
-    tags: ["seasonal", "immunity", "change of season"],
-    herbs: ["elderberry", "echinacea", "ginger", "thyme"],
+      "Everyday wellness routines often used during seasonal transitions.",
+    tags: ["seasonal", "change of season", "wellness routines"],
+    herbs: ["lavender"],
     blends: ["seasonal-support-tea", "cold-weather-blend"],
   },
 ];
