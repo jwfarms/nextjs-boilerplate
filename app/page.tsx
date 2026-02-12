@@ -1,5 +1,5 @@
 "use client";
-
+import InstallPwaCTA from "@/components/InstallPwaCTA";
 import Image from "next/image";
 import Link from "next/link";
 
