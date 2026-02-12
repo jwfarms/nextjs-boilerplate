@@ -16,7 +16,6 @@ export type Herb = {
 };
 
 export const HERBS: Herb[] = [
-  // ✅ BASIL (adds /herbs/basil)
   {
     slug: "basil",
     name: "Basil",
@@ -49,9 +48,7 @@ export const HERBS: Herb[] = [
         "Cover and steep 10–15 minutes.",
         "Strain and enjoy.",
       ],
-      notes: [
-        "Traditionally enjoyed warm after meals or during seasonal transitions.",
-      ],
+      notes: ["Traditionally enjoyed warm after meals or during seasonal transitions."],
     },
     tincture: {
       bullets: [
@@ -82,7 +79,6 @@ export const HERBS: Herb[] = [
     ],
   },
 
-  // ✅ LAVENDER
   {
     slug: "lavender",
     name: "Lavender",
@@ -145,9 +141,7 @@ export const HERBS: Herb[] = [
         "Fill capsules with lavender powder.",
         "Store in a labeled jar away from heat and humidity.",
       ],
-      notes: [
-        "Use extra care with concentrated preparations; lavender is aromatic and strong.",
-      ],
+      notes: ["Use extra care with concentrated preparations; lavender is aromatic and strong."],
     },
     pairings: ["Chamomile", "Lemon balm", "Rose petals", "Mint (tiny amount)"],
     safety: [
@@ -158,7 +152,6 @@ export const HERBS: Herb[] = [
     ],
   },
 
-  // ✅ CHAMOMILE
   {
     slug: "chamomile",
     name: "Chamomile",
