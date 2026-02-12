@@ -4,9 +4,9 @@ export type WellnessTopic = {
   title: string;
   slug: string;
   summary: string;
-  tags?: string[];
-  herbs?: string[];  // ✅ add
-  blends?: string[]; // ✅ add (since your UI shows "Blends")
+  tags: string[];
+  herbs: string[];  // herb slugs (must match /herbs/[slug])
+  blends: string[]; // blend slugs (we'll build pages later)
 };
 
 export const TOPICS: WellnessTopic[] = [
@@ -16,8 +16,8 @@ export const TOPICS: WellnessTopic[] = [
     summary:
       "Traditional routines and herbs often used for post-meal comfort and gentle digestive support.",
     tags: ["digestion", "gut", "comfort", "after meals"],
-    herbs: ["Peppermint", "Ginger", "Chamomile", "Fennel"],
-    blends: ["After-Meal Tea", "Gentle Digest Blend"],
+    herbs: ["peppermint", "ginger", "chamomile", "fennel"],
+    blends: ["after-meal-tea", "gentle-digest-blend"],
   },
   {
     title: "Sleep & Calm",
@@ -25,8 +25,8 @@ export const TOPICS: WellnessTopic[] = [
     summary:
       "Gentle, traditional calming routines and herbs commonly used to support rest and relaxation.",
     tags: ["sleep", "calm", "relaxation", "stress"],
-    herbs: ["Lavender", "Lemon Balm", "Chamomile", "Passionflower"],
-    blends: ["Evening Calm Tea", "Bedtime Blend"],
+    herbs: ["lavender", "lemon-balm", "chamomile", "passionflower"],
+    blends: ["evening-calm-tea", "bedtime-blend"],
   },
   {
     title: "Seasonal Wellness",
@@ -34,7 +34,7 @@ export const TOPICS: WellnessTopic[] = [
     summary:
       "Traditional herbs and routines commonly used during seasonal transitions for everyday wellness support.",
     tags: ["seasonal", "immunity", "change of season"],
-    herbs: ["Elderberry", "Echinacea", "Ginger", "Thyme"],
-    blends: ["Seasonal Support Tea", "Cold-Weather Blend"],
+    herbs: ["elderberry", "echinacea", "ginger", "thyme"],
+    blends: ["seasonal-support-tea", "cold-weather-blend"],
   },
 ];
