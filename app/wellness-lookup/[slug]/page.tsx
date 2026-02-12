@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TOPICS } from "../data";
@@ -29,6 +28,16 @@ function prettyTitleFromSlug(slug: string) {
     .join(" ");
 }
 
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="list-disc pl-6 space-y-1 text-gray-800">
+      {items.map((t) => (
+        <li key={t}>{prettyTitleFromSlug(t)}</li>
+      ))}
+    </ul>
+  );
+}
+
 export default function WellnessTopicPage({
   params,
 }: {
@@ -36,6 +45,9 @@ export default function WellnessTopicPage({
 }) {
   const topic = TOPICS.find((t) => t.slug === params.slug);
   if (!topic) return notFound();
+
+  const herbs = topic.herbs ?? [];
+  const blends = topic.blends ?? [];
 
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
@@ -55,26 +67,29 @@ export default function WellnessTopicPage({
           {topic.summary}
         </p>
 
+        {topic.tags?.length ? (
+          <div className="mt-6 flex flex-wrap gap-2">
+            {topic.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
+
         <h2 className="text-2xl font-semibold text-purple-900 mt-10 mb-3">
           Suggested herbs
         </h2>
 
-        {topic.herbs.length ? (
-          <div className="grid sm:grid-cols-2 gap-4">
-            {topic.herbs.map((slug) => (
-              <Link
-                key={slug}
-                href={`/herbs/${slug}`}
-                className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100 hover:ring-purple-200 transition"
-              >
-                <div className="font-semibold text-gray-900">
-                  {prettyTitleFromSlug(slug)}
-                </div>
-                <div className="mt-1 text-sm font-semibold text-purple-700">
-                  Learn more →
-                </div>
-              </Link>
-            ))}
+        {herbs.length ? (
+          <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
+            <Bullets items={herbs} />
+            <p className="mt-4 text-sm text-gray-600">
+              Herb detail pages are coming soon.
+            </p>
           </div>
         ) : (
           <p className="text-gray-700">No herbs linked yet.</p>
@@ -84,12 +99,13 @@ export default function WellnessTopicPage({
           Suggested blends
         </h2>
 
-        {topic.blends.length ? (
-          <ul className="list-disc pl-6 space-y-1 text-gray-800">
-            {topic.blends.map((b) => (
-              <li key={b}>{prettyTitleFromSlug(b)}</li>
-            ))}
-          </ul>
+        {blends.length ? (
+          <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
+            <Bullets items={blends} />
+            <p className="mt-4 text-sm text-gray-600">
+              Blend/recipe pages are coming soon.
+            </p>
+          </div>
         ) : (
           <p className="text-gray-700">No blends linked yet.</p>
         )}
