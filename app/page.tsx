@@ -630,6 +630,7 @@ export default function Home() {
           jwfarms77@gmail.com
         </a>
       </section>
+<InstallPwaCTA />
 
       {/* Footer */}
       <footer className="bg-gradient-to-b from-[#6b4fa3] via-[#7b5fc0] to-[#4a2c82] text-white py-16 text-center">
