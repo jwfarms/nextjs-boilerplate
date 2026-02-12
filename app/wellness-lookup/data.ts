@@ -1,4 +1,3 @@
-data.ts
 // app/wellness-lookup/data.ts
 
 export type WellnessTopic = {
