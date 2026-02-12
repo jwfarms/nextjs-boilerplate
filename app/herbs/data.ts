@@ -19,11 +19,11 @@ export const HERBS: Herb[] = [
   {
     slug: "lavender",
     name: "Lavender",
-    botanical: "Lavandula spp.",
+    botanical: "Lavandula angustifolia",
     intro:
       "Lavender is cherished for its soothing aroma and traditional household uses. It’s commonly used in simple routines for relaxation, comfort, and everyday wellness—especially as part of evening wind-down practices.",
     snapshot: [
-      { label: "Botanical name", value: "Lavandula spp." },
+      { label: "Botanical name", value: "Lavandula angustifolia" },
       { label: "Common names", value: "Lavender" },
       { label: "Family", value: "Mint family (Lamiaceae)" },
       { label: "Part used", value: "Flower (buds), sometimes leaf" },
