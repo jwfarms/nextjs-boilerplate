@@ -652,9 +652,13 @@ export default function Home() {
       </section>
 
       {/* Install App CTA (kept tidy + aligned) */}
-      <div className="max-w-6xl mx-auto px-6 pb-10">
-        <InstallPwaCTA />
-      </div>
+    {/* Anchor always exists so menu scroll always works */}
+<div id="install-app" className="scroll-mt-24" />
+
+<div className="max-w-6xl mx-auto px-6 pb-10">
+  <InstallPwaCTA />
+</div>
+
 
       {/* Footer */}
       <footer className="bg-gradient-to-b from-[#6b4fa3] via-[#7b5fc0] to-[#4a2c82] text-white py-16 text-center">
