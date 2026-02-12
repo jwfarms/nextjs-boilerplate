@@ -237,6 +237,9 @@ export default function Home() {
             className="rounded-full"
           />
         </Link>
+<Link href="/#install-app" className="hover:underline">
+  Install App
+</Link>
 
         <nav className="flex gap-4 text-[15px] font-medium text-slate-700">
           <a href="/lavender" className="hover:text-purple-700">
