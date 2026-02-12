@@ -183,4 +183,3 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
     </main>
   );
 }
- 
