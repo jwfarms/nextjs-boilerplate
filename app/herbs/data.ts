@@ -16,6 +16,73 @@ export type Herb = {
 };
 
 export const HERBS: Herb[] = [
+  // ✅ BASIL (adds /herbs/basil)
+  {
+    slug: "basil",
+    name: "Basil",
+    botanical: "Ocimum basilicum",
+    intro:
+      "Basil is a beloved culinary herb with a long history of traditional household use. Its aromatic leaves are commonly enjoyed in food and herbal preparations as part of a warm, nourishing routine.",
+    snapshot: [
+      { label: "Botanical name", value: "Ocimum basilicum" },
+      { label: "Common names", value: "Sweet basil" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf (fresh or dried)" },
+      { label: "Taste/aroma", value: "Sweet, peppery, strongly aromatic" },
+    ],
+    traditionalUses: [
+      "Comfortable digestion after meals (traditional use)",
+      "Seasonal wellness routines (traditional use)",
+      "A calming, aromatic cup of tea (traditional use)",
+      "General daily vitality as part of food traditions (traditional use)",
+    ],
+    tea: {
+      title: "Basil Tea (Infusion)",
+      bullets: [
+        "1–2 tsp dried basil leaf (or 1–2 tbsp fresh)",
+        "1 cup hot water",
+        "Optional: honey or lemon",
+      ],
+      steps: [
+        "Place basil in a mug or teapot.",
+        "Pour hot water over the herb.",
+        "Cover and steep 10–15 minutes.",
+        "Strain and enjoy.",
+      ],
+      notes: [
+        "Traditionally enjoyed warm after meals or during seasonal transitions.",
+      ],
+    },
+    tincture: {
+      bullets: [
+        "Dried basil: 1:5 (herb : alcohol)",
+        "Fresh basil: 1:2",
+        "Alcohol: 40–60% (many people use vodka)",
+      ],
+      steps: [
+        "Chop basil (especially if fresh).",
+        "Add herb to a glass jar and cover with alcohol using the ratio above.",
+        "Seal, label, and store in a dark cabinet.",
+        "Shake daily (or whenever you remember) for 4–6 weeks.",
+        "Strain and bottle in a dark dropper bottle.",
+      ],
+      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
+    },
+    capsules: {
+      bullets: ["Dried basil leaf powder", "Empty capsules (size 0 or 00)"],
+      steps: ["Fill capsules with basil powder.", "Store labeled and dry."],
+      notes: ["Traditionally used in small amounts as part of an herbal routine."],
+    },
+    pairings: ["Ginger", "Lemon peel", "Peppermint"],
+    safety: [
+      "Basil is widely used as food. For concentrated preparations, use extra care.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      "Discontinue if you notice sensitivity or irritation.",
+      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
+    ],
+  },
+
+  // ✅ LAVENDER
   {
     slug: "lavender",
     name: "Lavender",
@@ -89,10 +156,9 @@ export const HERBS: Herb[] = [
       "Discontinue if you notice sensitivity or irritation.",
       "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
     ],
-    // pdfHref: "/downloads/herbs/lavender.pdf",
   },
 
-  // Optional starter herb so your wellness topic doesn't feel empty
+  // ✅ CHAMOMILE
   {
     slug: "chamomile",
     name: "Chamomile",
