@@ -166,7 +166,7 @@ export const HERBS: Herb[] = [
       { label: "Taste/aroma", value: "Apple-like, mild, floral" },
     ],
     traditionalUses: [
-      "Gentle calm and relaxation (traditional use)",
+      "Gentle calm and relaxation (traditional use)", 
       "Evening tea routines (traditional use)",
       "Everyday comfort (traditional use)",
     ],
