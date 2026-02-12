@@ -2,11 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HERBS } from "../data";
 
+// ✅ Optional: keep this for SEO + faster first load
 export function generateStaticParams() {
   return HERBS.map((h) => ({ slug: h.slug }));
 }
 
-export const dynamicParams = false;
+// ✅ IMPORTANT FIX:
+// Remove `dynamicParams = false` so Vercel can serve new slugs reliably.
+// (Default is true; leaving it out is best.)
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
