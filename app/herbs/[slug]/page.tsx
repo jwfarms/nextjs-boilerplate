@@ -1,3 +1,5 @@
+// cache-bust: herbs slug fix
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HERBS } from "../data";
