@@ -1,185 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { HERBS, type Herb } from "../data";
 
-// ✅ Simple in-file “database” to start.
-// Later you can move this to a separate file or CMS.
-type Herb = {
-  slug: string;
-  name: string;
-  botanical: string;
-  intro: string;
-  snapshot: { label: string; value: string }[];
-  traditionalUses: string[];
-  tea: { title: string; bullets: string[]; steps: string[]; notes?: string[] };
-  tincture: { bullets: string[]; steps: string[]; notes?: string[] };
-  capsules: { bullets: string[]; steps: string[]; notes?: string[] };
-  pairings?: string[];
-  safety: string[];
-  pdfHref?: string; // optional: link to your existing PDF
-};
-
-const HERBS: Herb[] = [
-  // ✅ BASIL
-  {
-    slug: "basil",
-    name: "Basil",
-    botanical: "Ocimum basilicum",
-    intro:
-      "Basil is a beloved culinary herb with a long history of traditional household use. Its aromatic leaves are commonly enjoyed in food and herbal preparations as part of a warm, nourishing routine.",
-    snapshot: [
-      { label: "Botanical name", value: "Ocimum basilicum" },
-      { label: "Common names", value: "Sweet basil" },
-      { label: "Family", value: "Mint family (Lamiaceae)" },
-      { label: "Part used", value: "Leaf (fresh or dried)" },
-      { label: "Taste/aroma", value: "Sweet, peppery, strongly aromatic" },
-    ],
-    traditionalUses: [
-      "Comfortable digestion after meals (traditional use)",
-      "Seasonal wellness routines (traditional use)",
-      "A calming, aromatic cup of tea (traditional use)",
-      "General daily vitality as part of food traditions (traditional use)",
-    ],
-    tea: {
-      title: "Medicinal Tea (Infusion)",
-      bullets: [
-        "1–2 tsp dried basil leaf (or 1–2 tbsp fresh)",
-        "1 cup hot water",
-        "Optional: honey, lemon, or a splash of milk",
-      ],
-      steps: [
-        "Place basil in a mug or teapot.",
-        "Pour hot water over the herb.",
-        "Cover and steep 10–15 minutes.",
-        "Strain and enjoy.",
-      ],
-      notes: [
-        "Traditionally enjoyed warm after meals or during seasonal transitions.",
-        "Best fresh; refrigerate up to 24 hours if needed.",
-      ],
-    },
-    tincture: {
-      bullets: [
-        "Dried basil: 1:5 (herb : alcohol)",
-        "Fresh basil: 1:2",
-        "Alcohol: 40–60% (many people use vodka)",
-      ],
-      steps: [
-        "Chop basil (especially if fresh).",
-        "Add herb to a glass jar and cover with alcohol using the ratio above.",
-        "Seal, label, and store in a dark cabinet.",
-        "Shake daily (or whenever you remember) for 4–6 weeks.",
-        "Strain and bottle in a dark dropper bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: [
-        "Dried basil leaf powder",
-        "Empty capsules (size 0 or 00)",
-        "Optional: capsule filling tray",
-      ],
-      steps: [
-        "Fill capsules with basil powder.",
-        "Store in a labeled glass jar away from heat and humidity.",
-      ],
-      notes: ["Traditionally used in small amounts as part of an herbal routine."],
-    },
-    pairings: ["Ginger", "Lemon peel", "Peppermint"],
-    safety: [
-      "Basil is widely used as food. For concentrated preparations, use extra care.",
-      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
-      "Discontinue if you notice sensitivity or irritation.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
-    ],
-    // If you have a Basil PDF already, put it here:
-    // pdfHref: "/downloads/herbs/basil.pdf",
-  },
-
-  // ✅ LAVENDER
-  {
-    slug: "lavender",
-    name: "Lavender",
-    botanical: "Lavandula angustifolia",
-    intro:
-      "Lavender is a classic aromatic herb traditionally used in daily routines for calm, comfort, and simple household care. Its fragrant flowers are commonly enjoyed as tea, used in herbal preparations, and appreciated for their soothing scent.",
-    snapshot: [
-      { label: "Botanical name", value: "Lavandula angustifolia" },
-      { label: "Common names", value: "English lavender" },
-      { label: "Family", value: "Mint family (Lamiaceae)" },
-      { label: "Part used", value: "Flower (buds)" },
-      {
-        label: "Taste/aroma",
-        value: "Floral, sweet, gently bitter; strongly aromatic",
-      },
-    ],
-    traditionalUses: [
-      "A calming nighttime routine (traditional use)",
-      "Comfort during times of occasional stress (traditional use)",
-      "Aromatic support for relaxation and rest (traditional use)",
-      "Soothing herbal tea as part of an evening wind-down (traditional use)",
-    ],
-    tea: {
-      title: "Medicinal Tea (Infusion)",
-      bullets: [
-        "1–2 tsp dried lavender buds",
-        "1 cup hot water",
-        "Optional: honey and/or lemon",
-      ],
-      steps: [
-        "Place lavender buds in a mug or teapot.",
-        "Pour hot water over the herb.",
-        "Cover and steep 8–12 minutes.",
-        "Strain and enjoy.",
-      ],
-      notes: [
-        "Traditionally enjoyed in the evening or anytime you want a calming cup.",
-        "Start with a smaller amount—lavender can be potent and very floral.",
-        "Best fresh; refrigerate up to 24 hours if needed.",
-      ],
-    },
-    tincture: {
-      bullets: [
-        "Dried lavender: 1:5 (herb : alcohol)",
-        "Fresh lavender: 1:2",
-        "Alcohol: 40–60% is common",
-      ],
-      steps: [
-        "Loosely crumble or chop flowers (especially if fresh).",
-        "Add herb to a glass jar and cover with alcohol using the ratio above.",
-        "Seal, label, and store away from light.",
-        "Shake daily (or often) for 4–6 weeks.",
-        "Strain and bottle in a dark dropper bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: [
-        "Dried lavender flower powder (finely ground)",
-        "Empty capsules (size 0 or 00)",
-        "Optional: capsule filling tray",
-      ],
-      steps: [
-        "Fill capsules with lavender powder.",
-        "Store in a labeled jar away from heat and humidity.",
-      ],
-      notes: [
-        "Lavender is strongly aromatic—many people prefer tea or tincture over capsules.",
-      ],
-    },
-    pairings: ["Lemon balm", "Chamomile", "Peppermint"],
-    safety: [
-      "Lavender is widely used in food and teas. For concentrated preparations, use extra care.",
-      "If pregnant, breastfeeding, taking medications, or managing a medical condition, consult a qualified professional.",
-      "Discontinue if you notice sensitivity or irritation.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
-    ],
-    // If you have a Lavender PDF already, put it here:
-    // pdfHref: "/downloads/herbs/lavender.pdf",
-  },
-];
-
-// ✅ IMPORTANT for static exports (output: "export"):
-// Pre-build each herb page at build time.
+// ✅ Static export support (prebuild each herb page)
 export function generateStaticParams() {
   return HERBS.map((h) => ({ slug: h.slug }));
 }
@@ -192,8 +15,8 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   if (!herb) return { title: "Herb | JW Farms" };
 
   return {
-    title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
-    description: `Learn traditional ways to prepare ${herb.name}—tea, tincture, and capsules—plus safety notes. Educational reference from JW Farms.`,
+    title: `${herb.name} (${herb.botanical}) | JW Farms`,
+    description: herb.intro,
     alternates: { canonical: `https://www.jwfarms7.com/herbs/${herb.slug}` },
   };
 }
@@ -226,6 +49,36 @@ function Steps({ items }: { items: string[] }) {
   );
 }
 
+function PrepCard({
+  title,
+  bullets,
+  steps,
+  notes,
+}: {
+  title: string;
+  bullets: string[];
+  steps: string[];
+  notes?: string[];
+}) {
+  return (
+    <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
+      <div className="font-semibold text-gray-900 mb-2">{title}</div>
+      <div className="text-sm font-semibold text-gray-700 mb-2">You’ll need</div>
+      <Bullets items={bullets} />
+      <div className="text-sm font-semibold text-gray-700 mt-5 mb-2">Directions</div>
+      <Steps items={steps} />
+      {notes?.length ? (
+        <>
+          <div className="text-sm font-semibold text-gray-700 mt-5 mb-2">
+            Notes
+          </div>
+          <Bullets items={notes} />
+        </>
+      ) : null}
+    </div>
+  );
+}
+
 export default function HerbPage({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
   if (!herb) return notFound();
@@ -245,9 +98,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         </h1>
         <p className="mt-2 text-lg italic text-gray-700">{herb.botanical}</p>
 
-        <p className="mt-6 text-lg leading-relaxed text-gray-800">
-          {herb.intro}
-        </p>
+        <p className="mt-6 text-lg leading-relaxed text-gray-800">{herb.intro}</p>
 
         {herb.pdfHref ? (
           <div className="mt-6">
@@ -281,47 +132,41 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
           Traditional use is not the same as proven medical treatment.
         </p>
 
-        <SectionTitle>{herb.tea.title}</SectionTitle>
-        <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
-          <div className="font-semibold text-gray-900 mb-2">You’ll need</div>
-          <Bullets items={herb.tea.bullets} />
-          <div className="font-semibold text-gray-900 mt-5 mb-2">Directions</div>
-          <Steps items={herb.tea.steps} />
-          {herb.tea.notes?.length ? (
-            <>
-              <div className="font-semibold text-gray-900 mt-5 mb-2">Notes</div>
-              <Bullets items={herb.tea.notes} />
-            </>
-          ) : null}
-        </div>
+        {herb.tea ? (
+          <>
+            <SectionTitle>{herb.tea.title}</SectionTitle>
+            <PrepCard
+              title="Tea (Infusion)"
+              bullets={herb.tea.bullets}
+              steps={herb.tea.steps}
+              notes={herb.tea.notes}
+            />
+          </>
+        ) : null}
 
-        <SectionTitle>Tincture (Alcohol extract)</SectionTitle>
-        <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
-          <div className="font-semibold text-gray-900 mb-2">Basics</div>
-          <Bullets items={herb.tincture.bullets} />
-          <div className="font-semibold text-gray-900 mt-5 mb-2">Directions</div>
-          <Steps items={herb.tincture.steps} />
-          {herb.tincture.notes?.length ? (
-            <>
-              <div className="font-semibold text-gray-900 mt-5 mb-2">Notes</div>
-              <Bullets items={herb.tincture.notes} />
-            </>
-          ) : null}
-        </div>
+        {herb.tincture ? (
+          <>
+            <SectionTitle>Tincture (Alcohol extract)</SectionTitle>
+            <PrepCard
+              title="Tincture basics"
+              bullets={herb.tincture.bullets}
+              steps={herb.tincture.steps}
+              notes={herb.tincture.notes}
+            />
+          </>
+        ) : null}
 
-        <SectionTitle>Capsules</SectionTitle>
-        <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
-          <div className="font-semibold text-gray-900 mb-2">You’ll need</div>
-          <Bullets items={herb.capsules.bullets} />
-          <div className="font-semibold text-gray-900 mt-5 mb-2">Directions</div>
-          <Steps items={herb.capsules.steps} />
-          {herb.capsules.notes?.length ? (
-            <>
-              <div className="font-semibold text-gray-900 mt-5 mb-2">Notes</div>
-              <Bullets items={herb.capsules.notes} />
-            </>
-          ) : null}
-        </div>
+        {herb.capsules ? (
+          <>
+            <SectionTitle>Capsules</SectionTitle>
+            <PrepCard
+              title="Capsules"
+              bullets={herb.capsules.bullets}
+              steps={herb.capsules.steps}
+              notes={herb.capsules.notes}
+            />
+          </>
+        ) : null}
 
         {herb.pairings?.length ? (
           <>
