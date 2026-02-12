@@ -9,6 +9,25 @@ type BeforeInstallPromptEvent = Event & {
 
 const DISMISS_KEY = "jw_pwa_install_dismissed_v1";
 
+function ShareIcon(props: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={props.className ?? "h-5 w-5"}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3v10" />
+      <path d="M8.5 6.5 12 3l3.5 3.5" />
+      <path d="M6 10.5V20a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9.5" />
+    </svg>
+  );
+}
+
 export default function InstallPwaCTA() {
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
@@ -18,7 +37,6 @@ export default function InstallPwaCTA() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    // Read dismiss preference
     try {
       setDismissed(localStorage.getItem(DISMISS_KEY) === "1");
     } catch {}
@@ -26,21 +44,17 @@ export default function InstallPwaCTA() {
     const ua = window.navigator.userAgent || "";
     const ios =
       /iPad|iPhone|iPod/.test(ua) ||
-      // iPadOS sometimes reports as Mac
       (ua.includes("Mac") && "ontouchend" in document);
 
     setIsIos(ios);
 
     const standalone =
-      // iOS Safari
       (window.navigator as any).standalone === true ||
-      // Modern browsers
       window.matchMedia("(display-mode: standalone)").matches;
 
     setIsStandalone(standalone);
 
     const handler = (e: Event) => {
-      // Supported on Chrome/Edge/Android/desktop
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     };
@@ -51,8 +65,8 @@ export default function InstallPwaCTA() {
   }, []);
 
   const shouldShow = useMemo(() => {
-    if (isStandalone) return false; // already installed
-    if (dismissed) return false; // user dismissed
+    if (isStandalone) return false;
+    if (dismissed) return false;
     return true;
   }, [isStandalone, dismissed]);
 
@@ -90,18 +104,21 @@ export default function InstallPwaCTA() {
         </p>
       </div>
 
-      {/* iPhone-first experience */}
       {isIos ? (
         <div className="mt-6 mx-auto w-full max-w-xl rounded-xl bg-purple-50 border border-purple-200 p-4 text-left">
-          <p className="font-semibold text-purple-900">
-            iPhone / iPad (Safari)
-          </p>
-          <ol className="mt-2 list-decimal pl-5 text-gray-700 space-y-1">
+          <p className="font-semibold text-purple-900">iPhone / iPad (Safari)</p>
+
+          <ol className="mt-2 list-decimal pl-5 text-gray-700 space-y-2">
             <li>
               Open this site in <b>Safari</b>
             </li>
-            <li>
-              Tap the <b>Share</b> icon (square with arrow)
+            <li className="flex items-start gap-2">
+              <span className="mt-[2px] text-purple-900">
+                <ShareIcon className="h-5 w-5" />
+              </span>
+              <span>
+                Tap <b>Share</b>
+              </span>
             </li>
             <li>
               Tap <b>Add to Home Screen</b>
@@ -126,7 +143,6 @@ export default function InstallPwaCTA() {
         </div>
       ) : (
         <div className="mt-6 flex flex-col items-center gap-3">
-          {/* Android / Desktop: show real install button when available */}
           {deferredPrompt ? (
             <button
               onClick={handleInstall}
