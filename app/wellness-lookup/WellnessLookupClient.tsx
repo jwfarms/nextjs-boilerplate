@@ -214,11 +214,10 @@ export default function WellnessLookupClient({
                       <div className="mt-5 flex items-center justify-between">
                         <div className="text-xs text-gray-500">
                           Herbs:{" "}
-                          <span className="font-semibold">{t.herbs.length}</span>{" "}
-                          • Blends:{" "}
-                          <span className="font-semibold">
-                            {t.blends.length}
-                          </span>
+                        <span className="font-semibold">{(t.herbs ?? []).length}</span>
+...
+<span className="font-semibold">{(t.blends ?? []).length}</span>
+
                         </div>
 
                         <Link
