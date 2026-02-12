@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
 };
+
+const DISMISS_KEY = "jw_pwa_install_dismissed_v1";
 
 export default function InstallPwaCTA() {
   const [deferredPrompt, setDeferredPrompt] =
@@ -13,12 +15,18 @@ export default function InstallPwaCTA() {
 
   const [isIos, setIsIos] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
+    // Read dismiss preference
+    try {
+      setDismissed(localStorage.getItem(DISMISS_KEY) === "1");
+    } catch {}
+
     const ua = window.navigator.userAgent || "";
     const ios =
       /iPad|iPhone|iPod/.test(ua) ||
-      // iPadOS reports as Mac sometimes
+      // iPadOS sometimes reports as Mac
       (ua.includes("Mac") && "ontouchend" in document);
 
     setIsIos(ios);
@@ -32,7 +40,7 @@ export default function InstallPwaCTA() {
     setIsStandalone(standalone);
 
     const handler = (e: Event) => {
-      // This fires on supported browsers (Chrome/Edge/Android)
+      // Supported on Chrome/Edge/Android/desktop
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     };
@@ -41,6 +49,12 @@ export default function InstallPwaCTA() {
 
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
+
+  const shouldShow = useMemo(() => {
+    if (isStandalone) return false; // already installed
+    if (dismissed) return false; // user dismissed
+    return true;
+  }, [isStandalone, dismissed]);
 
   async function handleInstall() {
     if (!deferredPrompt) return;
@@ -52,22 +66,20 @@ export default function InstallPwaCTA() {
     }
   }
 
-  // If already installed, keep it minimal
-  if (isStandalone) {
-    return (
-      <section className="mt-12 rounded-2xl border border-purple-200 bg-white/70 p-6 text-center shadow-sm">
-        <h2 className="text-2xl md:text-3xl font-semibold text-purple-900 font-serif">
-          JW Farms App Installed ✅
-        </h2>
-        <p className="mt-2 text-gray-700">
-          You’re all set — open JW Farms from your home screen anytime.
-        </p>
-      </section>
-    );
+  function dismiss() {
+    setDismissed(true);
+    try {
+      localStorage.setItem(DISMISS_KEY, "1");
+    } catch {}
   }
 
+  if (!shouldShow) return null;
+
   return (
-    <section className="mt-12 rounded-2xl border border-purple-200 bg-white/70 p-6 md:p-8 shadow-sm">
+    <section
+      id="install-app"
+      className="mt-12 rounded-2xl border border-purple-200 bg-white/70 p-6 md:p-8 shadow-sm"
+    >
       <div className="text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-purple-900 font-serif">
           Install the JW Farms App
@@ -78,45 +90,80 @@ export default function InstallPwaCTA() {
         </p>
       </div>
 
-      <div className="mt-6 flex flex-col items-center gap-3">
-        {/* Android / Desktop browsers that support install prompt */}
-        {deferredPrompt ? (
-          <button
-            onClick={handleInstall}
-            className="inline-flex items-center justify-center rounded-full bg-purple-700 px-6 py-3 text-white font-semibold shadow hover:bg-purple-800 transition"
-          >
-            Install App
-          </button>
-        ) : (
-          <div className="w-full max-w-xl rounded-xl bg-purple-50 border border-purple-200 p-4 text-left">
-            <p className="font-semibold text-purple-900">
-              Install options depend on your device:
-            </p>
+      {/* iPhone-first experience */}
+      {isIos ? (
+        <div className="mt-6 mx-auto w-full max-w-xl rounded-xl bg-purple-50 border border-purple-200 p-4 text-left">
+          <p className="font-semibold text-purple-900">
+            iPhone / iPad (Safari)
+          </p>
+          <ol className="mt-2 list-decimal pl-5 text-gray-700 space-y-1">
+            <li>
+              Open this site in <b>Safari</b>
+            </li>
+            <li>
+              Tap the <b>Share</b> icon (square with arrow)
+            </li>
+            <li>
+              Tap <b>Add to Home Screen</b>
+            </li>
+            <li>
+              Tap <b>Add</b>
+            </li>
+          </ol>
 
-            {isIos ? (
+          <div className="mt-4 flex items-center justify-between gap-3">
+            <p className="text-sm text-gray-600">
+              Tip: If you don’t see “Add to Home Screen,” you may be in an
+              in-app browser. Try opening in Safari.
+            </p>
+            <button
+              onClick={dismiss}
+              className="shrink-0 rounded-full border border-purple-300 px-4 py-2 text-sm font-semibold text-purple-900 hover:bg-white transition"
+            >
+              Got it
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="mt-6 flex flex-col items-center gap-3">
+          {/* Android / Desktop: show real install button when available */}
+          {deferredPrompt ? (
+            <button
+              onClick={handleInstall}
+              className="inline-flex items-center justify-center rounded-full bg-purple-700 px-6 py-3 text-white font-semibold shadow hover:bg-purple-800 transition"
+            >
+              Install App
+            </button>
+          ) : (
+            <div className="mx-auto w-full max-w-xl rounded-xl bg-purple-50 border border-purple-200 p-4 text-left">
+              <p className="font-semibold text-purple-900">
+                Android / Desktop (Chrome or Edge)
+              </p>
               <ol className="mt-2 list-decimal pl-5 text-gray-700 space-y-1">
-                <li>Open this site in <b>Safari</b></li>
-                <li>Tap the <b>Share</b> icon (square with arrow)</li>
-                <li>Tap <b>Add to Home Screen</b></li>
-                <li>Tap <b>Add</b></li>
-              </ol>
-            ) : (
-              <ol className="mt-2 list-decimal pl-5 text-gray-700 space-y-1">
-                <li>Open this site in <b>Chrome</b> or <b>Edge</b></li>
+                <li>
+                  Open this site in <b>Chrome</b> or <b>Edge</b>
+                </li>
                 <li>
                   Tap the menu (<b>⋮</b>) and choose <b>Install app</b> or{" "}
                   <b>Add to Home screen</b>
                 </li>
               </ol>
-            )}
-
-            <p className="mt-3 text-sm text-gray-600">
-              If you don’t see an install option, your browser may not support
-              it — but the site still works perfectly.
-            </p>
-          </div>
-        )}
-      </div>
+              <div className="mt-4 flex items-center justify-between gap-3">
+                <p className="text-sm text-gray-600">
+                  Some browsers don’t show install options — the site still
+                  works perfectly.
+                </p>
+                <button
+                  onClick={dismiss}
+                  className="shrink-0 rounded-full border border-purple-300 px-4 py-2 text-sm font-semibold text-purple-900 hover:bg-white transition"
+                >
+                  Dismiss
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }
