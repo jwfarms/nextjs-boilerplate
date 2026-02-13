@@ -7,11 +7,8 @@ export const metadata = {
   },
 };
 
-// IMPORTANT: match the filename exactly (case-sensitive on Vercel)
 import HerbLibraryClient from "./HerbLibraryClient";
 
-// ✅ Since you created folders/pages for ALL of these slugs,
-// add learnHref to ALL items so “Learn More →” shows everywhere.
 const HERBS = [
   { title: "Basil", slug: "basil", learnHref: "/herbs/basil" },
   { title: "Chamomile", slug: "chamomile", learnHref: "/herbs/chamomile" },
@@ -22,12 +19,16 @@ const HERBS = [
   { title: "Echinacea", slug: "echinacea", learnHref: "/herbs/echinacea" },
   { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender" },
 
-  { title: "Edelweiss Lavender", slug: "edelweiss-lavender", learnHref: "/herbs/edelweiss-lavender" },
+  // ✅ ADD learnHref for the rest:
+  {
+    title: "Edelweiss Lavender",
+    slug: "edelweiss-lavender",
+    learnHref: "/herbs/edelweiss-lavender",
+  },
   { title: "Garlic", slug: "garlic", learnHref: "/herbs/garlic" },
   { title: "Ginko", slug: "ginko", learnHref: "/herbs/ginko" },
 
-  // ✅ Your folder list shows "lemon-balm" but your slug here was "lemonbalm".
-  // Use the SAME slug as your folder/PDF name.
+  // ✅ If your folder is /app/herbs/lemon-balm, use slug "lemon-balm"
   { title: "Lemon Balm", slug: "lemon-balm", learnHref: "/herbs/lemon-balm" },
 
   { title: "Marjoram", slug: "marjoram", learnHref: "/herbs/marjoram" },
@@ -44,9 +45,7 @@ const HERBS = [
   { title: "Sage", slug: "sage", learnHref: "/herbs/sage" },
   { title: "Spearmint", slug: "spearmint", learnHref: "/herbs/spearmint" },
 
-  // ✅ Your folder list shows "st johns-wort" (with a space) but your slug here was "st-johns-wort".
-  // Slugs can’t contain spaces in URLs, so use the DASH version and make sure your folder is:
-  // app/herbs/st-johns-wort/page.tsx
+  // ✅ Use dashes in the slug and folder name:
   { title: "St John's Wort", slug: "st-johns-wort", learnHref: "/herbs/st-johns-wort" },
 
   { title: "Thyme", slug: "thyme", learnHref: "/herbs/thyme" },
