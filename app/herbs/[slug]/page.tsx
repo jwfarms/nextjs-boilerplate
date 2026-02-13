@@ -4,9 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HERBS } from "../data";
 
-// ✅ IMPORTANT: do NOT pre-render every herb at build time.
-// This prevents build failures when one herb's content causes a prerender crash.
-export const dynamic = "force-dynamic";
+export function generateStaticParams() {
+  return HERBS.map((h) => ({ slug: h.slug }));
+}
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 
   return {
     title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
-    description: `Learn traditional ways to prepare ${herb.name}—tea, tincture, and capsules—plus safety notes. Educational reference from JW Farms.`,
+    description: herb.intro,
     alternates: { canonical: `https://www.jwfarms7.com/herbs/${herb.slug}` },
   };
 }
@@ -30,8 +30,8 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 function Bullets({ items }: { items: string[] }) {
   return (
     <ul className="list-disc pl-6 space-y-1 text-gray-800">
-      {items.map((t, i) => (
-        <li key={`${t}-${i}`}>{t}</li>
+      {items.map((t) => (
+        <li key={t}>{t}</li>
       ))}
     </ul>
   );
@@ -40,8 +40,8 @@ function Bullets({ items }: { items: string[] }) {
 function Steps({ items }: { items: string[] }) {
   return (
     <ol className="list-decimal pl-6 space-y-1 text-gray-800">
-      {items.map((t, i) => (
-        <li key={`${t}-${i}`}>{t}</li>
+      {items.map((t) => (
+        <li key={t}>{t}</li>
       ))}
     </ol>
   );
@@ -159,7 +159,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
               {herb.capsules.notes?.length ? (
                 <>
                   <div className="font-semibold text-gray-900 mt-5 mb-2">
-                    Notes 
+                    Notes
                   </div>
                   <Bullets items={herb.capsules.notes} />
                 </>
