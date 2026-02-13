@@ -54,7 +54,9 @@ export const HERBS: Herb[] = [
         "Cover and steep 10–15 minutes.",
         "Strain and enjoy.",
       ],
-      notes: ["Traditionally enjoyed warm after meals or during seasonal transitions."],
+      notes: [
+        "Traditionally enjoyed warm after meals or during seasonal transitions.",
+      ],
     },
     tincture: {
       bullets: [
@@ -109,7 +111,11 @@ export const HERBS: Herb[] = [
     ],
     tea: {
       title: "Chamomile Tea (Infusion)",
-      bullets: ["1–2 tsp dried chamomile flowers", "1 cup hot water", "Optional: honey"],
+      bullets: [
+        "1–2 tsp dried chamomile flowers",
+        "1 cup hot water",
+        "Optional: honey",
+      ],
       steps: [
         "Place chamomile in a mug or teapot.",
         "Pour hot water over the herb.",
@@ -330,7 +336,7 @@ export const HERBS: Herb[] = [
   },
 
   // =========================
-  // GINKO (folder spelled ginko)
+  // GINKO (folder: ginko)
   // =========================
   {
     slug: "ginko",
@@ -435,7 +441,7 @@ export const HERBS: Herb[] = [
     traditionalUses: [
       "Soothing comfort traditions (traditional use)",
       "Gentle seasonal routines (traditional use)",
-      "Traditional throat/tea comfort folklore (traditional use)",
+      "Traditional tea comfort folklore (traditional use)",
     ],
     safety: [
       "May affect absorption of medications—separate by 2+ hours as a cautious practice.",
