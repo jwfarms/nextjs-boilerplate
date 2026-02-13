@@ -7,10 +7,8 @@ export const metadata = {
   },
 };
 
-// IMPORTANT: match the filename exactly (case-sensitive on Vercel)
 import HerbLibraryClient from "./HerbLibraryClient";
 
-// ✅ Add `learnHref` for herbs that have a live /herbs/[slug] page
 const HERBS = [
   { title: "Basil", slug: "basil", learnHref: "/herbs/basil" },
   { title: "Chamomile", slug: "chamomile", learnHref: "/herbs/chamomile" },
@@ -18,13 +16,13 @@ const HERBS = [
   { title: "Cleavers", slug: "cleavers", learnHref: "/herbs/cleavers" },
   { title: "Dandelion", slug: "dandelion", learnHref: "/herbs/dandelion" },
   { title: "Dill", slug: "dill", learnHref: "/herbs/dill" },
+  { title: "Echinacea", slug: "echinacea", learnHref: "/herbs/echinacea" },
+  { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender" },
 
-  // (no learnHref yet — add later as you create the /herbs/[slug] pages)
-  { title: "Echinacea", slug: "echinacea" },
+  // Everything else can stay WITHOUT learnHref until you add it to app/herbs/data.ts
   { title: "Edelweiss Lavender", slug: "edelweiss-lavender" },
   { title: "Garlic", slug: "garlic" },
   { title: "Ginko", slug: "ginko" },
-  { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender" },
   { title: "Lemon Balm", slug: "lemonbalm" },
   { title: "Marjoram", slug: "marjoram" },
   { title: "Marshmallow", slug: "marshmallow" },
@@ -49,10 +47,7 @@ export default function HerbalLearningLibraryPage() {
   return (
     <main className="bg-[#f6f2fb] text-gray-800 min-h-screen">
       <section className="py-20 px-6 max-w-6xl mx-auto">
-        <h1
-          id="top"
-          className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6"
-        >
+        <h1 className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6">
           Herbal Learning Library
         </h1>
 
