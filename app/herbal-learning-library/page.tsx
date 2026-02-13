@@ -10,16 +10,16 @@ export const metadata = {
 // IMPORTANT: match the filename exactly (case-sensitive on Vercel)
 import HerbLibraryClient from "./HerbLibraryClient";
 
-// ✅ Add a `learnHref` for any herbs that have a full web page.
-// Start with Basil (live now). Add more as you publish them.
+// ✅ Add `learnHref` for herbs that have a live /herbs/[slug] page
 const HERBS = [
   { title: "Basil", slug: "basil", learnHref: "/herbs/basil" },
+  { title: "Chamomile", slug: "chamomile", learnHref: "/herbs/chamomile" },
+  { title: "Cilantro", slug: "cilantro", learnHref: "/herbs/cilantro" },
+  { title: "Cleavers", slug: "cleavers", learnHref: "/herbs/cleavers" },
+  { title: "Dandelion", slug: "dandelion", learnHref: "/herbs/dandelion" },
+  { title: "Dill", slug: "dill", learnHref: "/herbs/dill" },
 
-  { title: "Chamomile", slug: "chamomile" },
-  { title: "Cilantro", slug: "cilantro" },
-  { title: "Cleavers", slug: "cleavers" },
-  { title: "Dandelion", slug: "dandelion" },
-  { title: "Dill", slug: "dill" },
+  // (no learnHref yet — add later as you create the /herbs/[slug] pages)
   { title: "Echinacea", slug: "echinacea" },
   { title: "Edelweiss Lavender", slug: "edelweiss-lavender" },
   { title: "Garlic", slug: "garlic" },
@@ -61,8 +61,6 @@ export default function HerbalLearningLibraryPage() {
           guides you can save, print, and keep on hand.
         </p>
 
-        {/* ✅ HerbLibraryClient will now be able to show a “Learn More →” link
-            when `learnHref` exists on a herb item. */}
         <HerbLibraryClient herbs={HERBS} />
       </section>
     </main>
