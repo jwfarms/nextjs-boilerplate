@@ -6,25 +6,10 @@ import Link from "next/link";
 type Herb = {
   title: string;
   slug: string;
-  learnHref?: string;
+  learnHref?: string; // optional override
 };
 
 const STORAGE_KEY = "jwfarms_herb_library_search";
-
-/**
- * ✅ Only show “Learn More” for herbs that have a real /herbs/[slug] page.
- * Add slugs here ONLY after you add the full herb object to: app/herbs/data.ts
- */
-const LEARN_MORE_SLUGS = new Set([
-  "basil",
-  "chamomile",
-  "lavender",
-  "cilantro",
-  "cleavers",
-  "dandelion",
-  "dill",
-  "echinacea",
-]);
 
 function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
@@ -33,6 +18,7 @@ function normalizeQuery(q: string) {
 export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
   const [query, setQuery] = useState("");
 
+  // Remember last search (localStorage)
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
@@ -56,6 +42,7 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
     return herbs.filter((herb) => normalizeQuery(herb.title).includes(q));
   }, [query, herbs]);
 
+  // Group herbs by first letter (based on TITLE)
   const grouped = useMemo(() => {
     const map: Record<string, Herb[]> = {};
     filtered.forEach((herb) => {
@@ -195,20 +182,18 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                   const pdfHref = `/herbal-library/${herb.slug}.pdf`;
                   const imgSrc = `/herbal-library/previews/${herb.slug}.png`;
 
+                  // ✅ ALWAYS show Learn More (fallback to /herbs/[slug])
                   const learnHref = herb.learnHref ?? `/herbs/${herb.slug}`;
-                  const showLearnMore = LEARN_MORE_SLUGS.has(herb.slug);
 
                   return (
                     <div
                       key={herb.slug}
-                      className="bg-white rounded-3xl shadow-sm overflow-hidden
-                                 border border-purple-100"
+                      className="bg-white rounded-3xl shadow-sm overflow-hidden border border-purple-100"
                     >
                       {/* PDF Card */}
                       <a
                         href={pdfHref}
-                        className="group block
-                                   hover:shadow-md hover:-translate-y-[1px]
+                        className="group block hover:shadow-md hover:-translate-y-[1px]
                                    active:translate-y-0 active:shadow-sm transition"
                         aria-label={`Open ${herb.title} PDF`}
                       >
@@ -243,18 +228,16 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                         </div>
                       </a>
 
-                      {/* ✅ Only show Learn More when the /herbs/[slug] page exists */}
-                      {showLearnMore ? (
-                        <div className="px-6 pb-6 -mt-2">
-                          <Link
-                            href={learnHref}
-                            className="inline-flex items-center text-sm font-semibold text-purple-700 hover:underline"
-                            aria-label={`Learn more about ${herb.title}`}
-                          >
-                            Learn More →
-                          </Link>
-                        </div>
-                      ) : null}
+                      {/* ✅ Learn More ALWAYS visible */}
+                      <div className="px-6 pb-6 -mt-2">
+                        <Link
+                          href={learnHref}
+                          className="inline-flex items-center text-sm font-semibold text-purple-700 hover:underline"
+                          aria-label={`Learn more about ${herb.title}`}
+                        >
+                          Learn More →
+                        </Link>
+                      </div>
                     </div>
                   );
                 })}
