@@ -1,5 +1,4 @@
 // app/herbs/[slug]/page.tsx
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HERBS } from "../data";
@@ -14,7 +13,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 
   return {
     title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
-    description: herb.intro,
+    description: `Learn traditional ways to prepare ${herb.name}—tea, tincture, and capsules—plus safety notes. Educational reference from JW Farms.`,
     alternates: { canonical: `https://www.jwfarms7.com/herbs/${herb.slug}` },
   };
 }
