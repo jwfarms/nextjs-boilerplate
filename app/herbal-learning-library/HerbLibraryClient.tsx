@@ -112,7 +112,7 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
 
       {/* Sticky Alphabet Jump Links */}
       {letters.length > 0 && (
-        <div className="sticky top-0 z-10 -mx-2 mb-10">
+        <div className="sticky top-0 z-10 -mx-2 mb-10" id="top">
           <div className="mx-2 rounded-2xl border border-purple-200 bg-[#f6f2fb]/90 backdrop-blur px-4 py-3 shadow-sm">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
               <span className="text-sm font-semibold text-purple-900 mr-1">
