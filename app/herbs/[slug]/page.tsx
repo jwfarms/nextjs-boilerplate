@@ -1,29 +1,16 @@
 // app/herbs/[slug]/page.tsx
 
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { HERBS } from "../data";
 
-export function generateStaticParams() {
-  return HERBS.map((h) => ({ slug: h.slug }));
-}
+// ✅ IMPORTANT: do NOT pre-render every herb at build time.
+// This prevents build failures when one herb's content causes a prerender crash.
+export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
-
-  // If we don't have full data yet, still return decent metadata (no 404)
-  if (!herb) {
-    const name = params.slug
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
-
-    return {
-      title: `${name} | Herbal Learning Library | JW Farms`,
-      description:
-        "Herbal learning page from JW Farms. More details coming soon.",
-      alternates: { canonical: `https://www.jwfarms7.com/herbs/${params.slug}` },
-    };
-  }
+  if (!herb) return { title: "Herb | JW Farms" };
 
   return {
     title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
@@ -43,8 +30,8 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 function Bullets({ items }: { items: string[] }) {
   return (
     <ul className="list-disc pl-6 space-y-1 text-gray-800">
-      {items.map((t) => (
-        <li key={t}>{t}</li>
+      {items.map((t, i) => (
+        <li key={`${t}-${i}`}>{t}</li>
       ))}
     </ul>
   );
@@ -53,75 +40,17 @@ function Bullets({ items }: { items: string[] }) {
 function Steps({ items }: { items: string[] }) {
   return (
     <ol className="list-decimal pl-6 space-y-1 text-gray-800">
-      {items.map((t) => (
-        <li key={t}>{t}</li>
+      {items.map((t, i) => (
+        <li key={`${t}-${i}`}>{t}</li>
       ))}
     </ol>
   );
 }
 
-function titleFromSlug(slug: string) {
-  return slug
-    .split("-")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
-}
-
 export default function HerbPage({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
+  if (!herb) return notFound();
 
-  // ✅ Friendly fallback (no more 404)
-  if (!herb) {
-    const title = titleFromSlug(params.slug);
-    const pdfHref = `/herbal-library/${params.slug}.pdf`;
-
-    return (
-      <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
-        <div className="max-w-3xl mx-auto px-6 py-12">
-          <Link
-            href="/herbal-learning-library"
-            className="text-sm font-medium text-purple-800 hover:underline"
-          >
-            ← Back to Herbal Learning Library
-          </Link>
-
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-purple-950">
-            {title}
-          </h1>
-
-          <p className="mt-4 text-lg leading-relaxed text-gray-800">
-            We’re building this herb page right now. Your PDF guide is available,
-            and we’ll add the full “how to use” and safety details soon.
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <a
-              href={pdfHref}
-              className="inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
-            >
-              View / Download PDF →
-            </a>
-
-            <Link
-              href="/herbal-learning-library"
-              className="inline-flex items-center justify-center rounded-2xl bg-purple-700 px-5 py-3 text-sm font-semibold text-white hover:bg-purple-800 transition"
-            >
-              Browse more herbs →
-            </Link>
-          </div>
-
-          <div className="mt-10 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
-            <p className="text-sm text-gray-700">
-              Tip: If you want this page completed next, tell me the herb name
-              and I’ll add it to <code className="px-1">app/herbs/data.ts</code>.
-            </p>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  // ✅ Your existing full herb page (kept)
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
       <div className="max-w-4xl mx-auto px-6 py-12">
