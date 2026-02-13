@@ -6,11 +6,25 @@ import Link from "next/link";
 type Herb = {
   title: string;
   slug: string;
-  // Optional override (rare). If not provided, we auto-build /herbs/[slug]
   learnHref?: string;
 };
 
 const STORAGE_KEY = "jwfarms_herb_library_search";
+
+/**
+ * ✅ Only show “Learn More” for herbs that have a real /herbs/[slug] page.
+ * Add slugs here ONLY after you add the full herb object to: app/herbs/data.ts
+ */
+const LEARN_MORE_SLUGS = new Set([
+  "basil",
+  "chamomile",
+  "lavender",
+  "cilantro",
+  "cleavers",
+  "dandelion",
+  "dill",
+  "echinacea",
+]);
 
 function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
@@ -19,7 +33,6 @@ function normalizeQuery(q: string) {
 export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
   const [query, setQuery] = useState("");
 
-  // Remember last search (localStorage)
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
@@ -40,11 +53,9 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
   const filtered = useMemo(() => {
     const q = normalizeQuery(query);
     if (!q) return herbs;
-
     return herbs.filter((herb) => normalizeQuery(herb.title).includes(q));
   }, [query, herbs]);
 
-  // Group herbs by first letter (based on TITLE)
   const grouped = useMemo(() => {
     const map: Record<string, Herb[]> = {};
     filtered.forEach((herb) => {
@@ -53,7 +64,6 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
       map[letter].push(herb);
     });
 
-    // sort inside each letter
     Object.keys(map).forEach((k) => {
       map[k].sort((a, b) => a.title.localeCompare(b.title));
     });
@@ -185,8 +195,8 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                   const pdfHref = `/herbal-library/${herb.slug}.pdf`;
                   const imgSrc = `/herbal-library/previews/${herb.slug}.png`;
 
-                  // ✅ Always build Learn More automatically unless overridden
                   const learnHref = herb.learnHref ?? `/herbs/${herb.slug}`;
+                  const showLearnMore = LEARN_MORE_SLUGS.has(herb.slug);
 
                   return (
                     <div
@@ -194,7 +204,7 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                       className="bg-white rounded-3xl shadow-sm overflow-hidden
                                  border border-purple-100"
                     >
-                      {/* PDF Card (primary action) */}
+                      {/* PDF Card */}
                       <a
                         href={pdfHref}
                         className="group block
@@ -202,7 +212,6 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                                    active:translate-y-0 active:shadow-sm transition"
                         aria-label={`Open ${herb.title} PDF`}
                       >
-                        {/* Thumbnail */}
                         <div className="bg-purple-50 px-6 pt-6">
                           <div className="rounded-2xl bg-white/70 border border-purple-100 overflow-hidden">
                             <img
@@ -214,7 +223,6 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                           </div>
                         </div>
 
-                        {/* Content */}
                         <div className="p-6">
                           <div className="flex items-center justify-between gap-4 mb-2">
                             <h3 className="text-xl font-semibold text-gray-900">
@@ -235,16 +243,18 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                         </div>
                       </a>
 
-                      {/* ✅ Always show Learn More */}
-                      <div className="px-6 pb-6 -mt-2">
-                        <Link
-                          href={learnHref}
-                          className="inline-flex items-center text-sm font-semibold text-purple-700 hover:underline"
-                          aria-label={`Learn more about ${herb.title}`}
-                        >
-                          Learn More →
-                        </Link>
-                      </div>
+                      {/* ✅ Only show Learn More when the /herbs/[slug] page exists */}
+                      {showLearnMore ? (
+                        <div className="px-6 pb-6 -mt-2">
+                          <Link
+                            href={learnHref}
+                            className="inline-flex items-center text-sm font-semibold text-purple-700 hover:underline"
+                            aria-label={`Learn more about ${herb.title}`}
+                          >
+                            Learn More →
+                          </Link>
+                        </div>
+                      ) : null}
                     </div>
                   );
                 })}
