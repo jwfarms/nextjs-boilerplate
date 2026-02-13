@@ -7,8 +7,11 @@ export const metadata = {
   },
 };
 
+// IMPORTANT: match the filename exactly (case-sensitive on Vercel)
 import HerbLibraryClient from "./HerbLibraryClient";
 
+// ✅ Since you created folders/pages for ALL of these slugs,
+// add learnHref to ALL items so “Learn More →” shows everywhere.
 const HERBS = [
   { title: "Basil", slug: "basil", learnHref: "/herbs/basil" },
   { title: "Chamomile", slug: "chamomile", learnHref: "/herbs/chamomile" },
@@ -19,28 +22,36 @@ const HERBS = [
   { title: "Echinacea", slug: "echinacea", learnHref: "/herbs/echinacea" },
   { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender" },
 
-  // Everything else can stay WITHOUT learnHref until you add it to app/herbs/data.ts
-  { title: "Edelweiss Lavender", slug: "edelweiss-lavender" },
-  { title: "Garlic", slug: "garlic" },
-  { title: "Ginko", slug: "ginko" },
-  { title: "Lemon Balm", slug: "lemonbalm" },
-  { title: "Marjoram", slug: "marjoram" },
-  { title: "Marshmallow", slug: "marshmallow" },
-  { title: "Mint", slug: "mint" },
-  { title: "Mullein", slug: "mullein" },
-  { title: "Nasturtium", slug: "nasturtium" },
-  { title: "Oregano", slug: "oregano" },
-  { title: "Parsley", slug: "parsley" },
-  { title: "Peppermint", slug: "peppermint" },
-  { title: "Plantain Weed", slug: "plantain" },
-  { title: "Purslane", slug: "purslane" },
-  { title: "Rosemary", slug: "rosemary" },
-  { title: "Sage", slug: "sage" },
-  { title: "Spearmint", slug: "spearmint" },
-  { title: "St John's Wort", slug: "st-johns-wort" },
-  { title: "Thyme", slug: "thyme" },
-  { title: "White Clover", slug: "white-clover" },
-  { title: "Yarrow", slug: "yarrow" },
+  { title: "Edelweiss Lavender", slug: "edelweiss-lavender", learnHref: "/herbs/edelweiss-lavender" },
+  { title: "Garlic", slug: "garlic", learnHref: "/herbs/garlic" },
+  { title: "Ginko", slug: "ginko", learnHref: "/herbs/ginko" },
+
+  // ✅ Your folder list shows "lemon-balm" but your slug here was "lemonbalm".
+  // Use the SAME slug as your folder/PDF name.
+  { title: "Lemon Balm", slug: "lemon-balm", learnHref: "/herbs/lemon-balm" },
+
+  { title: "Marjoram", slug: "marjoram", learnHref: "/herbs/marjoram" },
+  { title: "Marshmallow", slug: "marshmallow", learnHref: "/herbs/marshmallow" },
+  { title: "Mint", slug: "mint", learnHref: "/herbs/mint" },
+  { title: "Mullein", slug: "mullein", learnHref: "/herbs/mullein" },
+  { title: "Nasturtium", slug: "nasturtium", learnHref: "/herbs/nasturtium" },
+  { title: "Oregano", slug: "oregano", learnHref: "/herbs/oregano" },
+  { title: "Parsley", slug: "parsley", learnHref: "/herbs/parsley" },
+  { title: "Peppermint", slug: "peppermint", learnHref: "/herbs/peppermint" },
+  { title: "Plantain Weed", slug: "plantain", learnHref: "/herbs/plantain" },
+  { title: "Purslane", slug: "purslane", learnHref: "/herbs/purslane" },
+  { title: "Rosemary", slug: "rosemary", learnHref: "/herbs/rosemary" },
+  { title: "Sage", slug: "sage", learnHref: "/herbs/sage" },
+  { title: "Spearmint", slug: "spearmint", learnHref: "/herbs/spearmint" },
+
+  // ✅ Your folder list shows "st johns-wort" (with a space) but your slug here was "st-johns-wort".
+  // Slugs can’t contain spaces in URLs, so use the DASH version and make sure your folder is:
+  // app/herbs/st-johns-wort/page.tsx
+  { title: "St John's Wort", slug: "st-johns-wort", learnHref: "/herbs/st-johns-wort" },
+
+  { title: "Thyme", slug: "thyme", learnHref: "/herbs/thyme" },
+  { title: "White Clover", slug: "white-clover", learnHref: "/herbs/white-clover" },
+  { title: "Yarrow", slug: "yarrow", learnHref: "/herbs/yarrow" },
 ];
 
 export default function HerbalLearningLibraryPage() {
