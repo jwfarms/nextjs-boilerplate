@@ -1,15 +1,30 @@
 // app/herbs/[slug]/page.tsx
+
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { HERBS } from "../data";
 
+// Optional but helpful: prebuild pages for slugs you already have in data.ts
 export function generateStaticParams() {
   return HERBS.map((h) => ({ slug: h.slug }));
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
-  if (!herb) return { title: "Herb | JW Farms" };
+
+  // ✅ Do NOT 404 in metadata either — use a safe fallback
+  if (!herb) {
+    const pretty = params.slug
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+    return {
+      title: `${pretty} | Herbal Learning Library | JW Farms`,
+      description:
+        "This herb page is being prepared. Check back soon for a full guide from JW Farms.",
+      alternates: { canonical: `https://www.jwfarms7.com/herbs/${params.slug}` },
+    };
+  }
 
   return {
     title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
@@ -48,7 +63,41 @@ function Steps({ items }: { items: string[] }) {
 
 export default function HerbPage({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
-  if (!herb) return notFound();
+
+  // ✅ If herb isn't in data.ts yet, show a friendly "Coming soon" page (no 404)
+  if (!herb) {
+    const pretty = params.slug
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+    return (
+      <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          <Link
+            href="/herbal-learning-library"
+            className="text-sm font-medium text-purple-800 hover:underline"
+          >
+            ← Back to Herbal Learning Library
+          </Link>
+
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-purple-950">
+            {pretty}
+          </h1>
+
+          <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-purple-100">
+            <p className="text-lg text-gray-800">
+              This page is being prepared. Check back soon for the full guide.
+            </p>
+
+            <p className="mt-3 text-sm text-gray-600">
+              (Slug: <span className="font-mono">{params.slug}</span>)
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
