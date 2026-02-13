@@ -1,30 +1,16 @@
 // app/herbs/[slug]/page.tsx
 
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { HERBS } from "../data";
 
-// Optional but helpful: prebuild pages for slugs you already have in data.ts
-export function generateStaticParams() {
-  return HERBS.map((h) => ({ slug: h.slug }));
-}
+// ✅ Critical: do NOT pre-render every herb at build time.
+// This prevents the "prerender error ... split of undefined" from killing builds.
+export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
-
-  // ✅ Do NOT 404 in metadata either — use a safe fallback
-  if (!herb) {
-    const pretty = params.slug
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
-
-    return {
-      title: `${pretty} | Herbal Learning Library | JW Farms`,
-      description:
-        "This herb page is being prepared. Check back soon for a full guide from JW Farms.",
-      alternates: { canonical: `https://www.jwfarms7.com/herbs/${params.slug}` },
-    };
-  }
+  if (!herb) return { title: "Herb | JW Farms" };
 
   return {
     title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
@@ -44,8 +30,8 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 function Bullets({ items }: { items: string[] }) {
   return (
     <ul className="list-disc pl-6 space-y-1 text-gray-800">
-      {items.map((t) => (
-        <li key={t}>{t}</li>
+      {items.map((t, i) => (
+        <li key={`${t}-${i}`}>{t}</li>
       ))}
     </ul>
   );
@@ -54,8 +40,8 @@ function Bullets({ items }: { items: string[] }) {
 function Steps({ items }: { items: string[] }) {
   return (
     <ol className="list-decimal pl-6 space-y-1 text-gray-800">
-      {items.map((t) => (
-        <li key={t}>{t}</li>
+      {items.map((t, i) => (
+        <li key={`${t}-${i}`}>{t}</li>
       ))}
     </ol>
   );
@@ -63,41 +49,7 @@ function Steps({ items }: { items: string[] }) {
 
 export default function HerbPage({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
-
-  // ✅ If herb isn't in data.ts yet, show a friendly "Coming soon" page (no 404)
-  if (!herb) {
-    const pretty = params.slug
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
-
-    return (
-      <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
-        <div className="max-w-4xl mx-auto px-6 py-12">
-          <Link
-            href="/herbal-learning-library"
-            className="text-sm font-medium text-purple-800 hover:underline"
-          >
-            ← Back to Herbal Learning Library
-          </Link>
-
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-purple-950">
-            {pretty}
-          </h1>
-
-          <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-purple-100">
-            <p className="text-lg text-gray-800">
-              This page is being prepared. Check back soon for the full guide.
-            </p>
-
-            <p className="mt-3 text-sm text-gray-600">
-              (Slug: <span className="font-mono">{params.slug}</span>)
-            </p>
-          </div>
-        </div>
-      </main>
-    );
-  }
+  if (!herb) return notFound();
 
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
@@ -131,7 +83,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
 
         <SectionTitle>Botanical snapshot</SectionTitle>
         <div className="grid sm:grid-cols-2 gap-4">
-          {herb.snapshot.map((row) => (
+          {(herb.snapshot ?? []).map((row) => (
             <div
               key={row.label}
               className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-purple-100"
@@ -145,7 +97,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         </div>
 
         <SectionTitle>Traditional uses</SectionTitle>
-        <Bullets items={herb.traditionalUses} />
+        <Bullets items={herb.traditionalUses ?? []} />
         <p className="mt-3 text-sm text-gray-600">
           Traditional use is not the same as proven medical treatment.
         </p>
@@ -155,11 +107,13 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
             <SectionTitle>{herb.tea.title}</SectionTitle>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
               <div className="font-semibold text-gray-900 mb-2">You’ll need</div>
-              <Bullets items={herb.tea.bullets} />
+              <Bullets items={herb.tea.bullets ?? []} />
+
               <div className="font-semibold text-gray-900 mt-5 mb-2">
                 Directions
               </div>
-              <Steps items={herb.tea.steps} />
+              <Steps items={herb.tea.steps ?? []} />
+
               {herb.tea.notes?.length ? (
                 <>
                   <div className="font-semibold text-gray-900 mt-5 mb-2">
@@ -177,11 +131,13 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
             <SectionTitle>Tincture (Alcohol extract)</SectionTitle>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
               <div className="font-semibold text-gray-900 mb-2">Basics</div>
-              <Bullets items={herb.tincture.bullets} />
+              <Bullets items={herb.tincture.bullets ?? []} />
+
               <div className="font-semibold text-gray-900 mt-5 mb-2">
                 Directions
               </div>
-              <Steps items={herb.tincture.steps} />
+              <Steps items={herb.tincture.steps ?? []} />
+
               {herb.tincture.notes?.length ? (
                 <>
                   <div className="font-semibold text-gray-900 mt-5 mb-2">
@@ -199,11 +155,13 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
             <SectionTitle>Capsules</SectionTitle>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
               <div className="font-semibold text-gray-900 mb-2">You’ll need</div>
-              <Bullets items={herb.capsules.bullets} />
+              <Bullets items={herb.capsules.bullets ?? []} />
+
               <div className="font-semibold text-gray-900 mt-5 mb-2">
                 Directions
               </div>
-              <Steps items={herb.capsules.steps} />
+              <Steps items={herb.capsules.steps ?? []} />
+
               {herb.capsules.notes?.length ? (
                 <>
                   <div className="font-semibold text-gray-900 mt-5 mb-2">
@@ -225,7 +183,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
 
         <SectionTitle>Safety &amp; considerations</SectionTitle>
         <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
-          <Bullets items={herb.safety} />
+          <Bullets items={herb.safety ?? []} />
         </div>
       </div>
     </main>
