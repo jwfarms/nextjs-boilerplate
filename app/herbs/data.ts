@@ -15,6 +15,9 @@ export type Herb = {
   pdfHref?: string;
 };
 
+const FDA =
+  "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.";
+
 export const HERBS: Herb[] = [
   // =========================
   // BASIL
@@ -51,9 +54,7 @@ export const HERBS: Herb[] = [
         "Cover and steep 10–15 minutes.",
         "Strain and enjoy.",
       ],
-      notes: [
-        "Traditionally enjoyed warm after meals or during seasonal transitions.",
-      ],
+      notes: ["Traditionally enjoyed warm after meals or during seasonal transitions."],
     },
     tincture: {
       bullets: [
@@ -80,88 +81,9 @@ export const HERBS: Herb[] = [
       "Basil is widely used as food. For concentrated preparations, use extra care.",
       "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
       "Discontinue if you notice sensitivity or irritation.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
+      FDA,
     ],
     pdfHref: "/herbal-library/basil.pdf",
-  },
-
-  // =========================
-  // LAVENDER
-  // =========================
-  {
-    slug: "lavender",
-    name: "Lavender",
-    botanical: "Lavandula angustifolia",
-    intro:
-      "Lavender is cherished for its soothing aroma and traditional household uses. It’s commonly used in simple routines for relaxation, comfort, and everyday wellness—especially as part of evening wind-down practices.",
-    snapshot: [
-      { label: "Botanical name", value: "Lavandula angustifolia" },
-      { label: "Common names", value: "Lavender" },
-      { label: "Family", value: "Mint family (Lamiaceae)" },
-      { label: "Part used", value: "Flower (buds), sometimes leaf" },
-      { label: "Taste/aroma", value: "Floral, sweet, gently herbaceous" },
-    ],
-    traditionalUses: [
-      "Calm, relaxing evening routines (traditional use)",
-      "Comfort during occasional tension (traditional use)",
-      "Aromatic support for restful wind-down (traditional use)",
-      "Household scenting and linen freshness (traditional use)",
-    ],
-    tea: {
-      title: "Lavender Tea (Infusion)",
-      bullets: [
-        "1 tsp dried lavender buds (culinary-grade)",
-        "1 cup hot water",
-        "Optional: honey, lemon, or chamomile for a softer blend",
-      ],
-      steps: [
-        "Place lavender buds in a mug or teapot.",
-        "Pour hot water over the herb.",
-        "Cover and steep 5–10 minutes (lavender is potent).",
-        "Strain and enjoy.",
-      ],
-      notes: [
-        "Start small—lavender can taste strong if over-steeped.",
-        "Traditionally enjoyed in the evening as part of a calm routine.",
-      ],
-    },
-    tincture: {
-      bullets: [
-        "Dried lavender buds: 1:5 (herb : alcohol)",
-        "Fresh lavender: 1:2",
-        "Alcohol: 40–60% (many people use vodka)",
-      ],
-      steps: [
-        "Lightly crush buds (or chop fresh lavender).",
-        "Add herb to a glass jar and cover with alcohol using the ratio above.",
-        "Seal, label, and store in a dark cabinet.",
-        "Shake daily (or whenever you remember) for 4–6 weeks.",
-        "Strain and bottle in a dark dropper bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: [
-        "Dried lavender buds powder (or very finely ground buds)",
-        "Empty capsules (size 0 or 00)",
-        "Optional: capsule filling tray",
-      ],
-      steps: [
-        "Fill capsules with lavender powder.",
-        "Store in a labeled jar away from heat and humidity.",
-      ],
-      notes: [
-        "Use extra care with concentrated preparations; lavender is aromatic and strong.",
-      ],
-    },
-    pairings: ["Chamomile", "Lemon balm", "Rose petals", "Mint (tiny amount)"],
-    safety: [
-      "Lavender is commonly used in food and household routines. For concentrated internal use, start small.",
-      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
-      "Discontinue if you notice sensitivity or irritation.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
-    ],
-    pdfHref: "/herbal-library/lavender.pdf",
   },
 
   // =========================
@@ -187,11 +109,7 @@ export const HERBS: Herb[] = [
     ],
     tea: {
       title: "Chamomile Tea (Infusion)",
-      bullets: [
-        "1–2 tsp dried chamomile flowers",
-        "1 cup hot water",
-        "Optional: honey",
-      ],
+      bullets: ["1–2 tsp dried chamomile flowers", "1 cup hot water", "Optional: honey"],
       steps: [
         "Place chamomile in a mug or teapot.",
         "Pour hot water over the herb.",
@@ -202,7 +120,7 @@ export const HERBS: Herb[] = [
     safety: [
       "Avoid if you have known allergy to plants in the daisy family (ragweed, etc.).",
       "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
-      "These statements have not been evaluated by the FDA. Educational information only.",
+      FDA,
     ],
     pdfHref: "/herbal-library/chamomile.pdf",
   },
@@ -228,51 +146,11 @@ export const HERBS: Herb[] = [
       "Comfortable digestion after meals when used in foods (traditional use)",
       "Seasonal food traditions and daily vitality (traditional use)",
     ],
-    tea: {
-      title: "Cilantro Leaf Tea (Mild Infusion)",
-      bullets: [
-        "1–2 tbsp fresh cilantro (or 1–2 tsp dried leaf)",
-        "1 cup hot water",
-        "Optional: lemon",
-      ],
-      steps: [
-        "Place cilantro in a mug or teapot.",
-        "Pour hot water over the herb.",
-        "Cover and steep 5–10 minutes.",
-        "Strain and enjoy.",
-      ],
-      notes: [
-        "Cilantro leaf tea is mild; many people prefer it as a food herb rather than a tea.",
-      ],
-    },
-    tincture: {
-      bullets: [
-        "Dried leaf: 1:5 (herb : alcohol)",
-        "Fresh leaf: 1:2",
-        "Alcohol: 40–60%",
-      ],
-      steps: [
-        "Chop fresh cilantro (or use dried).",
-        "Add herb to a glass jar and cover with alcohol using the ratio above.",
-        "Seal, label, and store in a dark cabinet.",
-        "Shake daily for 4–6 weeks.",
-        "Strain and bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: ["Dried cilantro leaf powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules.", "Store labeled and dry."],
-      notes: [
-        "Often used as a food herb first; use extra care with concentrated forms.",
-      ],
-    },
-    pairings: ["Lime", "Ginger", "Mint", "Cumin (culinary)"],
     safety: [
       "Cilantro is widely used as food.",
       "If you have plant allergies, introduce slowly and discontinue if you notice sensitivity.",
       "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
+      FDA,
     ],
     pdfHref: "/herbal-library/cilantro.pdf",
   },
@@ -290,7 +168,7 @@ export const HERBS: Herb[] = [
       { label: "Botanical name", value: "Galium aparine" },
       { label: "Common names", value: "Cleavers, sticky weed, goosegrass" },
       { label: "Family", value: "Bedstraw family (Rubiaceae)" },
-      { label: "Part used", value: "Aerial parts (fresh preferred)" },
+      { label: "Part used", value: "Aerial parts" },
       { label: "Taste/aroma", value: "Green, mild, slightly grassy" },
     ],
     traditionalUses: [
@@ -298,46 +176,10 @@ export const HERBS: Herb[] = [
       "Gentle daily “refresh” habits (traditional use)",
       "Historically used in folk preparations as a mild herb (traditional use)",
     ],
-    tea: {
-      title: "Cleavers Tea (Infusion)",
-      bullets: ["1–2 tsp dried cleavers (or 2–3 tbsp fresh)", "1 cup hot water"],
-      steps: [
-        "Place cleavers in a mug or teapot.",
-        "Pour hot water over the herb.",
-        "Cover and steep 10–15 minutes.",
-        "Strain and enjoy.",
-      ],
-      notes: [
-        "Cleavers is often used fresh in traditional practice; dried can work as a simple infusion.",
-      ],
-    },
-    tincture: {
-      bullets: [
-        "Fresh cleavers: 1:2 (herb : alcohol)",
-        "Dried cleavers: 1:5",
-        "Alcohol: 40–60%",
-      ],
-      steps: [
-        "Chop fresh cleavers (recommended) or use dried.",
-        "Cover with alcohol using the ratio above.",
-        "Seal, label, and store in a dark cabinet.",
-        "Shake daily for 4–6 weeks.",
-        "Strain and bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: ["Dried cleavers powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules.", "Store labeled and dry."],
-      notes: [
-        "Traditional use is often as tea/infusion; use extra care with concentrated forms.",
-      ],
-    },
-    pairings: ["Nettle", "Lemon (tiny amount)", "Mint (tiny amount)"],
     safety: [
-      "Use extra care if you are pregnant, breastfeeding, taking medications, or managing a condition—consult a qualified professional.",
+      "Use extra care if pregnant, breastfeeding, taking medications, or managing a condition—consult a qualified professional.",
       "Discontinue if you notice sensitivity or stomach upset.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
+      FDA,
     ],
     pdfHref: "/herbal-library/cleavers.pdf",
   },
@@ -356,61 +198,17 @@ export const HERBS: Herb[] = [
       { label: "Common names", value: "Dandelion" },
       { label: "Family", value: "Daisy family (Asteraceae)" },
       { label: "Part used", value: "Leaf and root" },
-      {
-        label: "Taste/aroma",
-        value: "Leaf: bitter/green • Root (roasted): earthy",
-      },
+      { label: "Taste/aroma", value: "Leaf: bitter/green • Root: earthy" },
     ],
     traditionalUses: [
       "Traditional springtime wellness routines (traditional use)",
       "Bitter herb traditions for digestion and appetite (traditional use)",
-      "Roasted root beverages as a coffee-like tradition (traditional use)",
       "Everyday nourishment in food traditions (traditional use)",
     ],
-    tea: {
-      title: "Dandelion Leaf Tea (Infusion)",
-      bullets: ["1–2 tsp dried leaf", "1 cup hot water"],
-      steps: [
-        "Place dandelion leaf in a mug or teapot.",
-        "Pour hot water over the herb.",
-        "Cover and steep 10–15 minutes.",
-        "Strain and enjoy.",
-      ],
-      notes: [
-        "Bitter taste is normal; many people blend with mint or a touch of lemon.",
-      ],
-    },
-    tincture: {
-      bullets: [
-        "Dried leaf or root: 1:5 (herb : alcohol)",
-        "Fresh leaf: 1:2",
-        "Alcohol: 40–60%",
-      ],
-      steps: [
-        "Chop fresh plant material (or use dried).",
-        "Cover with alcohol using the ratio above.",
-        "Seal, label, and store in a dark cabinet.",
-        "Shake daily for 4–6 weeks.",
-        "Strain and bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: [
-        "Dried dandelion leaf or root powder",
-        "Empty capsules (size 0 or 00)",
-      ],
-      steps: ["Fill capsules.", "Store labeled and dry."],
-      notes: [
-        "Traditional use often emphasizes tea/food use; use extra care with concentrated forms.",
-      ],
-    },
-    pairings: ["Mint", "Ginger", "Lemon peel"],
     safety: [
       "Avoid if you have a known allergy to plants in the daisy family (ragweed, etc.).",
       "If you have gallbladder concerns or are taking medications, consult a qualified professional before using concentrated preparations.",
-      "Discontinue if you notice sensitivity or stomach upset.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
+      FDA,
     ],
     pdfHref: "/herbal-library/dandelion.pdf",
   },
@@ -436,111 +234,650 @@ export const HERBS: Herb[] = [
       "Included in classic culinary traditions (traditional use)",
       "Simple soothing household routines (traditional use)",
     ],
-    tea: {
-      title: "Dill Seed Tea (Traditional Infusion)",
-      bullets: ["1 tsp dill seed (lightly crushed)", "1 cup hot water"],
-      steps: [
-        "Lightly crush dill seed.",
-        "Place in a mug or teapot.",
-        "Pour hot water over the seed.",
-        "Cover and steep 10–15 minutes.",
-        "Strain and enjoy.",
-      ],
-      notes: ["Traditionally enjoyed after meals."],
-    },
-    tincture: {
-      bullets: ["Dill seed (dried): 1:5 (herb : alcohol)", "Alcohol: 40–60%"],
-      steps: [
-        "Add dill seed to a glass jar.",
-        "Cover with alcohol using the ratio above.",
-        "Seal, label, and store in a dark cabinet.",
-        "Shake daily for 4–6 weeks.",
-        "Strain and bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: ["Dill seed powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules.", "Store labeled and dry."],
-      notes: [
-        "Use extra care with concentrated forms; dill is commonly used as food first.",
-      ],
-    },
-    pairings: ["Fennel", "Ginger", "Lemon"],
     safety: [
       "Dill is widely used as food.",
       "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional before using concentrated preparations.",
-      "Discontinue if you notice sensitivity or irritation.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
+      FDA,
     ],
     pdfHref: "/herbal-library/dill.pdf",
   },
 
   // =========================
-  // ECHINACEA  ✅ ADDED
+  // ECHINACEA
   // =========================
   {
     slug: "echinacea",
     name: "Echinacea",
     botanical: "Echinacea purpurea",
     intro:
-      "Echinacea is a well-known traditional herb often included in seasonal wellness routines. It has a long history of household use, especially during times of seasonal change.",
+      "Echinacea is traditionally used in seasonal wellness routines. Many people keep it on hand as part of classic “change of seasons” habits.",
     snapshot: [
       { label: "Botanical name", value: "Echinacea purpurea" },
       { label: "Common names", value: "Purple coneflower" },
       { label: "Family", value: "Daisy family (Asteraceae)" },
-      { label: "Part used", value: "Root and aerial parts (varies by tradition)" },
-      { label: "Taste/aroma", value: "Earthy; may cause a tingling sensation" },
+      { label: "Part used", value: "Root and aerial parts (varies)" },
+      { label: "Taste/aroma", value: "Earthy, slightly pungent" },
     ],
     traditionalUses: [
       "Seasonal wellness traditions (traditional use)",
-      "Traditional immune-support routines (traditional use)",
-      "Short-term household use during seasonal shifts (traditional use)",
+      "Traditional household support during seasonal shifts (traditional use)",
+      "General immune-support folklore (traditional use)",
     ],
-    tea: {
-      title: "Echinacea Tea (Infusion)",
-      bullets: [
-        "1–2 tsp dried echinacea root or aerial parts",
-        "1 cup hot water",
-        "Optional: honey or lemon",
-      ],
-      steps: [
-        "Place echinacea in a mug or teapot.",
-        "Pour hot water over the herb.",
-        "Cover and steep 10–15 minutes.",
-        "Strain and enjoy.",
-      ],
-      notes: [
-        "Traditionally used for short periods during seasonal transitions.",
-      ],
-    },
-    tincture: {
-      bullets: [
-        "Dried echinacea: 1:5 (herb : alcohol)",
-        "Fresh echinacea: 1:2",
-        "Alcohol: 40–60%",
-      ],
-      steps: [
-        "Chop fresh herb (or use dried).",
-        "Cover with alcohol using the ratio above.",
-        "Seal, label, and store in a dark cabinet.",
-        "Shake daily for 4–6 weeks.",
-        "Strain and bottle.",
-      ],
-      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
-    },
-    capsules: {
-      bullets: ["Dried echinacea powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules.", "Store labeled and dry."],
-      notes: ["Use extra care with concentrated forms and start small."],
-    },
-    pairings: ["Elderberry", "Ginger", "Lemon balm"],
     safety: [
+      "Use extra care if you have autoimmune conditions or are immune-compromised—consult a qualified professional.",
       "Avoid if you have a known allergy to plants in the daisy family (ragweed, etc.).",
-      "Use extra care if pregnant, breastfeeding, immune-compromised, or taking medications—consult a qualified professional.",
-      "Discontinue if you notice sensitivity or stomach upset.",
-      "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
+      FDA,
     ],
     pdfHref: "/herbal-library/echinacea.pdf",
   },
+
+  // =========================
+  // EDELWEISS LAVENDER
+  // =========================
+  {
+    slug: "edelweiss-lavender",
+    name: "Edelweiss Lavender",
+    botanical: "Lavandula × intermedia (often sold as ‘Edelweiss’)",
+    intro:
+      "Edelweiss lavender is a commonly grown lavender type used in traditional household routines for fragrance, relaxation, and seasonal enjoyment.",
+    snapshot: [
+      { label: "Botanical name", value: "Lavandula × intermedia (cultivar varies)" },
+      { label: "Common names", value: "Edelweiss lavender (trade name)" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Flower (buds)" },
+      { label: "Taste/aroma", value: "Floral, fresh, strongly aromatic" },
+    ],
+    traditionalUses: [
+      "Aromatic household routines (traditional use)",
+      "Evening wind-down traditions (traditional use)",
+      "Linen and home scenting traditions (traditional use)",
+    ],
+    safety: [
+      "Lavender is commonly used in food and household routines. For concentrated internal use, start small.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/edelweiss-lavender.pdf",
+  },
+
+  // =========================
+  // GARLIC
+  // =========================
+  {
+    slug: "garlic",
+    name: "Garlic",
+    botanical: "Allium sativum",
+    intro:
+      "Garlic is a classic culinary staple used worldwide. It has a long history in traditional foodways and everyday household routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Allium sativum" },
+      { label: "Common names", value: "Garlic" },
+      { label: "Family", value: "Amaryllis family (Amaryllidaceae)" },
+      { label: "Part used", value: "Bulb (cloves)" },
+      { label: "Taste/aroma", value: "Pungent, warming, savory" },
+    ],
+    traditionalUses: [
+      "Traditional culinary vitality and food traditions (traditional use)",
+      "Seasonal household traditions (traditional use)",
+      "General daily wellness routines through food (traditional use)",
+    ],
+    safety: [
+      "Garlic is widely used as food; concentrated forms may be more intense.",
+      "If taking blood thinners or preparing for surgery, consult a qualified professional before concentrated use.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/garlic.pdf",
+  },
+
+  // =========================
+  // GINKO (folder spelled ginko)
+  // =========================
+  {
+    slug: "ginko",
+    name: "Ginko",
+    botanical: "Ginkgo biloba",
+    intro:
+      "Ginkgo has a long history of traditional use. Today it is often included in classic herbal traditions and wellness routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Ginkgo biloba" },
+      { label: "Common names", value: "Ginkgo" },
+      { label: "Family", value: "Ginkgo family (Ginkgoaceae)" },
+      { label: "Part used", value: "Leaf (prepared extracts vary)" },
+      { label: "Taste/aroma", value: "Mild, slightly bitter" },
+    ],
+    traditionalUses: [
+      "Traditional vitality routines (traditional use)",
+      "Classic herbal traditions (traditional use)",
+      "Long-standing global folk use (traditional use)",
+    ],
+    safety: [
+      "Consult a qualified professional if taking blood thinners, seizure medications, or if pregnant/breastfeeding.",
+      "Use extra care with concentrated extracts.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/ginko.pdf",
+  },
+
+  // =========================
+  // LEMON BALM (folder: lemon-balm)
+  // =========================
+  {
+    slug: "lemon-balm",
+    name: "Lemon Balm",
+    botanical: "Melissa officinalis",
+    intro:
+      "Lemon balm is a gentle, lemony mint-family herb traditionally used in calming routines and everyday comfort habits.",
+    snapshot: [
+      { label: "Botanical name", value: "Melissa officinalis" },
+      { label: "Common names", value: "Lemon balm" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf" },
+      { label: "Taste/aroma", value: "Lemony, mild, sweet-herbal" },
+    ],
+    traditionalUses: [
+      "Calm evening routines (traditional use)",
+      "Everyday comfort and relaxation habits (traditional use)",
+      "Seasonal stress/soothing traditions (traditional use)",
+    ],
+    safety: [
+      "Generally gentle; discontinue if you notice sensitivity.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/lemon-balm.pdf",
+  },
+
+  // =========================
+  // MARJORAM
+  // =========================
+  {
+    slug: "marjoram",
+    name: "Marjoram",
+    botanical: "Origanum majorana",
+    intro:
+      "Marjoram is a warm, aromatic culinary herb traditionally used in comforting food traditions and household routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Origanum majorana" },
+      { label: "Common names", value: "Sweet marjoram" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf/flowering tops" },
+      { label: "Taste/aroma", value: "Warm, sweet, gently spicy" },
+    ],
+    traditionalUses: [
+      "Comforting meal traditions (traditional use)",
+      "Aromatic household routines (traditional use)",
+      "Classic after-meal comfort traditions (traditional use)",
+    ],
+    safety: [
+      "Marjoram is widely used as food; concentrated preparations require extra care.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/marjoram.pdf",
+  },
+
+  // =========================
+  // MARSHMALLOW
+  // =========================
+  {
+    slug: "marshmallow",
+    name: "Marshmallow",
+    botanical: "Althaea officinalis",
+    intro:
+      "Marshmallow is traditionally valued for its soothing, demulcent qualities and is often used in gentle comfort routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Althaea officinalis" },
+      { label: "Common names", value: "Marshmallow root/leaf" },
+      { label: "Family", value: "Mallow family (Malvaceae)" },
+      { label: "Part used", value: "Root (common), leaf" },
+      { label: "Taste/aroma", value: "Mild, slightly sweet, mucilaginous" },
+    ],
+    traditionalUses: [
+      "Soothing comfort traditions (traditional use)",
+      "Gentle seasonal routines (traditional use)",
+      "Traditional throat/tea comfort folklore (traditional use)",
+    ],
+    safety: [
+      "May affect absorption of medications—separate by 2+ hours as a cautious practice.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/marshmallow.pdf",
+  },
+
+  // =========================
+  // MINT
+  // =========================
+  {
+    slug: "mint",
+    name: "Mint",
+    botanical: "Mentha spp.",
+    intro:
+      "Mint is a classic household herb used for flavor and everyday comfort. It’s commonly enjoyed as a tea and in traditional after-meal routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Mentha spp." },
+      { label: "Common names", value: "Mint (various species)" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf" },
+      { label: "Taste/aroma", value: "Cooling, bright, refreshing" },
+    ],
+    traditionalUses: [
+      "After-meal comfort traditions (traditional use)",
+      "Cooling, refreshing routines (traditional use)",
+      "Everyday household tea traditions (traditional use)",
+    ],
+    safety: [
+      "Mint is widely used as food; concentrated oils are much stronger (use extra care).",
+      "If you have reflux sensitivity, start small.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/mint.pdf",
+  },
+
+  // =========================
+  // MULLEIN
+  // =========================
+  {
+    slug: "mullein",
+    name: "Mullein",
+    botanical: "Verbascum thapsus",
+    intro:
+      "Mullein leaf has a long history in traditional herbalism, often prepared as a tea in classic seasonal routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Verbascum thapsus" },
+      { label: "Common names", value: "Mullein" },
+      { label: "Family", value: "Figwort family (Scrophulariaceae)" },
+      { label: "Part used", value: "Leaf (most common), flower" },
+      { label: "Taste/aroma", value: "Mild, earthy" },
+    ],
+    traditionalUses: [
+      "Traditional seasonal wellness routines (traditional use)",
+      "Classic tea traditions (traditional use)",
+      "General household herbal traditions (traditional use)",
+    ],
+    safety: [
+      "Strain mullein tea well (fine hairs can be irritating).",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/mullein.pdf",
+  },
+
+  // =========================
+  // NASTURTIUM
+  // =========================
+  {
+    slug: "nasturtium",
+    name: "Nasturtium",
+    botanical: "Tropaeolum majus",
+    intro:
+      "Nasturtium is a vibrant garden plant with edible leaves and flowers, traditionally enjoyed as part of food-based wellness traditions.",
+    snapshot: [
+      { label: "Botanical name", value: "Tropaeolum majus" },
+      { label: "Common names", value: "Nasturtium" },
+      { label: "Family", value: "Nasturtium family (Tropaeolaceae)" },
+      { label: "Part used", value: "Leaf, flower (culinary)" },
+      { label: "Taste/aroma", value: "Peppery, fresh" },
+    ],
+    traditionalUses: [
+      "Traditional culinary vitality (traditional use)",
+      "Seasonal garden-to-table traditions (traditional use)",
+      "Everyday nourishment through food traditions (traditional use)",
+    ],
+    safety: [
+      "Generally used as food; introduce slowly if sensitive.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/nasturtium.pdf",
+  },
+
+  // =========================
+  // OREGANO
+  // =========================
+  {
+    slug: "oregano",
+    name: "Oregano",
+    botanical: "Origanum vulgare",
+    intro:
+      "Oregano is a strong, aromatic culinary herb used in traditional foodways and household routines across many cultures.",
+    snapshot: [
+      { label: "Botanical name", value: "Origanum vulgare" },
+      { label: "Common names", value: "Oregano" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf/flowering tops" },
+      { label: "Taste/aroma", value: "Robust, spicy, aromatic" },
+    ],
+    traditionalUses: [
+      "Culinary traditions for everyday vitality (traditional use)",
+      "Traditional seasonal routines (traditional use)",
+      "Household herbal traditions (traditional use)",
+    ],
+    safety: [
+      "Oregano is widely used as food; concentrated oil is much stronger (use extra care).",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/oregano.pdf",
+  },
+
+  // =========================
+  // PARSLEY
+  // =========================
+  {
+    slug: "parsley",
+    name: "Parsley",
+    botanical: "Petroselinum crispum",
+    intro:
+      "Parsley is a common culinary herb traditionally used in everyday meals and food-based wellness routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Petroselinum crispum" },
+      { label: "Common names", value: "Parsley" },
+      { label: "Family", value: "Carrot family (Apiaceae)" },
+      { label: "Part used", value: "Leaf (and sometimes root)" },
+      { label: "Taste/aroma", value: "Fresh, green, mildly bitter" },
+    ],
+    traditionalUses: [
+      "Traditional nourishment through food (traditional use)",
+      "Culinary vitality traditions (traditional use)",
+      "Everyday kitchen herb routines (traditional use)",
+    ],
+    safety: [
+      "Parsley is widely used as food; concentrated preparations require extra care.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/parsley.pdf",
+  },
+
+  // =========================
+  // PEPPERMINT
+  // =========================
+  {
+    slug: "peppermint",
+    name: "Peppermint",
+    botanical: "Mentha × piperita",
+    intro:
+      "Peppermint is a classic cooling mint often enjoyed as a tea. It’s traditionally used in after-meal routines and everyday comfort practices.",
+    snapshot: [
+      { label: "Botanical name", value: "Mentha × piperita" },
+      { label: "Common names", value: "Peppermint" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf" },
+      { label: "Taste/aroma", value: "Cooling, sharp, strongly minty" },
+    ],
+    traditionalUses: [
+      "After-meal comfort traditions (traditional use)",
+      "Cooling, refreshing routines (traditional use)",
+      "Everyday tea traditions (traditional use)",
+    ],
+    safety: [
+      "Peppermint is widely used as tea/food; concentrated oil is much stronger (use extra care).",
+      "If you have reflux sensitivity, start small.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/peppermint.pdf",
+  },
+
+  // =========================
+  // PLANTAIN
+  // =========================
+  {
+    slug: "plantain",
+    name: "Plantain",
+    botanical: "Plantago major (or Plantago lanceolata)",
+    intro:
+      "Plantain is a common field herb with a long history of traditional household use, especially in simple, practical routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Plantago major / lanceolata" },
+      { label: "Common names", value: "Plantain (weed)" },
+      { label: "Family", value: "Plantain family (Plantaginaceae)" },
+      { label: "Part used", value: "Leaf" },
+      { label: "Taste/aroma", value: "Mild, green" },
+    ],
+    traditionalUses: [
+      "Traditional household herb routines (traditional use)",
+      "Classic folk use in simple preparations (traditional use)",
+      "Everyday seasonal routines (traditional use)",
+    ],
+    safety: [
+      "Make sure of correct plant identification and harvest from clean areas.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/plantain.pdf",
+  },
+
+  // =========================
+  // PURSLANE
+  // =========================
+  {
+    slug: "purslane",
+    name: "Purslane",
+    botanical: "Portulaca oleracea",
+    intro:
+      "Purslane is an edible garden plant traditionally used as a food herb in many cultures and enjoyed in simple nourishment routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Portulaca oleracea" },
+      { label: "Common names", value: "Purslane" },
+      { label: "Family", value: "Purslane family (Portulacaceae)" },
+      { label: "Part used", value: "Aerial parts (food use)" },
+      { label: "Taste/aroma", value: "Mild, slightly tangy" },
+    ],
+    traditionalUses: [
+      "Traditional nourishment through food (traditional use)",
+      "Garden-to-table traditions (traditional use)",
+      "Seasonal cooking routines (traditional use)",
+    ],
+    safety: [
+      "Confirm identification and harvest from clean areas.",
+      "If you have kidney stone concerns, consult a qualified professional (purslane contains oxalates).",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/purslane.pdf",
+  },
+
+  // =========================
+  // ROSEMARY
+  // =========================
+  {
+    slug: "rosemary",
+    name: "Rosemary",
+    botanical: "Salvia rosmarinus (syn. Rosmarinus officinalis)",
+    intro:
+      "Rosemary is a fragrant culinary herb traditionally used in food, home routines, and classic herbal traditions.",
+    snapshot: [
+      { label: "Botanical name", value: "Salvia rosmarinus" },
+      { label: "Common names", value: "Rosemary" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf" },
+      { label: "Taste/aroma", value: "Piney, resinous, strongly aromatic" },
+    ],
+    traditionalUses: [
+      "Culinary vitality traditions (traditional use)",
+      "Aromatic household routines (traditional use)",
+      "Classic seasonal traditions (traditional use)",
+    ],
+    safety: [
+      "Rosemary is widely used as food; concentrated preparations require extra care.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/rosemary.pdf",
+  },
+
+  // =========================
+  // SAGE
+  // =========================
+  {
+    slug: "sage",
+    name: "Sage",
+    botanical: "Salvia officinalis",
+    intro:
+      "Sage is a strong aromatic herb used traditionally in cooking and household routines, especially in seasonal traditions.",
+    snapshot: [
+      { label: "Botanical name", value: "Salvia officinalis" },
+      { label: "Common names", value: "Common sage" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf" },
+      { label: "Taste/aroma", value: "Warm, savory, strongly aromatic" },
+    ],
+    traditionalUses: [
+      "Traditional seasonal household routines (traditional use)",
+      "Culinary traditions (traditional use)",
+      "Aromatic tea traditions (traditional use)",
+    ],
+    safety: [
+      "Sage is widely used as food; concentrated preparations require extra care.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/sage.pdf",
+  },
+
+  // =========================
+  // SPEARMINT
+  // =========================
+  {
+    slug: "spearmint",
+    name: "Spearmint",
+    botanical: "Mentha spicata",
+    intro:
+      "Spearmint is a gentle mint often enjoyed as a tea and used in traditional after-meal routines and everyday comfort habits.",
+    snapshot: [
+      { label: "Botanical name", value: "Mentha spicata" },
+      { label: "Common names", value: "Spearmint" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf" },
+      { label: "Taste/aroma", value: "Sweet, cooling, mild mint" },
+    ],
+    traditionalUses: [
+      "After-meal comfort traditions (traditional use)",
+      "Cooling, refreshing routines (traditional use)",
+      "Everyday tea traditions (traditional use)",
+    ],
+    safety: [
+      "Spearmint is widely used as tea/food; discontinue if you notice sensitivity.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/spearmint.pdf",
+  },
+
+  // =========================
+  // ST JOHN'S WORT (folder: st-johns-wort)
+  // =========================
+  {
+    slug: "st-johns-wort",
+    name: "St John’s Wort",
+    botanical: "Hypericum perforatum",
+    intro:
+      "St John’s Wort has a long history in traditional herbalism. It is widely discussed in folk traditions and classic preparations.",
+    snapshot: [
+      { label: "Botanical name", value: "Hypericum perforatum" },
+      { label: "Common names", value: "St John’s Wort" },
+      { label: "Family", value: "St John’s Wort family (Hypericaceae)" },
+      { label: "Part used", value: "Flowering tops" },
+      { label: "Taste/aroma", value: "Resinous, slightly bitter" },
+    ],
+    traditionalUses: [
+      "Traditional folk preparations (traditional use)",
+      "Classic seasonal routines (traditional use)",
+      "Traditional household herb discussions (traditional use)",
+    ],
+    safety: [
+      "IMPORTANT: This herb can interact with many medications. Consult a qualified professional before use.",
+      "Use extra care if pregnant, breastfeeding, taking medications, or managing a condition.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/st-johns-wort.pdf",
+  },
+
+  // =========================
+  // THYME
+  // =========================
+  {
+    slug: "thyme",
+    name: "Thyme",
+    botanical: "Thymus vulgaris",
+    intro:
+      "Thyme is a classic culinary herb used in traditional cooking and household routines, especially in seasonal traditions.",
+    snapshot: [
+      { label: "Botanical name", value: "Thymus vulgaris" },
+      { label: "Common names", value: "Thyme" },
+      { label: "Family", value: "Mint family (Lamiaceae)" },
+      { label: "Part used", value: "Leaf/flowering tops" },
+      { label: "Taste/aroma", value: "Savory, warm, strongly aromatic" },
+    ],
+    traditionalUses: [
+      "Seasonal kitchen traditions (traditional use)",
+      "Aromatic tea traditions (traditional use)",
+      "Classic household herb routines (traditional use)",
+    ],
+    safety: [
+      "Thyme is widely used as food; concentrated preparations require extra care.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/thyme.pdf",
+  },
+
+  // =========================
+  // WHITE CLOVER
+  // =========================
+  {
+    slug: "white-clover",
+    name: "White Clover",
+    botanical: "Trifolium repens",
+    intro:
+      "White clover is a common meadow plant traditionally used in simple folk practices and seasonal routines.",
+    snapshot: [
+      { label: "Botanical name", value: "Trifolium repens" },
+      { label: "Common names", value: "White clover" },
+      { label: "Family", value: "Pea family (Fabaceae)" },
+      { label: "Part used", value: "Flowering tops" },
+      { label: "Taste/aroma", value: "Mild, slightly sweet" },
+    ],
+    traditionalUses: [
+      "Traditional seasonal routines (traditional use)",
+      "Classic folk preparations (traditional use)",
+      "General household herb traditions (traditional use)",
+    ],
+    safety: [
+      "Confirm correct plant identification and harvest from clean areas.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/white-clover.pdf",
+  },
+
+  // =========================
+  // YARROW
+  // =========================
+  {
+    slug: "yarrow",
+    name: "Yarrow",
+    botanical: "Achillea millefolium",
+    intro:
+      "Yarrow is a well-known traditional herb in many folk traditions, commonly discussed for its classic place in household herbalism.",
+    snapshot: [
+      { label: "Botanical name", value: "Achillea millefolium" },
+      { label: "Common names", value: "Yarrow" },
+      { label: "Family", value: "Daisy family (Asteraceae)" },
+      { label: "Part used", value: "Flowering tops" },
+      { label: "Taste/aroma", value: "Aromatic, slightly bitter" },
+    ],
+    traditionalUses: [
+      "Classic folk herbal traditions (traditional use)",
+      "Traditional seasonal routines (traditional use)",
+      "General household preparations (traditional use)",
+    ],
+    safety: [
+      "Avoid if you have known allergy to plants in the daisy family (ragweed, etc.).",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/yarrow.pdf",
+  },
 ];
+
