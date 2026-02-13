@@ -6,14 +6,11 @@ import Link from "next/link";
 type Herb = {
   title: string;
   slug: string;
-  // ✅ Optional: when present, we show a “Learn More →” link to the web page
+  // Optional override (rare). If not provided, we auto-build /herbs/[slug]
   learnHref?: string;
 };
 
 const STORAGE_KEY = "jwfarms_herb_library_search";
-
-// ✅ Only show “Learn More” for herbs that have a real /herbs/[slug] page right now
-const LEARN_MORE_SLUGS = new Set(["basil", "lavender", "chamomile"]);
 
 function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
@@ -188,11 +185,8 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                   const pdfHref = `/herbal-library/${herb.slug}.pdf`;
                   const imgSrc = `/herbal-library/previews/${herb.slug}.png`;
 
-                  // ✅ Learn More link:
-                  // - use herb.learnHref if provided
-                  // - otherwise auto-build /herbs/[slug]
+                  // ✅ Always build Learn More automatically unless overridden
                   const learnHref = herb.learnHref ?? `/herbs/${herb.slug}`;
-                  const showLearnMore = LEARN_MORE_SLUGS.has(herb.slug);
 
                   return (
                     <div
@@ -200,7 +194,7 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                       className="bg-white rounded-3xl shadow-sm overflow-hidden
                                  border border-purple-100"
                     >
-                      {/* PDF Card (kept as the primary click target) */}
+                      {/* PDF Card (primary action) */}
                       <a
                         href={pdfHref}
                         className="group block
@@ -241,18 +235,16 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                         </div>
                       </a>
 
-                      {/* ✅ Secondary action: Learn More */}
-                      {showLearnMore ? (
-                        <div className="px-6 pb-6 -mt-2">
-                          <Link
-                            href={learnHref}
-                            className="inline-flex items-center text-sm font-semibold text-purple-700 hover:underline"
-                            aria-label={`Learn more about ${herb.title}`}
-                          >
-                            Learn More →
-                          </Link>
-                        </div>
-                      ) : null}
+                      {/* ✅ Always show Learn More */}
+                      <div className="px-6 pb-6 -mt-2">
+                        <Link
+                          href={learnHref}
+                          className="inline-flex items-center text-sm font-semibold text-purple-700 hover:underline"
+                          aria-label={`Learn more about ${herb.title}`}
+                        >
+                          Learn More →
+                        </Link>
+                      </div>
                     </div>
                   );
                 })}
