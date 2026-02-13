@@ -16,6 +16,9 @@ export type Herb = {
 };
 
 export const HERBS: Herb[] = [
+  // =========================
+  // BASIL
+  // =========================
   {
     slug: "basil",
     name: "Basil",
@@ -82,6 +85,9 @@ export const HERBS: Herb[] = [
     pdfHref: "/herbal-library/basil.pdf",
   },
 
+  // =========================
+  // LAVENDER
+  // =========================
   {
     slug: "lavender",
     name: "Lavender",
@@ -158,6 +164,9 @@ export const HERBS: Herb[] = [
     pdfHref: "/herbal-library/lavender.pdf",
   },
 
+  // =========================
+  // CHAMOMILE
+  // =========================
   {
     slug: "chamomile",
     name: "Chamomile",
@@ -198,101 +207,100 @@ export const HERBS: Herb[] = [
     pdfHref: "/herbal-library/chamomile.pdf",
   },
 
+  // =========================
+  // CILANTRO
+  // =========================
   {
     slug: "cilantro",
     name: "Cilantro",
     botanical: "Coriandrum sativum",
     intro:
-      "Cilantro is a familiar kitchen herb with a long history of traditional household use. The fresh leaf is commonly used in food traditions, while the seeds (coriander) are widely used for flavor and warming, aromatic support.",
+      "Cilantro is a bright, aromatic culinary herb used worldwide. Traditionally, it has been included in food-based routines and everyday wellness habits as part of balanced meals.",
     snapshot: [
       { label: "Botanical name", value: "Coriandrum sativum" },
-      { label: "Common names", value: "Cilantro (leaf), Coriander (seed)" },
+      { label: "Common names", value: "Cilantro (leaf), coriander (seed)" },
       { label: "Family", value: "Carrot family (Apiaceae)" },
-      { label: "Part used", value: "Leaf (fresh), seed (dried)" },
-      {
-        label: "Taste/aroma",
-        value:
-          "Fresh, bright, citrusy-herbal (leaf); warm, spicy-sweet (seed)",
-      },
+      { label: "Part used", value: "Leaf and seed (culinary use)" },
+      { label: "Taste/aroma", value: "Fresh, citrusy, pungent" },
     ],
     traditionalUses: [
-      "Culinary support for comfortable digestion after meals (traditional use)",
-      "Fresh, cleansing-tasting food traditions (traditional use)",
-      "Aromatic kitchen herb for everyday vitality (traditional use)",
-      "Traditional use of coriander seed in warming spice blends (traditional use)",
+      "Included in traditional foodways as part of balanced meals (traditional use)",
+      "Comfortable digestion after meals when used in foods (traditional use)",
+      "Seasonal food traditions and daily vitality (traditional use)",
     ],
     tea: {
-      title: "Coriander Seed Tea (Infusion)",
+      title: "Cilantro Leaf Tea (Mild Infusion)",
       bullets: [
-        "1–2 tsp coriander seeds (lightly crushed)",
+        "1–2 tbsp fresh cilantro (or 1–2 tsp dried leaf)",
         "1 cup hot water",
-        "Optional: honey, lemon, or a slice of fresh ginger",
+        "Optional: lemon",
       ],
       steps: [
-        "Lightly crush coriander seeds (use a mortar/pestle or the back of a spoon).",
-        "Place seeds in a mug or teapot.",
-        "Pour hot water over the seeds.",
-        "Cover and steep 10–15 minutes.",
+        "Place cilantro in a mug or teapot.",
+        "Pour hot water over the herb.",
+        "Cover and steep 5–10 minutes.",
         "Strain and enjoy.",
       ],
       notes: [
-        "Cilantro leaf is usually used fresh in food; coriander seed is more common for tea.",
+        "Cilantro leaf tea is mild; many people prefer it as a food herb rather than a tea.",
       ],
     },
     tincture: {
       bullets: [
-        "Dried coriander seed: 1:5 (herb : alcohol)",
-        "Alcohol: 40–60% (many people use vodka)",
+        "Dried leaf: 1:5 (herb : alcohol)",
+        "Fresh leaf: 1:2",
+        "Alcohol: 40–60%",
       ],
       steps: [
-        "Lightly crush coriander seeds.",
-        "Add to a glass jar and cover with alcohol using the ratio above.",
+        "Chop fresh cilantro (or use dried).",
+        "Add herb to a glass jar and cover with alcohol using the ratio above.",
         "Seal, label, and store in a dark cabinet.",
-        "Shake daily (or whenever you remember) for 4–6 weeks.",
-        "Strain and bottle in a dark dropper bottle.",
+        "Shake daily for 4–6 weeks.",
+        "Strain and bottle.",
       ],
       notes: ["Shelf life: often 3–5 years when stored cool and dark."],
     },
     capsules: {
-      bullets: ["Coriander seed powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules with coriander powder.", "Store labeled and dry."],
-      notes: ["Traditionally used in small amounts as part of an herbal routine."],
+      bullets: ["Dried cilantro leaf powder", "Empty capsules (size 0 or 00)"],
+      steps: ["Fill capsules.", "Store labeled and dry."],
+      notes: ["Often used as a food herb first; use extra care with concentrated forms."],
     },
-    pairings: ["Ginger", "Fennel", "Peppermint", "Lemon peel"],
+    pairings: ["Lime", "Ginger", "Mint", "Cumin (culinary)"],
     safety: [
-      "Cilantro is widely used as food. For concentrated preparations, start small.",
+      "Cilantro is widely used as food.",
+      "If you have plant allergies, introduce slowly and discontinue if you notice sensitivity.",
       "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
-      "Discontinue if you notice sensitivity or irritation.",
       "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
     ],
     pdfHref: "/herbal-library/cilantro.pdf",
   },
 
+  // =========================
+  // CLEAVERS
+  // =========================
   {
     slug: "cleavers",
     name: "Cleavers",
     botanical: "Galium aparine",
     intro:
-      "Cleavers is a traditional springtime herb often included in gentle wellness routines. In folk tradition it’s associated with ‘moving and clearing’ support and is commonly prepared as a mild tea or as an infused herb in cool preparations.",
+      "Cleavers is a traditional springtime herb often included in gentle seasonal routines. It’s commonly prepared as an infusion and enjoyed as part of classic “fresh start” wellness traditions.",
     snapshot: [
       { label: "Botanical name", value: "Galium aparine" },
-      { label: "Common names", value: "Cleavers, Goosegrass, Stickyweed" },
-      { label: "Family", value: "Madder family (Rubiaceae)" },
-      { label: "Part used", value: "Aerial parts (fresh preferred), leaf & stem" },
-      { label: "Taste/aroma", value: "Mild, green, lightly grassy" },
+      { label: "Common names", value: "Cleavers, sticky weed, goosegrass" },
+      { label: "Family", value: "Bedstraw family (Rubiaceae)" },
+      { label: "Part used", value: "Aerial parts (fresh preferred)" },
+      { label: "Taste/aroma", value: "Green, mild, slightly grassy" },
     ],
     traditionalUses: [
-      "Traditional spring cleansing routines (traditional use)",
-      "Gentle ‘moving’ support as part of seasonal transitions (traditional use)",
-      "Traditional use for skin-comfort routines (traditional use)",
-      "Mild everyday tea as part of a wellness rhythm (traditional use)",
+      "Traditional springtime wellness routines (traditional use)",
+      "Gentle daily “refresh” habits (traditional use)",
+      "Historically used in folk preparations as a mild herb (traditional use)",
     ],
     tea: {
       title: "Cleavers Tea (Infusion)",
       bullets: [
-        "1–2 tsp dried cleavers (or 2–3 tsp if very fluffy)",
+        "1–2 tsp dried cleavers (or 2–3 tbsp fresh)",
         "1 cup hot water",
-        "Optional: a squeeze of lemon",
       ],
       steps: [
         "Place cleavers in a mug or teapot.",
@@ -301,174 +309,157 @@ export const HERBS: Herb[] = [
         "Strain and enjoy.",
       ],
       notes: [
-        "Cleavers is often preferred fresh. Some people enjoy a cool infusion (overnight in the fridge) for a gentler taste.",
+        "Cleavers is often used fresh in traditional practice; dried can work as a simple infusion.",
       ],
     },
     tincture: {
       bullets: [
         "Fresh cleavers: 1:2 (herb : alcohol)",
         "Dried cleavers: 1:5",
-        "Alcohol: 40–60% (many people use vodka)",
+        "Alcohol: 40–60%",
       ],
       steps: [
-        "Chop fresh cleavers (or crumble dried).",
-        "Add herb to a glass jar and cover with alcohol using the ratio above.",
+        "Chop fresh cleavers (recommended) or use dried.",
+        "Cover with alcohol using the ratio above.",
         "Seal, label, and store in a dark cabinet.",
-        "Shake daily (or whenever you remember) for 4–6 weeks.",
-        "Strain and bottle in a dark dropper bottle.",
+        "Shake daily for 4–6 weeks.",
+        "Strain and bottle.",
       ],
-      notes: ["Fresh plant tinctures are common for cleavers."],
+      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
     },
     capsules: {
       bullets: ["Dried cleavers powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules with cleavers powder.", "Store labeled and dry."],
-      notes: [
-        "Traditional use varies. Start small and use extra care with concentrated preparations.",
-      ],
+      steps: ["Fill capsules.", "Store labeled and dry."],
+      notes: ["Traditional use is often as tea/infusion; use extra care with concentrated forms."],
     },
-    pairings: ["Nettle", "Red clover", "Lemon balm", "Mint"],
+    pairings: ["Nettle", "Lemon (tiny amount)", "Mint (tiny amount)"],
     safety: [
-      "Cleavers is generally used as a gentle herb in traditional practices. Start small to assess tolerance.",
-      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
-      "Discontinue if you notice sensitivity or irritation.",
+      "Use extra care if you are pregnant, breastfeeding, taking medications, or managing a condition—consult a qualified professional.",
+      "Discontinue if you notice sensitivity or stomach upset.",
       "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
     ],
     pdfHref: "/herbal-library/cleavers.pdf",
   },
 
+  // =========================
+  // DANDELION
+  // =========================
   {
     slug: "dandelion",
     name: "Dandelion",
     botanical: "Taraxacum officinale",
     intro:
-      "Dandelion is a classic traditional herb used both as food and in seasonal routines. The leaf is commonly used in spring greens, while the root is often used in roasted blends and traditional wellness preparations.",
+      "Dandelion is a classic traditional herb and food plant. Leaves and root are used in many folk traditions—often as part of springtime routines and everyday nourishment.",
     snapshot: [
       { label: "Botanical name", value: "Taraxacum officinale" },
       { label: "Common names", value: "Dandelion" },
       { label: "Family", value: "Daisy family (Asteraceae)" },
-      { label: "Part used", value: "Leaf, root, flower" },
-      {
-        label: "Taste/aroma",
-        value:
-          "Leaf: bitter-green; Root: earthy, roasted; Flower: mild, honey-like",
-      },
+      { label: "Part used", value: "Leaf and root" },
+      { label: "Taste/aroma", value: "Leaf: bitter/green • Root (roasted): earthy" },
     ],
     traditionalUses: [
-      "Traditional springtime cleansing routines (traditional use)",
-      "Root used in roasted beverage traditions (traditional use)",
-      "Traditional digestive and ‘bitter’ herb routines (traditional use)",
-      "Food tradition: leafy greens as part of seasonal vitality (traditional use)",
+      "Traditional springtime wellness routines (traditional use)",
+      "Bitter herb traditions for digestion and appetite (traditional use)",
+      "Roasted root beverages as a coffee-like tradition (traditional use)",
+      "Everyday nourishment in food traditions (traditional use)",
     ],
     tea: {
-      title: "Dandelion Root Tea (Decoction)",
-      bullets: [
-        "1–2 tsp dried dandelion root",
-        "1½ cups water (it will reduce as it simmers)",
-        "Optional: cinnamon stick or ginger slice",
-      ],
+      title: "Dandelion Leaf Tea (Infusion)",
+      bullets: ["1–2 tsp dried leaf", "1 cup hot water"],
       steps: [
-        "Add dandelion root to a small pot with water.",
-        "Bring to a gentle boil, then reduce to a simmer.",
-        "Simmer 15–20 minutes.",
-        "Strain and enjoy warm.",
+        "Place dandelion leaf in a mug or teapot.",
+        "Pour hot water over the herb.",
+        "Cover and steep 10–15 minutes.",
+        "Strain and enjoy.",
       ],
-      notes: [
-        "Leaf can be infused like a standard tea, but root is typically simmered (decoction).",
-      ],
+      notes: ["Bitter taste is normal; many people blend with mint or a touch of lemon."],
     },
     tincture: {
       bullets: [
-        "Dried dandelion root: 1:5 (herb : alcohol)",
-        "Fresh root: 1:2",
-        "Alcohol: 40–60% (many people use vodka)",
+        "Dried leaf or root: 1:5 (herb : alcohol)",
+        "Fresh leaf: 1:2",
+        "Alcohol: 40–60%",
       ],
       steps: [
-        "Chop or crush root (especially if fresh).",
-        "Add to a glass jar and cover with alcohol using the ratio above.",
+        "Chop fresh plant material (or use dried).",
+        "Cover with alcohol using the ratio above.",
         "Seal, label, and store in a dark cabinet.",
-        "Shake daily (or whenever you remember) for 4–6 weeks.",
-        "Strain and bottle in a dark dropper bottle.",
+        "Shake daily for 4–6 weeks.",
+        "Strain and bottle.",
       ],
-      notes: [
-        "Avoid if you have gallbladder concerns unless guided by a professional.",
-      ],
+      notes: ["Shelf life: often 3–5 years when stored cool and dark."],
     },
     capsules: {
-      bullets: ["Dandelion root powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules with root powder.", "Store labeled and dry."],
-      notes: ["Traditional use varies. Start small to assess tolerance."],
+      bullets: ["Dried dandelion leaf or root powder", "Empty capsules (size 0 or 00)"],
+      steps: ["Fill capsules.", "Store labeled and dry."],
+      notes: ["Traditional use often emphasizes tea/food use; use extra care with concentrated forms."],
     },
-    pairings: ["Burdock", "Ginger", "Peppermint", "Nettle"],
+    pairings: ["Mint", "Ginger", "Lemon peel"],
     safety: [
-      "Avoid if you have known allergy to plants in the daisy family (ragweed, etc.).",
-      "Use extra care if you have gallbladder issues or are taking medications—consult a qualified professional.",
-      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      "Avoid if you have a known allergy to plants in the daisy family (ragweed, etc.).",
+      "If you have gallbladder concerns or are taking medications, consult a qualified professional before using concentrated preparations.",
+      "Discontinue if you notice sensitivity or stomach upset.",
       "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
     ],
     pdfHref: "/herbal-library/dandelion.pdf",
   },
 
+  // =========================
+  // DILL
+  // =========================
   {
     slug: "dill",
     name: "Dill",
     botanical: "Anethum graveolens",
     intro:
-      "Dill is a bright, aromatic culinary herb used for centuries in food traditions. The leaf is popular fresh, and the seed is widely used in traditional preparations and spice blends—often as part of comfortable digestion routines after meals.",
+      "Dill is a well-loved culinary herb used in traditional foodways across many cultures. It’s often enjoyed after meals and included in simple household routines as part of everyday nourishment.",
     snapshot: [
       { label: "Botanical name", value: "Anethum graveolens" },
       { label: "Common names", value: "Dill" },
       { label: "Family", value: "Carrot family (Apiaceae)" },
-      { label: "Part used", value: "Leaf, seed" },
-      {
-        label: "Taste/aroma",
-        value: "Fresh, grassy, anise-like; seed is warmer and more pungent",
-      },
+      { label: "Part used", value: "Leaf (weed) and seed" },
+      { label: "Taste/aroma", value: "Bright, aromatic, slightly sweet" },
     ],
     traditionalUses: [
-      "Comfortable digestion after meals (traditional use)",
-      "Traditional culinary spice for richness and balance (traditional use)",
-      "Aromatic household tea traditions (traditional use)",
-      "Food tradition: pickling and preserving (traditional use)",
+      "Traditional digestion comfort after meals when used in foods (traditional use)",
+      "Included in classic culinary traditions (traditional use)",
+      "Simple soothing household routines (traditional use)",
     ],
     tea: {
-      title: "Dill Seed Tea (Infusion)",
-      bullets: [
-        "1–2 tsp dill seeds (lightly crushed)",
-        "1 cup hot water",
-        "Optional: honey or a slice of lemon",
-      ],
+      title: "Dill Seed Tea (Traditional Infusion)",
+      bullets: ["1 tsp dill seed (lightly crushed)", "1 cup hot water"],
       steps: [
-        "Lightly crush dill seeds.",
-        "Place seeds in a mug or teapot.",
-        "Pour hot water over the seeds.",
+        "Lightly crush dill seed.",
+        "Place in a mug or teapot.",
+        "Pour hot water over the seed.",
         "Cover and steep 10–15 minutes.",
         "Strain and enjoy.",
       ],
-      notes: ["Dill leaf is usually enjoyed as food; the seed is more common for tea."],
+      notes: ["Traditionally enjoyed after meals."],
     },
     tincture: {
       bullets: [
-        "Dried dill seed: 1:5 (herb : alcohol)",
-        "Alcohol: 40–60% (many people use vodka)",
+        "Dill seed (dried): 1:5 (herb : alcohol)",
+        "Alcohol: 40–60%",
       ],
       steps: [
-        "Lightly crush dill seeds.",
-        "Add to a glass jar and cover with alcohol using the ratio above.",
+        "Add dill seed to a glass jar.",
+        "Cover with alcohol using the ratio above.",
         "Seal, label, and store in a dark cabinet.",
-        "Shake daily (or whenever you remember) for 4–6 weeks.",
-        "Strain and bottle in a dark dropper bottle.",
+        "Shake daily for 4–6 weeks.",
+        "Strain and bottle.",
       ],
       notes: ["Shelf life: often 3–5 years when stored cool and dark."],
     },
     capsules: {
       bullets: ["Dill seed powder", "Empty capsules (size 0 or 00)"],
-      steps: ["Fill capsules with dill seed powder.", "Store labeled and dry."],
-      notes: ["Traditionally used in small amounts as part of an herbal routine."],
+      steps: ["Fill capsules.", "Store labeled and dry."],
+      notes: ["Use extra care with concentrated forms; dill is commonly used as food first."],
     },
-    pairings: ["Fennel", "Ginger", "Peppermint", "Lemon peel"],
+    pairings: ["Fennel", "Ginger", "Lemon"],
     safety: [
-      "Dill is widely used as food. For concentrated preparations, start small.",
-      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      "Dill is widely used as food.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional before using concentrated preparations.",
       "Discontinue if you notice sensitivity or irritation.",
       "These statements have not been evaluated by the FDA. This information is for educational purposes only and is not intended to diagnose, treat, cure, or prevent any disease.",
     ],
