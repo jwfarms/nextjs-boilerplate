@@ -5,6 +5,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.jwfarms7.com";
   const now = new Date();
 
+  // =========================
+  // CORE SITE PAGES
+  // =========================
   const staticRoutes = [
     "",
     "/lavender",
@@ -12,34 +15,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/downloadable-guides",
     "/lavender-farm-tennessee",
     "/herbal-learning-library",
-  ];
-
-  const herbRoutes = HERBS.map((h) => `/herbs/${h.slug}`);
-
-  const routes = [...staticRoutes, ...herbRoutes];
-
-  return routes.map((path) => {
-    const url = `${baseUrl}${path}`;
-
-    const priority =
+  ].map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: now,
+    changeFrequency: path === "" ? "weekly" : "monthly",
+    priority:
       path === ""
         ? 1.0
-        : path === "/lavender"
-        ? 0.9
         : path === "/herbal-learning-library"
-        ? 0.85
-        : path.startsWith("/herbs/")
-        ? 0.7
-        : 0.8;
+        ? 0.9
+        : 0.8,
+  }));
 
-    const changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] =
-      path === "" || path === "/herbal-learning-library" ? "weekly" : "monthly";
+  // =========================
+  // HERB DETAIL PAGES
+  // =========================
+  const herbRoutes = HERBS.map((herb) => ({
+    url: `${baseUrl}/herbs/${herb.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
-    return {
-      url,
-      lastModified: now,
-      changeFrequency,
-      priority,
-    };
-  });
+  return [...staticRoutes, ...herbRoutes];
 }
