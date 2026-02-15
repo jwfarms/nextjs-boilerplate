@@ -1,5 +1,3 @@
-import HerbLibraryClient from "./HerbLibraryClient";
-
 export const metadata = {
   title: "Herbal Learning Library | JW Farms",
   description:
@@ -9,38 +7,43 @@ export const metadata = {
   },
 };
 
-const HERBS = [
-  { title: "Basil", slug: "basil", learnHref: "/herbs/basil" },
-  { title: "Chamomile", slug: "chamomile", learnHref: "/herbs/chamomile" },
-  { title: "Cilantro", slug: "cilantro", learnHref: "/herbs/cilantro" },
-  { title: "Cleavers", slug: "cleavers", learnHref: "/herbs/cleavers" },
-  { title: "Dandelion", slug: "dandelion", learnHref: "/herbs/dandelion" },
-  { title: "Dill", slug: "dill", learnHref: "/herbs/dill" },
-  { title: "Echinacea", slug: "echinacea", learnHref: "/herbs/echinacea" },
-  { title: "Edelweiss Lavender", slug: "edelweiss-lavender", learnHref: "/herbs/edelweiss-lavender" },
-  { title: "Garlic", slug: "garlic", learnHref: "/herbs/garlic" },
-  { title: "Ginko", slug: "ginko", learnHref: "/herbs/ginko" },
-  { title: "Lemonbalm", slug: "lemonbalm", learnHref: "/herbs/lemonbalm" },
-  { title: "Marjoram", slug: "marjoram", learnHref: "/herbs/marjoram" },
-  { title: "Marshmallow", slug: "marshmallow", learnHref: "/herbs/marshmallow" },
-  { title: "Mint", slug: "mint", learnHref: "/herbs/mint" },
-  { title: "Mullein", slug: "mullein", learnHref: "/herbs/mullein" },
-  { title: "Nasturtium", slug: "nasturtium", learnHref: "/herbs/nasturtium" },
-  { title: "Oregano", slug: "oregano", learnHref: "/herbs/oregano" },
-  { title: "Parsley", slug: "parsley", learnHref: "/herbs/parsley" },
-  { title: "Peppermint", slug: "peppermint", learnHref: "/herbs/peppermint" },
-  { title: "Plantain Weed", slug: "plantain", learnHref: "/herbs/plantain" },
-  { title: "Purslane", slug: "purslane", learnHref: "/herbs/purslane" },
-  { title: "Rosemary", slug: "rosemary", learnHref: "/herbs/rosemary" },
-  { title: "Sage", slug: "sage", learnHref: "/herbs/sage" },
-  { title: "Spearmint", slug: "spearmint", learnHref: "/herbs/spearmint" },
-  { title: "St John's Wort", slug: "st-johns-wort", learnHref: "/herbs/st-johns-wort" },
-  { title: "Thyme", slug: "thyme", learnHref: "/herbs/thyme" },
-  { title: "White Clover", slug: "white-clover", learnHref: "/herbs/white-clover" },
-  { title: "Yarrow", slug: "yarrow", learnHref: "/herbs/yarrow" },
+import HerbLibraryClient from "./HerbLibraryClient";
 
-  // If you also have a /herbs/lavender folder/page, keep it here:
-  { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender" },
+const HERBS = [
+  // ✅ Culinary
+  { title: "Basil", slug: "basil", learnHref: "/herbs/basil", category: "Culinary" },
+  { title: "Cilantro", slug: "cilantro", learnHref: "/herbs/cilantro", category: "Culinary" },
+  { title: "Dill", slug: "dill", learnHref: "/herbs/dill", category: "Culinary" },
+  { title: "Garlic", slug: "garlic", category: "Culinary" },
+  { title: "Marjoram", slug: "marjoram", category: "Culinary" },
+  { title: "Mint", slug: "mint", category: "Culinary" },
+  { title: "Nasturtium", slug: "nasturtium", category: "Culinary" },
+  { title: "Oregano", slug: "oregano", category: "Culinary" },
+  { title: "Parsley", slug: "parsley", category: "Culinary" },
+  { title: "Peppermint", slug: "peppermint", category: "Culinary" },
+  { title: "Rosemary", slug: "rosemary", category: "Culinary" },
+  { title: "Sage", slug: "sage", category: "Culinary" },
+  { title: "Spearmint", slug: "spearmint", category: "Culinary" },
+  { title: "Thyme", slug: "thyme", category: "Culinary" },
+  { title: "White Clover", slug: "white-clover", category: "Culinary" },
+  { title: "Purslane", slug: "purslane", category: "Culinary" },
+
+  // ✅ Medicinal (traditional use / wellness)
+  { title: "Chamomile", slug: "chamomile", learnHref: "/herbs/chamomile", category: "Medicinal" },
+  { title: "Cleavers", slug: "cleavers", learnHref: "/herbs/cleavers", category: "Medicinal" },
+  { title: "Dandelion", slug: "dandelion", learnHref: "/herbs/dandelion", category: "Medicinal" },
+  { title: "Echinacea", slug: "echinacea", learnHref: "/herbs/echinacea", category: "Medicinal" },
+  { title: "Ginko", slug: "ginko", category: "Medicinal" },
+  { title: "Lemon Balm", slug: "lemon-balm", category: "Medicinal" },
+  { title: "Marshmallow", slug: "marshmallow", category: "Medicinal" },
+  { title: "Mullein", slug: "mullein", category: "Medicinal" },
+  { title: "Plantain Weed", slug: "plantain", category: "Medicinal" },
+  { title: "St John's Wort", slug: "st-johns-wort", category: "Medicinal" },
+  { title: "Yarrow", slug: "yarrow", category: "Medicinal" },
+
+  // ✅ Lavender types (you can choose which bucket you prefer)
+  { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender", category: "Medicinal" },
+  { title: "Edelweiss Lavender", slug: "edelweiss-lavender", category: "Medicinal" },
 ];
 
 export default function HerbalLearningLibraryPage() {
