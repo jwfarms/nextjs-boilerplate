@@ -20,7 +20,7 @@ const HERBS = [
   { title: "Edelweiss Lavender", slug: "edelweiss-lavender", learnHref: "/herbs/edelweiss-lavender" },
   { title: "Garlic", slug: "garlic", learnHref: "/herbs/garlic" },
   { title: "Ginko", slug: "ginko", learnHref: "/herbs/ginko" },
-  { title: "Lemon Balm", slug: "lemon-balm", learnHref: "/herbs/lemon-balm" },
+  { title: "Lemonbalm", slug: "lemonbalm", learnHref: "/herbs/lemonbalm" },
   { title: "Marjoram", slug: "marjoram", learnHref: "/herbs/marjoram" },
   { title: "Marshmallow", slug: "marshmallow", learnHref: "/herbs/marshmallow" },
   { title: "Mint", slug: "mint", learnHref: "/herbs/mint" },
