@@ -47,6 +47,14 @@ const HERBS = [
   { title: "Thyme", slug: "thyme", tags: ["Culinary"] },
   { title: "White Clover", slug: "white-clover", tags: ["Culinary", "Medicinal"] },
   { title: "Yarrow", slug: "yarrow", tags: ["Medicinal"] },
+  {
+  title: "Herbal Learning Library (Full Book)",
+  slug: "herbal-learning-library-book",
+  tags: ["PDF"],
+  pdfHref: "/downloads/herbal-learning-library-book.pdf",
+  previewSrc: "/herbal-library/previews/herbal-learning-library.png",
+  learnHref: "/downloads/herbal-learning-library-book.pdf",
+},
 ];
 
 export default function HerbalLearningLibraryPage() {
