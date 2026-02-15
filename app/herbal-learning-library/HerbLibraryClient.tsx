@@ -6,9 +6,11 @@ import Link from "next/link";
 type Herb = {
   title: string;
   slug: string;
-  tags?: string[]; // ✅ NEW
-  // Optional override (rare). If not provided, we auto-build /herbs/[slug]
-  learnHref?: string;
+  tags?: string[];
+  // Optional overrides (use these for special cases like your “one-stop” book)
+  pdfHref?: string; // e.g. "/downloads/herbal-learning-library-book.pdf"
+  previewSrc?: string; // e.g. "/herbal-library/previews/herbal-learning-library.png"
+  learnHref?: string; // Optional override. If not provided, we auto-build /herbs/[slug]
 };
 
 const STORAGE_KEY = "jwfarms_herb_library_search";
@@ -147,7 +149,7 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
         </div>
       </div>
 
-      {/* ✅ Tag Filter Chips */}
+      {/* Tag Filter Chips */}
       {availableTags.length > 0 && (
         <div className="mb-10">
           <div className="flex items-center justify-between gap-4 flex-wrap">
@@ -272,9 +274,15 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {grouped[letter].map((herb) => {
-                  const pdfHref = `/herbal-library/${herb.slug}.pdf`;
-                  const imgSrc = `/herbal-library/previews/${herb.slug}.png`;
+                  // ✅ Default paths (normal herbs)
+                  const defaultPdfHref = `/herbal-library/${herb.slug}.pdf`;
+                  const defaultImgSrc = `/herbal-library/previews/${herb.slug}.png`;
 
+                  // ✅ Overrides (your “one-stop book” uses these)
+                  const pdfHref = herb.pdfHref ?? defaultPdfHref;
+                  const imgSrc = herb.previewSrc ?? defaultImgSrc;
+
+                  // Learn More defaults to /herbs/[slug] unless overridden
                   const learnHref = herb.learnHref ?? `/herbs/${herb.slug}`;
 
                   return (
@@ -297,6 +305,12 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                               alt={`${herb.title} herbal reference preview`}
                               className="w-full aspect-[3/4] object-contain"
                               loading="lazy"
+                              onError={(e) => {
+                                // If an override preview is missing, fall back to the standard slug-based preview.
+                                const el = e.currentTarget;
+                                if (el.src.endsWith(defaultImgSrc)) return;
+                                el.src = defaultImgSrc;
+                              }}
                             />
                           </div>
                         </div>
