@@ -27,8 +27,8 @@ const HERBS = [
   // NOTE: you spelled folder “ginko”, so keep slug “ginko”
   { title: "Ginko", slug: "ginko", tags: ["Medicinal"] },
 
-  // IMPORTANT: your folder is lemon-balm (with dash)
-  { title: "Lemon Balm", slug: "lemon-balm", tags: ["Medicinal"] },
+  // IMPORTANT: your folder is lemonbalm (with dash)
+  { title: "Lemonbalm", slug: "lemonbalm", tags: ["Medicinal"] },
 
   { title: "Marjoram", slug: "marjoram", tags: ["Culinary"] },
   { title: "Marshmallow", slug: "marshmallow", tags: ["Medicinal"] },
