@@ -6,39 +6,28 @@ import Link from "next/link";
 type Herb = {
   title: string;
   slug: string;
+  tags?: string[]; // ✅ NEW
+  // Optional override (rare). If not provided, we auto-build /herbs/[slug]
   learnHref?: string;
-  category?: string; // ✅ NEW (optional)
 };
 
 const STORAGE_KEY = "jwfarms_herb_library_search";
-const STORAGE_CATEGORY = "jwfarms_herb_library_category";
-const STORAGE_SORT = "jwfarms_herb_library_sort";
+const TAGS_KEY = "jwfarms_herb_library_tags";
 
 function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
 }
 
-type SortMode = "az" | "za";
-
 export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<string>("All");
-  const [sortMode, setSortMode] = useState<SortMode>("az");
+  const [activeTags, setActiveTags] = useState<string[]>([]);
 
-  // Remember last search/category/sort (localStorage)
+  // Remember last search (localStorage)
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
       if (saved) setQuery(saved);
-
-      const savedCat = window.localStorage.getItem(STORAGE_CATEGORY);
-      if (savedCat) setCategory(savedCat);
-
-      const savedSort = window.localStorage.getItem(STORAGE_SORT) as SortMode | null;
-      if (savedSort === "az" || savedSort === "za") setSortMode(savedSort);
-    } catch {
-      // ignore
-    }
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -47,50 +36,55 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
     } catch {}
   }, [query]);
 
+  // Remember selected tags
   useEffect(() => {
     try {
-      window.localStorage.setItem(STORAGE_CATEGORY, category);
+      const saved = window.localStorage.getItem(TAGS_KEY);
+      if (saved) setActiveTags(JSON.parse(saved));
     } catch {}
-  }, [category]);
+  }, []);
 
   useEffect(() => {
     try {
-      window.localStorage.setItem(STORAGE_SORT, sortMode);
+      window.localStorage.setItem(TAGS_KEY, JSON.stringify(activeTags));
     } catch {}
-  }, [sortMode]);
+  }, [activeTags]);
 
-  // ✅ Build category list from provided data (fallback to "Other")
-  const categories = useMemo(() => {
+  // Build list of available tags from data
+  const availableTags = useMemo(() => {
     const set = new Set<string>();
-    herbs.forEach((h) => set.add(h.category?.trim() || "Other"));
-    return ["All", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
+    herbs.forEach((h) => (h.tags ?? []).forEach((t) => set.add(t)));
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [herbs]);
+
+  const toggleTag = (tag: string) => {
+    setActiveTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const clear = () => setQuery("");
+  const clearTags = () => setActiveTags([]);
 
   const filtered = useMemo(() => {
     const q = normalizeQuery(query);
 
-    let list = herbs;
+    return herbs.filter((herb) => {
+      const matchesQuery = !q || normalizeQuery(herb.title).includes(q);
 
-    // Category filter
-    if (category !== "All") {
-      list = list.filter((h) => (h.category?.trim() || "Other") === category);
-    }
+      // If no tags selected => tag filter passes
+      if (activeTags.length === 0) return matchesQuery;
 
-    // Search filter
-    if (q) {
-      list = list.filter((h) => normalizeQuery(h.title).includes(q));
-    }
+      const herbTags = herb.tags ?? [];
 
-    // Sort
-    list = [...list].sort((a, b) => {
-      const cmp = a.title.localeCompare(b.title);
-      return sortMode === "az" ? cmp : -cmp;
+      // "OR" logic: show if herb has ANY of the selected tags
+      const matchesTags = activeTags.some((t) => herbTags.includes(t));
+
+      return matchesQuery && matchesTags;
     });
+  }, [query, herbs, activeTags]);
 
-    return list;
-  }, [query, herbs, category, sortMode]);
-
-  // Group herbs by first letter (based on TITLE) AFTER filtering/sorting
+  // Group herbs by first letter (based on TITLE)
   const grouped = useMemo(() => {
     const map: Record<string, Herb[]> = {};
     filtered.forEach((herb) => {
@@ -98,6 +92,11 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
       if (!map[letter]) map[letter] = [];
       map[letter].push(herb);
     });
+
+    Object.keys(map).forEach((k) => {
+      map[k].sort((a, b) => a.title.localeCompare(b.title));
+    });
+
     return map;
   }, [filtered]);
 
@@ -105,16 +104,15 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
     return Object.keys(grouped).sort((a, b) => a.localeCompare(b));
   }, [grouped]);
 
-  const clear = () => setQuery("");
-
   return (
     <>
-      {/* Search + Filters */}
-      <div className="mb-8">
-        <label className="block font-medium mb-2 text-purple-900">Search herbs</label>
+      {/* Search */}
+      <div className="mb-6">
+        <label className="block font-medium mb-2 text-purple-900">
+          Search herbs
+        </label>
 
-        <div className="flex flex-col lg:flex-row gap-3 items-stretch">
-          {/* Search */}
+        <div className="flex gap-3 items-stretch">
           <input
             type="text"
             value={query}
@@ -126,34 +124,6 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
             aria-label="Search herbs"
           />
 
-          {/* Category */}
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="rounded-2xl border border-purple-300 bg-white/80 px-4 py-4 text-lg
-                       focus:outline-none focus:ring-2 focus:ring-purple-400"
-            aria-label="Filter by category"
-          >
-            {categories.map((c) => (
-              <option key={c} value={c}>
-                {c === "All" ? "All categories" : c}
-              </option>
-            ))}
-          </select>
-
-          {/* Sort */}
-          <select
-            value={sortMode}
-            onChange={(e) => setSortMode(e.target.value as SortMode)}
-            className="rounded-2xl border border-purple-300 bg-white/80 px-4 py-4 text-lg
-                       focus:outline-none focus:ring-2 focus:ring-purple-400"
-            aria-label="Sort herbs"
-          >
-            <option value="az">Sort: A → Z</option>
-            <option value="za">Sort: Z → A</option>
-          </select>
-
-          {/* Clear */}
           <button
             type="button"
             onClick={clear}
@@ -172,16 +142,61 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
             Showing <span className="font-semibold">{filtered.length}</span> of{" "}
             <span className="font-semibold">{herbs.length}</span>
           </p>
+
           <p className="text-sm text-gray-700">All guides are printable PDFs.</p>
         </div>
       </div>
+
+      {/* ✅ Tag Filter Chips */}
+      {availableTags.length > 0 && (
+        <div className="mb-10">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div className="text-sm font-semibold text-purple-900">
+              Filter by tags:
+            </div>
+
+            <button
+              type="button"
+              onClick={clearTags}
+              disabled={activeTags.length === 0}
+              className="text-sm font-semibold text-purple-700 hover:underline disabled:text-purple-300 disabled:no-underline"
+            >
+              Clear tags
+            </button>
+          </div>
+
+          <div className="mt-3 flex flex-wrap gap-2">
+            {availableTags.map((tag) => {
+              const active = activeTags.includes(tag);
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => toggleTag(tag)}
+                  className={
+                    "rounded-full px-4 py-2 text-sm font-semibold transition ring-1 " +
+                    (active
+                      ? "bg-purple-700 text-white ring-purple-700"
+                      : "bg-white text-purple-800 ring-purple-200 hover:ring-purple-300")
+                  }
+                  aria-pressed={active}
+                >
+                  {tag}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Sticky Alphabet Jump Links */}
       {letters.length > 0 && (
         <div className="sticky top-0 z-10 -mx-2 mb-10" id="top">
           <div className="mx-2 rounded-2xl border border-purple-200 bg-[#f6f2fb]/90 backdrop-blur px-4 py-3 shadow-sm">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className="text-sm font-semibold text-purple-900 mr-1">Jump to:</span>
+              <span className="text-sm font-semibold text-purple-900 mr-1">
+                Jump to:
+              </span>
 
               {letters.map((letter) => (
                 <a
@@ -195,7 +210,10 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
 
               <span className="mx-2 text-purple-300">|</span>
 
-              <a href="#top" className="text-purple-700 font-semibold hover:underline">
+              <a
+                href="#top"
+                className="text-purple-700 font-semibold hover:underline"
+              >
                 Top ↑
               </a>
             </div>
@@ -206,26 +224,48 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
       {/* Empty State */}
       {filtered.length === 0 ? (
         <div className="rounded-2xl border border-purple-200 bg-white p-8 shadow-sm">
-          <h2 className="text-xl font-semibold text-purple-900 mb-2">No herbs found</h2>
+          <h2 className="text-xl font-semibold text-purple-900 mb-2">
+            No herbs found
+          </h2>
           <p className="text-gray-700 mb-5">
-            Try a different name, pick another category, or clear your search.
+            Try a different name, adjust your tag filters, or clear search to see
+            the full library.
           </p>
-          <button
-            type="button"
-            onClick={clear}
-            className="rounded-2xl px-6 py-3 font-semibold bg-purple-700 text-white hover:bg-purple-800 transition"
-          >
-            Clear search
-          </button>
+
+          <div className="flex gap-3 flex-wrap">
+            <button
+              type="button"
+              onClick={clear}
+              className="rounded-2xl px-6 py-3 font-semibold bg-purple-700 text-white hover:bg-purple-800 transition"
+            >
+              Clear search
+            </button>
+            <button
+              type="button"
+              onClick={clearTags}
+              className="rounded-2xl px-6 py-3 font-semibold bg-white text-purple-800 ring-1 ring-purple-200 hover:ring-purple-300 transition"
+            >
+              Clear tags
+            </button>
+          </div>
         </div>
       ) : (
         <div className="space-y-14">
           {letters.map((letter) => (
-            <section key={letter} id={`letter-${letter}`} className="scroll-mt-24">
+            <section
+              key={letter}
+              id={`letter-${letter}`}
+              className="scroll-mt-24"
+            >
               <div className="flex items-baseline justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-purple-800">{letter}</h2>
+                <h2 className="text-2xl font-semibold text-purple-800">
+                  {letter}
+                </h2>
 
-                <a href="#top" className="text-sm font-semibold text-purple-700 hover:underline">
+                <a
+                  href="#top"
+                  className="text-sm font-semibold text-purple-700 hover:underline"
+                >
                   Back to top ↑
                 </a>
               </div>
@@ -234,6 +274,7 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                 {grouped[letter].map((herb) => {
                   const pdfHref = `/herbal-library/${herb.slug}.pdf`;
                   const imgSrc = `/herbal-library/previews/${herb.slug}.png`;
+
                   const learnHref = herb.learnHref ?? `/herbs/${herb.slug}`;
 
                   return (
@@ -263,22 +304,35 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                         {/* Content */}
                         <div className="p-6">
                           <div className="flex items-center justify-between gap-4 mb-2">
-                            <h3 className="text-xl font-semibold text-gray-900">{herb.title}</h3>
+                            <h3 className="text-xl font-semibold text-gray-900">
+                              {herb.title}
+                            </h3>
                             <span className="shrink-0 text-xs font-semibold text-purple-800 bg-purple-100 px-3 py-1 rounded-full">
                               PDF
                             </span>
                           </div>
 
-                          {/* Category tag (optional) */}
-                          <div className="text-xs text-gray-600 mb-3">
-                            {(herb.category?.trim() || "Other")}
-                          </div>
+                          {/* Tags display */}
+                          {herb.tags?.length ? (
+                            <div className="mt-1 flex flex-wrap gap-2">
+                              {herb.tags.map((t) => (
+                                <span
+                                  key={t}
+                                  className="text-xs font-semibold text-purple-800 bg-purple-50 ring-1 ring-purple-100 px-2 py-1 rounded-full"
+                                >
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          ) : null}
 
-                          <div className="text-purple-700 font-semibold group-hover:underline">
+                          <div className="mt-3 text-purple-700 font-semibold group-hover:underline">
                             View / Download →
                           </div>
 
-                          <div className="mt-2 text-sm text-gray-500 break-all">{pdfHref}</div>
+                          <div className="mt-2 text-sm text-gray-500 break-all">
+                            {pdfHref}
+                          </div>
                         </div>
                       </a>
 
@@ -293,3 +347,13 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                         </Link>
                       </div>
                     </div>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
