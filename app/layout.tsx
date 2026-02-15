@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import RegisterSW from "@/components/RegisterSW";
-import SiteHeader from "@/components/SiteHeader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +17,11 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "JW Farms | Lavender Farm & Wholesale Lavender",
+  metadataBase: new URL("https://www.jwfarms7.com"),
+  title: {
+    default: "JW Farms | Lavender Farm & Wholesale Lavender",
+    template: "%s | JW Farms",
+  },
   description:
     "JW Farms is a small, family-owned lavender farm offering wholesale lavender, culinary lavender buds, plants, and traditional lavender guides for home and well-being.",
   keywords: [
@@ -32,14 +35,28 @@ export const metadata: Metadata = {
     "lavender well-being",
   ],
   authors: [{ name: "JW Farms" }],
+  alternates: {
+    canonical: "https://www.jwfarms7.com",
+  },
   openGraph: {
     title: "JW Farms | Lavender Farm & Wholesale Lavender",
     description:
       "A small family-owned lavender farm growing lavender with care. Wholesale lavender, culinary buds, plants, and traditional lavender guides.",
-    url: "https://jwfarms7.com",
+    url: "https://www.jwfarms7.com",
     siteName: "JW Farms",
     locale: "en_US",
     type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -54,7 +71,7 @@ export default function RootLayout({
     name: "JW Farms",
     description:
       "JW Farms is a small, family-owned lavender farm offering seasonal lavender plants, fresh bundles, dried buds, and wholesale availability. Serving the local community and surrounding areas.",
-    url: "https://jwfarms7.com",
+    url: "https://www.jwfarms7.com",
     email: "jwfarms77@gmail.com",
     areaServed: {
       "@type": "AdministrativeArea",
@@ -73,7 +90,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>
+      <body
+        className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}
+      >
         <RegisterSW />
 
         {/* JSON-LD: LocalBusiness */}
@@ -93,4 +112,3 @@ export default function RootLayout({
     </html>
   );
 }
-
