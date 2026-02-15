@@ -34,7 +34,7 @@ const HERBS = [
   { title: "Dandelion", slug: "dandelion", learnHref: "/herbs/dandelion", category: "Medicinal" },
   { title: "Echinacea", slug: "echinacea", learnHref: "/herbs/echinacea", category: "Medicinal" },
   { title: "Ginko", slug: "ginko", category: "Medicinal" },
-  { title: "Lemon Balm", slug: "lemon-balm", category: "Medicinal" },
+  { title: "Lemonbalm", slug: "lemonbalm", category: "Medicinal" },
   { title: "Marshmallow", slug: "marshmallow", category: "Medicinal" },
   { title: "Mullein", slug: "mullein", category: "Medicinal" },
   { title: "Plantain Weed", slug: "plantain", category: "Medicinal" },
