@@ -365,17 +365,17 @@ export const HERBS: Herb[] = [
   },
 
   // =========================
-  // LEMON BALM (folder: lemon-balm)
+  // LEMONBALM (folder: lemonbalm)
   // =========================
   {
-    slug: "lemon-balm",
-    name: "Lemon Balm",
+    slug: "lemonbalm",
+    name: "Lemonbalm",
     botanical: "Melissa officinalis",
     intro:
       "Lemon balm is a gentle, lemony mint-family herb traditionally used in calming routines and everyday comfort habits.",
     snapshot: [
       { label: "Botanical name", value: "Melissa officinalis" },
-      { label: "Common names", value: "Lemon balm" },
+      { label: "Common names", value: "Lemonbalm" },
       { label: "Family", value: "Mint family (Lamiaceae)" },
       { label: "Part used", value: "Leaf" },
       { label: "Taste/aroma", value: "Lemony, mild, sweet-herbal" },
@@ -390,7 +390,7 @@ export const HERBS: Herb[] = [
       "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
       FDA,
     ],
-    pdfHref: "/herbal-library/lemon-balm.pdf",
+    pdfHref: "/herbal-library/lemonbalm.pdf",
   },
 
   // =========================
