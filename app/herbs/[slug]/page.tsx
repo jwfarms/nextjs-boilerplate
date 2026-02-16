@@ -62,6 +62,37 @@ const TAGS_BY_SLUG: Record<string, string[]> = {
   // Folder is “ginko”
   ginko: ["Medicinal"],
 };
+type GodsGarden = {
+  biblicalReference: string;
+  growthBehavior: string;
+  medicinalAncientToToday: string;
+  livingParable: string;
+  coloringPageSvg?: string;
+};
+
+const GODS_GARDEN_BY_SLUG: Record<string, GodsGarden> = {
+  basil: {
+    biblicalReference: "—",
+    growthBehavior:
+      "Basil grows quickly in warmth and sun. When pinched, it responds by branching and becoming fuller.",
+    medicinalAncientToToday:
+      "Historically used in food-based traditions for digestion and aromatic comfort. Today basil remains a common culinary and tea herb used in everyday routines.",
+    livingParable:
+      "God designed basil to respond to careful tending. Small, consistent stewardship produces abundance.",
+  },
+
+  chamomile: {
+    biblicalReference: "—",
+    growthBehavior:
+      "Chamomile reseeds itself easily and returns year after year with very little intervention.",
+    medicinalAncientToToday:
+      "Used for centuries in calming and bedtime traditions. Still one of the most widely used gentle teas today.",
+    livingParable:
+      "God designed chamomile to be gentle but dependable. Quiet strength can be steady and faithful.",
+  },
+
+  // add more herbs here over time
+};
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
