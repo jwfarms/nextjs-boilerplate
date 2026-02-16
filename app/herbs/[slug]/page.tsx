@@ -53,12 +53,12 @@ const TAGS_BY_SLUG: Record<string, string[]> = {
   lavender: ["Culinary", "Medicinal"],
   "edelweiss-lavender": ["Medicinal"],
 
-  // ✅ Your preferred spelling going forward
+  // ✅ Preferred spelling going forward
   lemonbalm: ["Medicinal"],
   // (Extra safety in case anything still references the old slug)
   "lemon-balm": ["Medicinal"],
 
-  // Your ginkgo folder is “ginko”
+  // Folder is “ginko”
   ginko: ["Medicinal"],
 };
 
@@ -157,9 +157,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         acceptedAnswer: {
           "@type": "Answer",
           text: herb.tea
-            ? `A simple infusion: ${(
-                herb.tea.steps ?? []
-              ).join(" ")}`
+            ? `A simple infusion: ${(herb.tea.steps ?? []).join(" ")}`
             : `Many herbs are prepared as a simple infusion (tea). If a tea section is listed on this page, follow those steps.`,
         },
       },
