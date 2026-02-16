@@ -18,34 +18,10 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-// ✅ “Use” tags + internal linking back to the library
-// (We keep this mapping here so you do NOT have to edit your big data.ts file.)
+// ============================
+// Tags used for filtering
+// ============================
 const TAGS_BY_SLUG: Record<string, string[]> = {
-  type GodsGarden = {
-  biblicalReference: string;
-  growthBehavior: string;
-  partsUsedSimple: string;
-  medicinalAncientToToday: string;
-  livingParable: string;
-  studyArtSvg?: string;
-  coloringPageSvg?: string;
-};
-
-const GODS_GARDEN_BY_SLUG: Record<string, GodsGarden> = {
-  basil: {
-    biblicalReference: "—",
-    growthBehavior:
-      "Basil grows quickly in warmth and sun. When the tips are pinched, it responds by branching and becoming fuller—one small act of tending can change the whole shape of the plant.",
-    partsUsedSimple: "leaf",
-    medicinalAncientToToday:
-      "Across Mediterranean and household traditions, basil has been used for comfortable digestion after meals and for aromatic calm in daily routines. Today it remains widely used in food traditions and as a gentle tea herb in traditional practice.",
-    livingParable:
-      "God designed basil to respond to careful tending. Small, consistent stewardship leads to greater fullness—what is nurtured faithfully often becomes abundant over time.",
-    studyArtSvg: "/study-art/basil.svg",
-    coloringPageSvg: "/coloring/basil.svg",
-  },
-};
-
   // Culinary herbs
   basil: ["Culinary"],
   cilantro: ["Culinary"],
@@ -82,41 +58,41 @@ const GODS_GARDEN_BY_SLUG: Record<string, GodsGarden> = {
   lemonbalm: ["Medicinal"],
   // (Extra safety in case anything still references the old slug)
   "lemon-balm": ["Medicinal"],
-  mustard: ["Culinary", "Medicinal"],
 
   // Folder is “ginko”
   ginko: ["Medicinal"],
+
+  // If you have mustard as a slug in your data, keep it here:
+  mustard: ["Culinary", "Medicinal"],
 };
+
+// ============================
+// God’s Garden in Scripture
+// (ONLY add basil for now; we’ll scale later)
+// ============================
 type GodsGarden = {
-  biblicalReference: string;
+  biblicalReference: string; // use "—" when not noted
   growthBehavior: string;
+  partsUsedSimple: string; // e.g., "leaf" or "leaf & root"
   medicinalAncientToToday: string;
-  livingParable: string;
-  coloringPageSvg?: string;
+  livingParable: string; // God-only language (no "Jesus")
+  studyArtSvg?: string; // /study-art/<slug>.svg (Option 3)
+  coloringPageSvg?: string; // /coloring/<slug>.svg (Option 2)
 };
 
 const GODS_GARDEN_BY_SLUG: Record<string, GodsGarden> = {
   basil: {
     biblicalReference: "—",
     growthBehavior:
-      "Basil grows quickly in warmth and sun. When pinched, it responds by branching and becoming fuller.",
+      "Basil grows quickly in warmth and sun. When the tips are pinched, it responds by branching and becoming fuller—one small act of tending can change the whole shape of the plant.",
+    partsUsedSimple: "leaf",
     medicinalAncientToToday:
-      "Historically used in food-based traditions for digestion and aromatic comfort. Today basil remains a common culinary and tea herb used in everyday routines.",
+      "Across Mediterranean and household traditions, basil has been used for comfortable digestion after meals and for aromatic calm in daily routines. Today it remains widely used in food traditions and as a gentle tea herb in traditional practice.",
     livingParable:
-      "God designed basil to respond to careful tending. Small, consistent stewardship produces abundance.",
+      "God designed basil to respond to careful tending. Small, consistent stewardship leads to greater fullness—what is nurtured faithfully often becomes abundant over time.",
+    studyArtSvg: "/study-art/basil.svg",
+    coloringPageSvg: "/coloring/basil.svg",
   },
-
-  chamomile: {
-    biblicalReference: "—",
-    growthBehavior:
-      "Chamomile reseeds itself easily and returns year after year with very little intervention.",
-    medicinalAncientToToday:
-      "Used for centuries in calming and bedtime traditions. Still one of the most widely used gentle teas today.",
-    livingParable:
-      "God designed chamomile to be gentle but dependable. Quiet strength can be steady and faithful.",
-  },
-
-  // add more herbs here over time
 };
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -153,6 +129,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
 
   const canonical = `https://www.jwfarms7.com/herbs/${herb.slug}`;
   const tags = TAGS_BY_SLUG[herb.slug] ?? [];
+  const godsGarden = GODS_GARDEN_BY_SLUG[herb.slug];
 
   // ==========================
   // A) JSON-LD Article
@@ -267,7 +244,7 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         </h1>
         <p className="mt-2 text-lg italic text-gray-700">{herb.botanical}</p>
 
-        {/* B) Tags + internal links back to library filter */}
+        {/* Tags + internal links back to library filter */}
         {tags.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((t) => (
@@ -285,6 +262,20 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         <p className="mt-6 text-lg leading-relaxed text-gray-800">
           {herb.intro}
         </p>
+
+        {/* ✅ God’s Garden in Scripture (Basil only for now) */}
+        {godsGarden ? (
+          <GodsGardenInScripture
+            plantName={herb.name}
+            biblicalReference={godsGarden.biblicalReference}
+            growthBehavior={godsGarden.growthBehavior}
+            partsUsedSimple={godsGarden.partsUsedSimple}
+            medicinalAncientToToday={godsGarden.medicinalAncientToToday}
+            livingParable={godsGarden.livingParable}
+            studyArtSvg={godsGarden.studyArtSvg}
+            coloringPageSvg={godsGarden.coloringPageSvg}
+          />
+        ) : null}
 
         {herb.pdfHref ? (
           <div className="mt-6">
