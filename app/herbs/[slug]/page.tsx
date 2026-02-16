@@ -57,6 +57,7 @@ const TAGS_BY_SLUG: Record<string, string[]> = {
   lemonbalm: ["Medicinal"],
   // (Extra safety in case anything still references the old slug)
   "lemon-balm": ["Medicinal"],
+  mustard: ["Culinary", "Medicinal"],
 
   // Folder is “ginko”
   ginko: ["Medicinal"],
