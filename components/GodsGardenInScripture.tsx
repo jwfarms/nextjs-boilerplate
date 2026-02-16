@@ -2,7 +2,7 @@ import Link from "next/link";
 
 type Props = {
   plantName: string;
-  biblicalReference: string;
+  biblicalReference: string; // use "—" for non-biblical herbs
   growthBehavior: string;
   medicinalAncientToToday: string;
   livingParable: string;
@@ -25,21 +25,20 @@ export default function GodsGardenInScripture({
         God’s Garden in Scripture
       </h2>
       <p className="mt-2 text-sm text-gray-700">
-        How God designed <span className="font-medium">{plantName}</span> to grow,
-        to heal, and to teach.
+        God designed <span className="font-medium">{plantName}</span> to grow with purpose, to serve the body, and to teach through creation.
       </p>
 
       <div className="mt-6 space-y-5">
         <div>
           <h3 className="text-sm font-semibold tracking-wide text-purple-900">
-            Biblical Reference
+            Scripture reference (if noted)
           </h3>
           <p className="mt-1 text-gray-800">{biblicalReference}</p>
         </div>
 
         <div>
           <h3 className="text-sm font-semibold tracking-wide text-purple-900">
-            Growth & Behavior
+            Growth &amp; Behavior
           </h3>
           <p className="mt-1 text-gray-800 leading-relaxed">{growthBehavior}</p>
         </div>
