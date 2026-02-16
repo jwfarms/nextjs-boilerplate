@@ -5,28 +5,62 @@ import { notFound } from "next/navigation";
 import { HERBS } from "../data";
 
 // ✅ Critical: do NOT pre-render every herb at build time.
-// Prevents prerender/build issues.
 export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
   if (!herb) return { title: "Herb | JW Farms" };
 
-  const canonical = `https://www.jwfarms7.com/herbs/${herb.slug}`;
-
   return {
     title: `${herb.name} (${herb.botanical}) | Herbal Learning Library | JW Farms`,
     description: `Learn traditional ways to prepare ${herb.name}—tea, tincture, and capsules—plus safety notes. Educational reference from JW Farms.`,
-    alternates: { canonical },
-    openGraph: {
-      title: `${herb.name} | JW Farms`,
-      description: `Traditional preparations, uses, and safety notes for ${herb.name}.`,
-      url: canonical,
-      siteName: "JW Farms",
-      type: "article",
-    },
+    alternates: { canonical: `https://www.jwfarms7.com/herbs/${herb.slug}` },
   };
 }
+
+// ✅ “Use” tags + internal linking back to the library
+// (We keep this mapping here so you do NOT have to edit your big data.ts file.)
+const TAGS_BY_SLUG: Record<string, string[]> = {
+  // Culinary herbs
+  basil: ["Culinary"],
+  cilantro: ["Culinary"],
+  dill: ["Culinary"],
+  garlic: ["Culinary"],
+  marjoram: ["Culinary"],
+  mint: ["Culinary", "Medicinal"],
+  oregano: ["Culinary"],
+  parsley: ["Culinary"],
+  peppermint: ["Culinary", "Medicinal"],
+  rosemary: ["Culinary", "Medicinal"],
+  sage: ["Culinary", "Medicinal"],
+  spearmint: ["Culinary", "Medicinal"],
+  thyme: ["Culinary", "Medicinal"],
+
+  // Mostly medicinal / wellness
+  chamomile: ["Medicinal"],
+  cleavers: ["Medicinal"],
+  dandelion: ["Medicinal"],
+  echinacea: ["Medicinal"],
+  mullein: ["Medicinal"],
+  nasturtium: ["Medicinal", "Culinary"],
+  plantain: ["Medicinal"],
+  purslane: ["Culinary", "Medicinal"],
+  "st-johns-wort": ["Medicinal"],
+  "white-clover": ["Medicinal"],
+  yarrow: ["Medicinal"],
+
+  // Lavender types
+  lavender: ["Culinary", "Medicinal"],
+  "edelweiss-lavender": ["Medicinal"],
+
+  // ✅ Your preferred spelling going forward
+  lemonbalm: ["Medicinal"],
+  // (Extra safety in case anything still references the old slug)
+  "lemon-balm": ["Medicinal"],
+
+  // Your ginkgo folder is “ginko”
+  ginko: ["Medicinal"],
+};
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -60,129 +94,153 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
   const herb = HERBS.find((h) => h.slug === params.slug);
   if (!herb) return notFound();
 
-  // Prefer explicit pdfHref from data, else fall back to the convention
-  const pdfHref = herb.pdfHref ?? `/herbal-library/${herb.slug}.pdf`;
+  const canonical = `https://www.jwfarms7.com/herbs/${herb.slug}`;
+  const tags = TAGS_BY_SLUG[herb.slug] ?? [];
 
-  // Preview image convention (your cards already use this)
-  const previewImg = `/herbal-library/previews/${herb.slug}.png`;
+  // ==========================
+  // A) JSON-LD Article
+  // ==========================
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${herb.name} (${herb.botanical})`,
+    description: `Traditional ways to prepare ${herb.name}—tea, tincture, and capsules—plus safety notes.`,
+    inLanguage: "en-US",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonical,
+    },
+    author: {
+      "@type": "Organization",
+      name: "JW Farms",
+      url: "https://www.jwfarms7.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "JW Farms",
+      url: "https://www.jwfarms7.com",
+    },
+    about: [
+      { "@type": "Thing", name: herb.name },
+      { "@type": "Thing", name: herb.botanical },
+    ],
+    keywords: [herb.name, herb.botanical, "herbal learning library", ...tags].join(
+      ", "
+    ),
+    isPartOf: {
+      "@type": "CollectionPage",
+      name: "Herbal Learning Library",
+      url: "https://www.jwfarms7.com/herbal-learning-library",
+    },
+  };
 
-  // ---- Related herbs logic ----
-  // 1) If the library list passed tags into /herbs/[slug] pages later, this will work.
-  // 2) If tags aren't present in herb data, we fall back to "same first letter".
-  // (We keep this robust so it never breaks builds.)
-  const currentName = herb.name ?? "";
-  const firstLetter = currentName?.[0]?.toUpperCase?.() ?? "";
-
-  // Attempt tag-based relatedness if tags exist anywhere (safe checks)
-  const anyTagsExist = HERBS.some((h: any) => Array.isArray((h as any).tags) && (h as any).tags.length);
-
-  let related = HERBS.filter((h) => h.slug !== herb.slug).slice(0, 0);
-
-  if (anyTagsExist) {
-    const myTags = ((herb as any).tags ?? []) as string[];
-    related = HERBS.filter((h) => h.slug !== herb.slug).filter((h: any) => {
-      const tags = (h.tags ?? []) as string[];
-      return myTags.length > 0 && tags.some((t) => myTags.includes(t));
-    });
-  }
-
-  if (related.length === 0 && firstLetter) {
-    related = HERBS.filter((h) => h.slug !== herb.slug).filter((h) => {
-      const n = h.name ?? "";
-      return (n?.[0]?.toUpperCase?.() ?? "") === firstLetter;
-    });
-  }
-
-  // Keep it tidy
-  related = related.slice(0, 6);
+  // ==========================
+  // C) FAQ Schema (FAQPage)
+  // ==========================
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What is ${herb.name} traditionally used for?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            (herb.traditionalUses ?? []).slice(0, 3).join("; ") ||
+            `${herb.name} is used in traditional household routines and classic herbal traditions.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How do you make ${herb.name} tea?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: herb.tea
+            ? `A simple infusion: ${(
+                herb.tea.steps ?? []
+              ).join(" ")}`
+            : `Many herbs are prepared as a simple infusion (tea). If a tea section is listed on this page, follow those steps.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Is ${herb.name} safe to use?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            (herb.safety ?? []).slice(0, 3).join(" ") ||
+            "Use common sense and consult a qualified professional if pregnant, breastfeeding, taking medications, or managing a condition.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Where can I download the ${herb.name} PDF guide?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: herb.pdfHref
+            ? `You can download it from ${herb.pdfHref}.`
+            : "If available, the PDF download button appears near the top of the page.",
+        },
+      },
+    ],
+  };
 
   return (
     <main className="min-h-screen bg-[#f6f2fb] text-gray-900">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        {/* Breadcrumbs */}
-        <nav className="text-sm text-purple-800/90 flex flex-wrap gap-2">
-          <Link href="/" className="hover:underline font-medium">
-            Home
-          </Link>
-          <span className="text-purple-300">/</span>
-          <Link href="/herbal-learning-library" className="hover:underline font-medium">
-            Herbal Learning Library
-          </Link>
-          <span className="text-purple-300">/</span>
-          <span className="font-semibold text-purple-950">{herb.name}</span>
-        </nav>
+      {/* A) Article JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      {/* C) FAQ JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
-        {/* Page header */}
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        <Link
+          href="/herbal-learning-library"
+          className="text-sm font-medium text-purple-800 hover:underline"
+        >
+          ← Back to Herbal Learning Library
+        </Link>
+
         <h1 className="mt-6 text-4xl font-bold tracking-tight text-purple-950">
           {herb.name}
         </h1>
         <p className="mt-2 text-lg italic text-gray-700">{herb.botanical}</p>
 
-        <p className="mt-6 text-lg leading-relaxed text-gray-800">{herb.intro}</p>
-
-        {/* Primary actions */}
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href={pdfHref}
-            className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
-          >
-            View / Download PDF →
-          </a>
-
-          {/* One-stop book download (your merged PDF) */}
-          <a
-            href="/downloads/herbal-learning-library-book.pdf"
-            className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
-          >
-            Download Full Library Book →
-          </a>
-
-          <Link
-            href="/herbal-learning-library"
-            className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
-          >
-            Back to Library →
-          </Link>
-        </div>
-
-        {/* Optional: quick preview image */}
-        <div className="mt-6 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-purple-100">
-          <div className="text-sm font-semibold text-purple-900 mb-3">
-            Herbal reference preview
+        {/* B) Tags + internal links back to library filter */}
+        {tags.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {tags.map((t) => (
+              <Link
+                key={t}
+                href={`/herbal-learning-library?tag=${encodeURIComponent(t)}`}
+                className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
+              >
+                {t}
+              </Link>
+            ))}
           </div>
-          <div className="rounded-2xl bg-purple-50 border border-purple-100 overflow-hidden">
-            <img
-              src={previewImg}
-              alt={`${herb.name} herbal reference preview`}
-              className="w-full aspect-[3/4] object-contain"
-              loading="lazy"
-            />
-          </div>
-          <p className="mt-3 text-xs text-gray-600">
-            If the preview image isn’t available yet, the PDF download above will still work.
-          </p>
-        </div>
+        )}
 
-        {/* Helpful internal links (contextual cross-links) */}
-        <div className="mt-8 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
-          <div className="text-sm font-semibold text-purple-900 mb-2">
-            Related JW Farms guides
+        <p className="mt-6 text-lg leading-relaxed text-gray-800">
+          {herb.intro}
+        </p>
+
+        {herb.pdfHref ? (
+          <div className="mt-6">
+            <a
+              href={herb.pdfHref}
+              className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
+            >
+              View / Download PDF →
+            </a>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-            <Link href="/lavender" className="text-purple-700 font-semibold hover:underline">
-              Lavender page →
-            </Link>
-            <Link href="/lavender/knowledge" className="text-purple-700 font-semibold hover:underline">
-              Lavender Knowledge Hub →
-            </Link>
-            <Link href="/downloadable-guides" className="text-purple-700 font-semibold hover:underline">
-              Downloadable Guides →
-            </Link>
-            <Link href="/herbal-learning-library" className="text-purple-700 font-semibold hover:underline">
-              Herbal Learning Library →
-            </Link>
-          </div>
-        </div>
+        ) : null}
 
         <SectionTitle>Botanical snapshot</SectionTitle>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -287,45 +345,6 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
         <SectionTitle>Safety &amp; considerations</SectionTitle>
         <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-purple-100">
           <Bullets items={herb.safety ?? []} />
-        </div>
-
-        {/* Related herbs */}
-        {related.length > 0 ? (
-          <>
-            <SectionTitle>Explore more herbs</SectionTitle>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {related.map((h) => (
-                <Link
-                  key={h.slug}
-                  href={`/herbs/${h.slug}`}
-                  className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-purple-100 hover:ring-purple-200 transition"
-                >
-                  <div className="font-semibold text-gray-900">{h.name}</div>
-                  <div className="text-sm italic text-gray-600">{h.botanical}</div>
-                  <div className="mt-2 text-sm font-semibold text-purple-700">
-                    Learn more →
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </>
-        ) : null}
-
-        {/* Footer nav */}
-        <div className="mt-12 flex flex-wrap gap-3">
-          <Link
-            href="/herbal-learning-library"
-            className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
-          >
-            ← Back to Herbal Learning Library
-          </Link>
-
-          <a
-            href="/downloads/herbal-learning-library-book.pdf"
-            className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:ring-purple-300"
-          >
-            Download Full Library Book →
-          </a>
         </div>
       </div>
     </main>
