@@ -1,5 +1,5 @@
 // app/herbs/[slug]/page.tsx
-
+import GodsGardenInScripture from "@/components/GodsGardenInScripture";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HERBS } from "../data";
@@ -21,6 +21,31 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 // ✅ “Use” tags + internal linking back to the library
 // (We keep this mapping here so you do NOT have to edit your big data.ts file.)
 const TAGS_BY_SLUG: Record<string, string[]> = {
+  type GodsGarden = {
+  biblicalReference: string;
+  growthBehavior: string;
+  partsUsedSimple: string;
+  medicinalAncientToToday: string;
+  livingParable: string;
+  studyArtSvg?: string;
+  coloringPageSvg?: string;
+};
+
+const GODS_GARDEN_BY_SLUG: Record<string, GodsGarden> = {
+  basil: {
+    biblicalReference: "—",
+    growthBehavior:
+      "Basil grows quickly in warmth and sun. When the tips are pinched, it responds by branching and becoming fuller—one small act of tending can change the whole shape of the plant.",
+    partsUsedSimple: "leaf",
+    medicinalAncientToToday:
+      "Across Mediterranean and household traditions, basil has been used for comfortable digestion after meals and for aromatic calm in daily routines. Today it remains widely used in food traditions and as a gentle tea herb in traditional practice.",
+    livingParable:
+      "God designed basil to respond to careful tending. Small, consistent stewardship leads to greater fullness—what is nurtured faithfully often becomes abundant over time.",
+    studyArtSvg: "/study-art/basil.svg",
+    coloringPageSvg: "/coloring/basil.svg",
+  },
+};
+
   // Culinary herbs
   basil: ["Culinary"],
   cilantro: ["Culinary"],
