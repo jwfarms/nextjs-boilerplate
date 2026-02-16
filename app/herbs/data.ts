@@ -508,6 +508,49 @@ export const HERBS: Herb[] = [
     ],
     pdfHref: "/herbal-library/mullein.pdf",
   },
+  // =========================
+  // MUSTARD
+  // =========================
+  {
+    slug: "mustard",
+    name: "Mustard",
+    botanical: "Brassica spp. (often Brassica nigra / juncea)",
+    intro:
+      "Mustard is known for starting small and growing quickly. It has long been used in food traditions and traditional household routines as a warming, stimulating herb.",
+    snapshot: [
+      { label: "Botanical name", value: "Brassica spp." },
+      { label: "Common names", value: "Mustard (seed/greens)" },
+      { label: "Family", value: "Mustard family (Brassicaceae)" },
+      { label: "Part used", value: "Seed (and sometimes leaf/greens)" },
+      { label: "Taste/aroma", value: "Pungent, warming, sharp" },
+    ],
+    traditionalUses: [
+      "Warming traditions to support circulation (traditional use)",
+      "Digestive stimulation after meals (traditional use)",
+      "Topical warming applications in folk practice (traditional use)",
+      "Classic household food traditions (traditional use)",
+    ],
+    tea: {
+      title: "Mustard Seed Infusion (Traditional, gentle)",
+      bullets: ["1/4–1/2 tsp whole mustard seed", "1 cup hot water"],
+      steps: [
+        "Add whole mustard seed to a mug.",
+        "Pour hot water over the seed.",
+        "Cover and steep 10 minutes.",
+        "Strain and sip slowly.",
+      ],
+      notes: [
+        "Mustard is strong and warming—many people prefer it in food rather than tea.",
+      ],
+    },
+    safety: [
+      "Mustard is widely used as food; concentrated preparations can be intense.",
+      "Avoid concentrated use if you have active stomach irritation or sensitivity.",
+      "If pregnant, breastfeeding, taking medications, or managing a condition, consult a qualified professional.",
+      FDA,
+    ],
+    pdfHref: "/herbal-library/mustard.pdf",
+  },
 
   // =========================
   // NASTURTIUM
