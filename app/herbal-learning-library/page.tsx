@@ -1,4 +1,10 @@
+
 // app/herbal-learning-library/page.tsx
+
+import HerbLibraryClient from "./HerbLibraryClient";
+
+// ✅ Prevent build-time prerendering (fixes Vercel "prerender error" for this page)
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Herbal Learning Library | JW Farms",
@@ -8,8 +14,6 @@ export const metadata = {
     canonical: "https://www.jwfarms7.com/herbal-learning-library",
   },
 };
-
-import HerbLibraryClient from "./HerbLibraryClient";
 
 const FEATURED_BOOK = {
   title: "Herbal Learning Library Book",
@@ -29,7 +33,11 @@ const HERBS = [
   { title: "Echinacea", slug: "echinacea", learnHref: "/herbs/echinacea" },
   { title: "Lavender", slug: "lavender", learnHref: "/herbs/lavender" },
 
-  { title: "Edelweiss Lavender", slug: "edelweiss-lavender", learnHref: "/herbs/edelweiss-lavender" },
+  {
+    title: "Edelweiss Lavender",
+    slug: "edelweiss-lavender",
+    learnHref: "/herbs/edelweiss-lavender",
+  },
   { title: "Garlic", slug: "garlic", learnHref: "/herbs/garlic" },
   { title: "Ginko", slug: "ginko", learnHref: "/herbs/ginko" },
 
