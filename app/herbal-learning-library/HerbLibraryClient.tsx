@@ -2,15 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 type Herb = {
   title: string;
   slug: string;
   tags?: string[];
-  // Optional overrides (use these for special cases like your “one-stop” book)
-  pdfHref?: string; // e.g. "/downloads/herbal-learning-library-book.pdf"
-  previewSrc?: string; // e.g. "/herbal-library/previews/herbal-learning-library.png"
-  learnHref?: string; // Optional override. If not provided, we auto-build /herbs/[slug]
+  learnHref?: string;
 };
 
 const STORAGE_KEY = "jwfarms_herb_library_search";
@@ -20,39 +18,65 @@ function normalizeQuery(q: string) {
   return q.trim().toLowerCase();
 }
 
+function parseTagsFromUrl(params: URLSearchParams): string[] {
+  // Support:
+  // 1) /herbal-learning-library?tag=Medicinal&tag=Culinary
+  // 2) /herbal-learning-library?tags=Medicinal,Culinary
+  const tagParams = params.getAll("tag").map((t) => t.trim()).filter(Boolean);
+  if (tagParams.length > 0) return tagParams;
+
+  const csv = params.get("tags");
+  if (!csv) return [];
+  return csv
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean);
+}
+
 export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
+  const searchParams = useSearchParams();
+
   const [query, setQuery] = useState("");
   const [activeTags, setActiveTags] = useState<string[]>([]);
 
-  // Remember last search (localStorage)
+  // ✅ One-time init: URL params win, otherwise localStorage
   useEffect(() => {
     try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved) setQuery(saved);
+      const urlQ = searchParams?.get("q") ?? "";
+      const urlTags = searchParams ? parseTagsFromUrl(searchParams) : [];
+
+      if (urlQ || urlTags.length) {
+        setQuery(urlQ);
+        setActiveTags(urlTags);
+        // Also store what they arrived with
+        window.localStorage.setItem(STORAGE_KEY, urlQ);
+        window.localStorage.setItem(TAGS_KEY, JSON.stringify(urlTags));
+        return;
+      }
+
+      const savedQ = window.localStorage.getItem(STORAGE_KEY);
+      if (savedQ) setQuery(savedQ);
+
+      const savedTags = window.localStorage.getItem(TAGS_KEY);
+      if (savedTags) setActiveTags(JSON.parse(savedTags));
     } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Persist search
   useEffect(() => {
     try {
       window.localStorage.setItem(STORAGE_KEY, query);
     } catch {}
   }, [query]);
 
-  // Remember selected tags
-  useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(TAGS_KEY);
-      if (saved) setActiveTags(JSON.parse(saved));
-    } catch {}
-  }, []);
-
+  // Persist tags
   useEffect(() => {
     try {
       window.localStorage.setItem(TAGS_KEY, JSON.stringify(activeTags));
     } catch {}
   }, [activeTags]);
 
-  // Build list of available tags from data
   const availableTags = useMemo(() => {
     const set = new Set<string>();
     herbs.forEach((h) => (h.tags ?? []).forEach((t) => set.add(t)));
@@ -74,19 +98,15 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
     return herbs.filter((herb) => {
       const matchesQuery = !q || normalizeQuery(herb.title).includes(q);
 
-      // If no tags selected => tag filter passes
       if (activeTags.length === 0) return matchesQuery;
 
       const herbTags = herb.tags ?? [];
-
-      // "OR" logic: show if herb has ANY of the selected tags
       const matchesTags = activeTags.some((t) => herbTags.includes(t));
 
       return matchesQuery && matchesTags;
     });
   }, [query, herbs, activeTags]);
 
-  // Group herbs by first letter (based on TITLE)
   const grouped = useMemo(() => {
     const map: Record<string, Herb[]> = {};
     filtered.forEach((herb) => {
@@ -274,15 +294,8 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {grouped[letter].map((herb) => {
-                  // ✅ Default paths (normal herbs)
-                  const defaultPdfHref = `/herbal-library/${herb.slug}.pdf`;
-                  const defaultImgSrc = `/herbal-library/previews/${herb.slug}.png`;
-
-                  // ✅ Overrides (your “one-stop book” uses these)
-                  const pdfHref = herb.pdfHref ?? defaultPdfHref;
-                  const imgSrc = herb.previewSrc ?? defaultImgSrc;
-
-                  // Learn More defaults to /herbs/[slug] unless overridden
+                  const pdfHref = `/herbal-library/${herb.slug}.pdf`;
+                  const imgSrc = `/herbal-library/previews/${herb.slug}.png`;
                   const learnHref = herb.learnHref ?? `/herbs/${herb.slug}`;
 
                   return (
@@ -290,14 +303,12 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                       key={herb.slug}
                       className="bg-white rounded-3xl shadow-sm overflow-hidden border border-purple-100"
                     >
-                      {/* PDF Card (primary action) */}
                       <a
                         href={pdfHref}
                         className="group block hover:shadow-md hover:-translate-y-[1px]
                                    active:translate-y-0 active:shadow-sm transition"
                         aria-label={`Open ${herb.title} PDF`}
                       >
-                        {/* Thumbnail */}
                         <div className="bg-purple-50 px-6 pt-6">
                           <div className="rounded-2xl bg-white/70 border border-purple-100 overflow-hidden">
                             <img
@@ -305,17 +316,10 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                               alt={`${herb.title} herbal reference preview`}
                               className="w-full aspect-[3/4] object-contain"
                               loading="lazy"
-                              onError={(e) => {
-                                // If an override preview is missing, fall back to the standard slug-based preview.
-                                const el = e.currentTarget;
-                                if (el.src.endsWith(defaultImgSrc)) return;
-                                el.src = defaultImgSrc;
-                              }}
                             />
                           </div>
                         </div>
 
-                        {/* Content */}
                         <div className="p-6">
                           <div className="flex items-center justify-between gap-4 mb-2">
                             <h3 className="text-xl font-semibold text-gray-900">
@@ -326,7 +330,6 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                             </span>
                           </div>
 
-                          {/* Tags display */}
                           {herb.tags?.length ? (
                             <div className="mt-1 flex flex-wrap gap-2">
                               {herb.tags.map((t) => (
@@ -350,7 +353,6 @@ export default function HerbLibraryClient({ herbs }: { herbs: Herb[] }) {
                         </div>
                       </a>
 
-                      {/* Learn More */}
                       <div className="px-6 pb-6 -mt-2">
                         <Link
                           href={learnHref}
