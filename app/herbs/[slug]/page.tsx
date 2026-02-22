@@ -235,6 +235,34 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
       />
 
       <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Top mini-nav */}
+<div className="mb-6 flex flex-wrap items-center gap-3">
+  <Link
+    href="/"
+    className="inline-flex items-center text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    ← Back to JW Farms
+  </Link>
+
+  <span className="text-gray-300">|</span>
+
+  <Link
+    href="/downloadable-guides"
+    className="text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    Downloadable Guides
+  </Link>
+
+  <span className="text-gray-300">|</span>
+
+  <Link
+    href="/herbal-learning-library"
+    className="text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    Herbal Learning Library
+  </Link>
+</div>
+
         {/* ✅ Top mini-nav (Back to main site + quick links) */}
         <div className="mb-6 flex flex-wrap items-center gap-3">
           <Link
