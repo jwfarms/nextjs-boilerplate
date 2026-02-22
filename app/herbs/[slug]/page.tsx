@@ -1,4 +1,5 @@
 // app/herbs/[slug]/page.tsx
+import React from "react";
 import GodsGardenInScripture from "@/components/GodsGardenInScripture";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -104,6 +105,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 }
 
 function Bullets({ items }: { items: string[] }) {
+  if (!items?.length) return null;
   return (
     <ul className="list-disc pl-6 space-y-1 text-gray-800">
       {items.map((t, i) => (
@@ -114,6 +116,7 @@ function Bullets({ items }: { items: string[] }) {
 }
 
 function Steps({ items }: { items: string[] }) {
+  if (!items?.length) return null;
   return (
     <ol className="list-decimal pl-6 space-y-1 text-gray-800">
       {items.map((t, i) => (
@@ -232,6 +235,35 @@ export default function HerbPage({ params }: { params: { slug: string } }) {
       />
 
       <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* ✅ Top mini-nav (Back to main site + quick links) */}
+        <div className="mb-6 flex flex-wrap items-center gap-3">
+          <Link
+            href="/"
+            className="inline-flex items-center text-sm font-medium text-[#6b4fa3] hover:underline"
+          >
+            ← Back to JW Farms
+          </Link>
+
+          <span className="text-gray-300">|</span>
+
+          <Link
+            href="/downloadable-guides"
+            className="text-sm font-medium text-[#6b4fa3] hover:underline"
+          >
+            Downloadable Guides
+          </Link>
+
+          <span className="text-gray-300">|</span>
+
+          <Link
+            href="/herbal-learning-library"
+            className="text-sm font-medium text-[#6b4fa3] hover:underline"
+          >
+            Herbal Learning Library
+          </Link>
+        </div>
+
+        {/* Existing link back to the library */}
         <Link
           href="/herbal-learning-library"
           className="text-sm font-medium text-purple-800 hover:underline"
