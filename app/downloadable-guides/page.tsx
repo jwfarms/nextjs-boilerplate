@@ -149,6 +149,34 @@ export default function DownloadableGuidesPage() {
     <main className="min-h-screen bg-[#f6f2fb] text-gray-800">
       {/* Featured */}
       <section className="border-b border-purple-100">
+        {/* Top mini-nav */}
+<div className="mb-6 flex flex-wrap items-center gap-3">
+  <a
+    href="/"
+    className="inline-flex items-center text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    ← Back to JW Farms
+  </a>
+
+  <span className="text-gray-300">|</span>
+
+  <a
+    href="/downloadable-guides"
+    className="text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    Downloadable Guides
+  </a>
+
+  <span className="text-gray-300">|</span>
+
+  <a
+    href="/herbal-learning-library"
+    className="text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    Herbal Learning Library
+  </a>
+</div>
+
         <div className="max-w-6xl mx-auto px-6 py-16 grid gap-10 md:grid-cols-2 items-center">
           <div>
             <p className="text-sm font-medium text-purple-900/80">
