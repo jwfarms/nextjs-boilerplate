@@ -2,142 +2,162 @@ import Link from "next/link";
 
 type Props = {
   plantName: string;
-  biblicalReference: string; // use "—" when not noted in scripture list
+  biblicalReference: string;
   growthBehavior: string;
-  partsUsedSimple: string; // e.g. "leaf" or "leaf & root"
+  partsUsedSimple: string;
   medicinalAncientToToday: string;
-  livingParable: string; // God-only language
-  studyArtSvg?: string; // e.g. "/study-art/basil.svg" (Option 3)
-  coloringPageSvg?: string; // e.g. "/coloring/basil.svg" (Option 2)
+  livingParable: string;
+  studyArtSvg?: string; // /study-art/<slug>.svg
+  coloringPageSvg?: string; // /coloring/<slug>.svg
 };
 
-function MissingArt({ label, path }: { label: string; path: string }) {
+export default function GodsGardenInScripture(props: Props) {
+  const {
+    plantName,
+    biblicalReference,
+    growthBehavior,
+    partsUsedSimple,
+    medicinalAncientToToday,
+    livingParable,
+    studyArtSvg,
+    coloringPageSvg,
+  } = props;
+
   return (
-    <div className="rounded-2xl border border-dashed border-purple-300 bg-white/60 p-6 text-center">
-      <div className="text-sm font-semibold text-purple-900">{label}</div>
-      <div className="mt-1 text-xs text-gray-700">
-        Add file at <span className="font-mono">{path}</span>
-      </div>
-    </div>
-  );
-}
+    <section className="mt-10">
+      <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-purple-100">
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <h2 className="text-2xl font-semibold text-purple-900">
+            God&apos;s Garden in Scripture
+          </h2>
 
-export default function GodsGardenInScripture({
-  plantName,
-  biblicalReference,
-  growthBehavior,
-  partsUsedSimple,
-  medicinalAncientToToday,
-  livingParable,
-  studyArtSvg,
-  coloringPageSvg,
-}: Props) {
-  return (
-    <section className="mt-10 rounded-2xl border border-purple-200 bg-[#fbf8ff] p-6 shadow-sm">
-      <h2 className="text-2xl font-semibold text-purple-900">
-        God’s Garden in Scripture
-      </h2>
-      <p className="mt-2 text-sm text-gray-700">
-        God designed <span className="font-medium">{plantName}</span> to grow
-        with purpose, to serve the body, and to teach through creation.
-      </p>
-
-      {/* Side layout: 1/4–1/2 page study art */}
-      <div className="mt-6 grid gap-6 md:grid-cols-[320px_1fr]">
-        <div className="md:sticky md:top-6">
-          {studyArtSvg ? (
-            <img
-              src={studyArtSvg}
-              alt={`${plantName} study illustration`}
-              className="w-full h-auto rounded-2xl bg-white p-3 ring-1 ring-purple-100"
-              onError={(e) => {
-                // swap to placeholder if missing
-                const img = e.currentTarget;
-                img.style.display = "none";
-                const parent = img.parentElement;
-                if (parent) {
-                  const div = document.createElement("div");
-                  div.innerHTML = "";
-                }
-              }}
-            />
-          ) : (
-            <MissingArt label="Study illustration (Option 3)" path="/public/study-art/<slug>.svg" />
-          )}
-
-          {coloringPageSvg ? (
-            <div className="mt-4">
-              <a
-                href={coloringPageSvg}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-purple-800 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-900"
-              >
-                Open coloring page →
-              </a>
-            </div>
-          ) : (
-            <div className="mt-4">
-              <MissingArt label="Coloring page (Option 2)" path="/public/coloring/<slug>.svg" />
-            </div>
-          )}
+          <div className="text-sm text-gray-600">
+            <span className="font-medium text-gray-700">Biblical reference:</span>{" "}
+            {biblicalReference || "—"}
+          </div>
         </div>
 
-        <div className="space-y-5">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-purple-900">
-              Scripture reference (if noted)
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div className="rounded-xl bg-[#f6f2fb] p-4">
+            <div className="text-xs uppercase tracking-wide text-gray-600">
+              Growth behavior
             </div>
-            <div className="mt-1 text-gray-900">{biblicalReference}</div>
+            <p className="mt-2 text-gray-800 leading-relaxed">{growthBehavior}</p>
           </div>
 
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-purple-900">
-              Growth &amp; behavior
+          <div className="rounded-xl bg-[#f6f2fb] p-4">
+            <div className="text-xs uppercase tracking-wide text-gray-600">
+              Parts used
             </div>
-            <div className="mt-1 text-gray-900 leading-relaxed">
-              {growthBehavior}
-            </div>
+            <p className="mt-2 text-gray-800 leading-relaxed">{partsUsedSimple}</p>
           </div>
 
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-purple-900">
-              Parts of the plant used
+          <div className="rounded-xl bg-[#f6f2fb] p-4 md:col-span-2">
+            <div className="text-xs uppercase tracking-wide text-gray-600">
+              Medicinal (ancient to today)
             </div>
-            <div className="mt-1 text-gray-900">
-              <span className="font-medium">Parts used:</span> {partsUsedSimple}
-            </div>
-          </div>
-
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-purple-900">
-              Medicinal use (ancient → today)
-            </div>
-            <div className="mt-1 text-gray-900 leading-relaxed">
+            <p className="mt-2 text-gray-800 leading-relaxed">
               {medicinalAncientToToday}
-            </div>
+            </p>
           </div>
 
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-purple-900">
+          <div className="rounded-xl bg-[#f6f2fb] p-4 md:col-span-2">
+            <div className="text-xs uppercase tracking-wide text-gray-600">
               Living parable
             </div>
-            <div className="mt-1 text-gray-900 leading-relaxed">
-              {livingParable}
-            </div>
+            <p className="mt-2 text-gray-800 leading-relaxed">{livingParable}</p>
           </div>
-
-          <p className="pt-2 text-xs text-gray-600">
-            Educational use only. Not medical advice.
-          </p>
-
-          <p className="text-xs text-gray-600">
-            <Link href="/downloadable-guides" className="font-medium text-purple-800 hover:underline">
-              Browse printable guides →
-            </Link>
-          </p>
         </div>
-      </div>
-    </section>
-  );
-}
+
+        {(studyArtSvg || coloringPageSvg) ? (
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            {studyArtSvg ? (
+              <div className="rounded-2xl border border-purple-100 overflow-hidden bg-white">
+                <div className="p-4 border-b border-purple-100">
+                  <div className="font-semibold text-purple-900">
+                    Study Art (SVG)
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    Printable reference art.
+                  </div>
+                </div>
+
+                <div className="p-4">
+                  <img
+                    src={studyArtSvg}
+                    alt={`${plantName} study art`}
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
+
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <a
+                      href={studyArtSvg}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-purple-800 text-white hover:bg-purple-900"
+                    >
+                      Open SVG
+                    </a>
+
+                    <a
+                      href={studyArtSvg}
+                      download
+                      className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium border border-purple-200 text-purple-900 hover:bg-purple-50"
+                    >
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
+            {coloringPageSvg ? (
+              <div className="rounded-2xl border border-purple-100 overflow-hidden bg-white">
+                <div className="p-4 border-b border-purple-100">
+                  <div className="font-semibold text-purple-900">
+                    Coloring Page (SVG)
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    Line art for coloring.
+                  </div>
+                </div>
+
+                <div className="p-4">
+                  <img
+                    src={coloringPageSvg}
+                    alt={`${plantName} coloring page`}
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
+
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <a
+                      href={coloringPageSvg}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-purple-800 text-white hover:bg-purple-900"
+                    >
+                      Open SVG
+                    </a>
+
+                    <a
+                      href={coloringPageSvg}
+                      download
+                      className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium border border-purple-200 text-purple-900 hover:bg-purple-50"
+                    >
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div className="mt-6">
+          <Link
+            href="/downloadable-guides"
+            className="text-sm font-medium text-[#6b4fa3] hover:underline"
+          >
+            Browse Downloadable Guides →
