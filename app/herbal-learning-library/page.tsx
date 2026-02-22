@@ -66,6 +66,34 @@ export default function HerbalLearningLibraryPage() {
   return (
     <main className="bg-[#f6f2fb] text-gray-800 min-h-screen">
       <section className="py-20 px-6 max-w-6xl mx-auto">
+        {/* Top mini-nav */}
+<div className="mb-6 flex flex-wrap items-center gap-3">
+  <a
+    href="/"
+    className="inline-flex items-center text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    ← Back to JW Farms
+  </a>
+
+  <span className="text-gray-300">|</span>
+
+  <a
+    href="/downloadable-guides"
+    className="text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    Downloadable Guides
+  </a>
+
+  <span className="text-gray-300">|</span>
+
+  <a
+    href="/herbal-learning-library"
+    className="text-sm font-medium text-[#6b4fa3] hover:underline"
+  >
+    Herbal Learning Library
+  </a>
+</div>
+
         <h1 className="text-4xl md:text-5xl font-semibold text-purple-800 mb-6">
           Herbal Learning Library
         </h1>
