@@ -11,18 +11,16 @@ type Props = {
   coloringPageSvg?: string; // /coloring/<slug>.svg
 };
 
-export default function GodsGardenInScripture(props: Props) {
-  const {
-    plantName,
-    biblicalReference,
-    growthBehavior,
-    partsUsedSimple,
-    medicinalAncientToToday,
-    livingParable,
-    studyArtSvg,
-    coloringPageSvg,
-  } = props;
-
+export default function GodsGardenInScripture({
+  plantName,
+  biblicalReference,
+  growthBehavior,
+  partsUsedSimple,
+  medicinalAncientToToday,
+  livingParable,
+  studyArtSvg,
+  coloringPageSvg,
+}: Props) {
   return (
     <section className="mt-10">
       <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-purple-100">
@@ -161,3 +159,9 @@ export default function GodsGardenInScripture(props: Props) {
             className="text-sm font-medium text-[#6b4fa3] hover:underline"
           >
             Browse Downloadable Guides →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
