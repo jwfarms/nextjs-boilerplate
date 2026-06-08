@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import InstallApp from "@/components/InstallApp";
-
+import VideoSection from "@/components/VideoSection";
 function SoftImage({
   src,
   alt,
@@ -259,7 +259,9 @@ export default function Home() {
           <a href="#products" className="hover:text-purple-700">
             Products
           </a>
-
+<a href="#videos" className="hover:text-purple-700">
+  Videos
+</a>
           {/* ✅ New menu item */}
           <a href="#install-app" className="hover:text-purple-700">
             Install App
@@ -475,7 +477,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+<VideoSection />
       {/* About */}
       <section
         id="about"
